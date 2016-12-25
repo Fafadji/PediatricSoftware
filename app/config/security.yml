@@ -6,7 +6,7 @@ security:
 
   role_hierarchy:
     # Un admin hérite des droits d'auteur et de modérateur
-    ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR]
+    ROLE_ADMIN:       [ROLE_SECRETARY, ROLE_DOCTOR]
     # On garde ce rôle superadmin, il nous resservira par la suite
     ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
