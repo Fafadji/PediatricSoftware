@@ -1,3 +1,3 @@
 ps_customer_homepage:
     path:     /
-    defaults: { _controller: PSCustomerBundle:Default:index }
+    defaults: { _controller: PSCustomerBundle:Customer:index }

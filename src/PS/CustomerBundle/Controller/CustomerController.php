@@ -4,10 +4,10 @@ namespace PS\CustomerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class CustomerController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('PSCustomerBundle:Default:index.html.twig');
+        return $this->render('PSCustomerBundle:Customer:index.html.twig');
     }
 }
