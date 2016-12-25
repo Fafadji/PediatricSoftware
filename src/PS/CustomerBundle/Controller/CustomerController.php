@@ -10,4 +10,9 @@ class CustomerController extends Controller
     {
         return $this->render('PSCustomerBundle:Customer:index.html.twig');
     }
+    
+    public function addPatientAction()
+    {
+        return $this->render('PSCustomerBundle:Customer:index.html.twig');
+    }
 }
