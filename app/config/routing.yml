@@ -1,8 +1,2 @@
 ps_user:
-    resource: "@PSUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+    resource: "@PSUserBundle/Resources/config/routing.yml"
