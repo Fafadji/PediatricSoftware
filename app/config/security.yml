@@ -15,12 +15,15 @@ security:
       id: fos_user.user_provider.username
 
   firewalls:
-    dev:
+    dev_1:
       pattern: ^/(_(profiler|wdt|console)|css|images|js)/
+      security: false
+    dev_2:
+      pattern: ^/(login|register/)$
       security: false
     main_login:
         # Cette expression régulière permet de prendre /login (mais pas /login_check !)
-        pattern:   ^/login$
+        pattern:   ^/(login)$
         anonymous: true # On autorise alors les anonymes sur ce pare-feu
     main:
       pattern:      ^/
