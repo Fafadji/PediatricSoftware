@@ -32,7 +32,10 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "friendsofsymfony/user-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "^1.2.2",
-        "coresphere/console-bundle": "~0.4"
+        "coresphere/console-bundle": "~0.4",
+        "symfony/assetic-bundle": "^2.7.1",
+        "leafo/scssphp": "~0.6",
+        "patchwork/jsqueeze": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

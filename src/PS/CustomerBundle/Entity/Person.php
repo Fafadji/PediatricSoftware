@@ -4,6 +4,7 @@ namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
  * Person
@@ -36,7 +37,7 @@ abstract class Person
      * @var string
      *
      * @ORM\Column(name="sex", type="string", length=255)
-     * @Assert\Regex("M|F")
+     * 
      */
     protected $sex;
 
@@ -61,17 +62,18 @@ abstract class Person
     const SEX_MALE='M';
     const SEX_FEMALE='F';
     
+    
     public static $TYPES= array (
-        TYPE_FATHER => 'FATHER',
-        TYPE_MOTHER => 'MOTHER',
-        TYPE_TUTOR => 'TUTOR',
-        TYPE_CHILD => 'CHILD',
+        'TYPE_FATHER' => 'FATHER',
+        'TYPE_MOTHER' => 'MOTHER',
+        'TYPE_TUTOR' => 'TUTOR',
+        'TYPE_CHILD' => 'CHILD',
                                 );
 
     
-  public function __construct($type) // Constructeur demandant 2 paramètres
+  protected function __construct($type) // Constructeur demandant 2 paramètres
   {
-    setType($type);
+    $this->setType($type);
   }
     
 
@@ -87,9 +89,10 @@ abstract class Person
     
     private function setType($type)
     {
+        
         if(!in_array($type, Person::$TYPES)) 
         {
-            throw new Exception("Non Existing Person type : $type");
+            throw new InvalidOptionsException("Non Existing Person type : $type");
         }
         $this->type = $type;
         
@@ -221,5 +224,6 @@ abstract class Person
     {
         return $this->personalPhone;
     }
+    
 }
 

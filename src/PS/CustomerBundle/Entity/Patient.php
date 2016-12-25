@@ -22,6 +22,11 @@ class Patient extends Person
     protected $id;
 
 
+    public function __construct() // Constructeur demandant 2 paramètres
+    {
+        parent::__construct(Person::$TYPES['TYPE_CHILD']);
+    }
+
     /**
      * Get id
      *

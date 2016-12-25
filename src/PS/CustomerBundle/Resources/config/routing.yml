@@ -2,6 +2,10 @@ ps_customer_homepage:
     path:     /
     defaults: { _controller: PSCustomerBundle:Customer:index }
 
-ps_customer_addPatient:
-    path:     /addPatient
-    defaults: { _controller: PSCustomerBundle:Customer:addPatient }
+ps_patient_add:
+    path:     /add
+    defaults: { _controller: PSCustomerBundle:Patient:add }
+    
+ps_patient_view:
+    path:     /view
+    defaults: { _controller: PSCustomerBundle:Patient:view }
