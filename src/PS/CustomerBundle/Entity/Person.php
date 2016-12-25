@@ -15,9 +15,6 @@ abstract class Person
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
@@ -50,6 +47,8 @@ abstract class Person
      * @Assert\DateTime()
      */
     protected $birthday;
+    
+    protected $type;
 
     /**
      * @var string
@@ -59,6 +58,23 @@ abstract class Person
     protected $personalPhone;
 
 
+    const SEX_MALE='M';
+    const SEX_FEMALE='F';
+    
+    public static $TYPES= array (
+        TYPE_FATHER => 'FATHER',
+        TYPE_MOTHER => 'MOTHER',
+        TYPE_TUTOR => 'TUTOR',
+        TYPE_CHILD => 'CHILD',
+                                );
+
+    
+  public function __construct($type) // Constructeur demandant 2 paramètres
+  {
+    setType($type);
+  }
+    
+
     /**
      * Get id
      *
@@ -67,6 +83,23 @@ abstract class Person
     public function getId()
     {
         return $this->id;
+    }
+    
+    private function setType($type)
+    {
+        if(!in_array($type, Person::$TYPES)) 
+        {
+            throw new Exception("Non Existing Person type : $type");
+        }
+        $this->type = $type;
+        
+
+        return $this;
+    }
+    
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
