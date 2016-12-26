@@ -3,6 +3,17 @@
 {% block body %}
 
 <div class="container">
+
+    
+{% for message in app.session.flashbag.get('error') %}
+    <div class="row">
+    <div class="alert col-lg-6 alert-danger">
+        <strong>{{ message }}</strong>
+    </div>
+    </div>
+ {% endfor %}
+    
+    
 <div class="stepwizard">
     <div class="stepwizard-row setup-panel">
         <div class="stepwizard-step">
