@@ -39,7 +39,7 @@ class Patient extends Person
      *
      * @ORM\Column(name="code_siblings", type="string", length=255, nullable=true)
      */
-    protected $codeSiblings;
+    private $codeSiblings;
 
 
     public function __construct() // Constructeur demandant 2 paramètres
@@ -103,29 +103,5 @@ class Patient extends Person
     public function getFather()
     {
         return $this->father;
-    }
-
-    /**
-     * Set codeSiblings
-     *
-     * @param string $codeSiblings
-     *
-     * @return Patient
-     */
-    public function setCodeSiblings($codeSiblings)
-    {
-        $this->codeSiblings = $codeSiblings;
-
-        return $this;
-    }
-
-    /**
-     * Get codeSiblings
-     *
-     * @return string
-     */
-    public function getCodeSiblings()
-    {
-        return $this->codeSiblings;
     }
 }
