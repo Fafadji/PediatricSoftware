@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PatientType extends AbstractType
 {
@@ -19,6 +20,11 @@ class PatientType extends AbstractType
     {
         PersonFormUtils::addPrimaryInfo($builder);
         $builder 
+                  ->add('mother', EntityType::class, array(
+    'class'        => 'PSCustomerBundle:Mother',
+    'choice_label' => 'name',
+    'multiple'     => false,
+  ))
             ->add('sex',ChoiceType::class,
                 array(
                     'label' => 'sex',
@@ -30,7 +36,7 @@ class PatientType extends AbstractType
             ->add('codeSiblings',        TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
             ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
                 
-            ->add('mother',        MotherType::class,  array('required' => false, 'label' => false))
+           // ->add('mother',        MotherType::class,  array('required' => false, 'label' => false))
             ->add('father',        FatherType::class,  array('required' => false, 'label' => false))
                 
             ->add('save',           SubmitType::class, array('label' => 'save'))
