@@ -1,3 +1,5 @@
+// Wizard JS
+
 $(document).ready(function () {
 
     var navListItems = $('div.setup-panel div a'),

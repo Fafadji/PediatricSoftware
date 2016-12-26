@@ -8,8 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 
 class PatientType extends AbstractType
 {
@@ -20,11 +22,6 @@ class PatientType extends AbstractType
     {
         PersonFormUtils::addPrimaryInfo($builder);
         $builder 
-                  ->add('mother', EntityType::class, array(
-    'class'        => 'PSCustomerBundle:Mother',
-    'choice_label' => 'name',
-    'multiple'     => false,
-  ))
             ->add('sex',ChoiceType::class,
                 array(
                     'label' => 'sex',
@@ -35,12 +32,34 @@ class PatientType extends AbstractType
                     ))
             ->add('codeSiblings',        TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
             ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
-                
-           // ->add('mother',        MotherType::class,  array('required' => false, 'label' => false))
+             
+             ->add('mother', EntityType::class, array(
+                    'class'        => 'PSCustomerBundle:Mother',
+                    'choice_label' => 'name', 'multiple' => false,
+                    'required' => false, 'label' => false,
+                    
+                  ))
+            ->add('motherNew',        MotherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
             ->add('father',        FatherType::class,  array('required' => false, 'label' => false))
                 
             ->add('save',           SubmitType::class, array('label' => 'save'))
           ;
+        
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'handleSubmit'));
+    }
+    
+    public function handleSubmit(FormEvent $event) 
+    {
+        $data = $event->getData();
+        $form = $event->getForm();
+
+        if (empty($data['mother']) && !empty($data['motherNew']['name'])) {
+            $form->remove('motherNew');
+
+            $form->add('motherNew', MotherType::class, array(
+                'property_path' => 'mother',
+            ));
+        }
     }
     
     /**
