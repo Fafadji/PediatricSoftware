@@ -20,6 +20,18 @@ class Patient extends Person
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
+  /**
+   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    protected $mother;
+    
+  /**
+   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    protected $father;
 
 
     public function __construct() // Constructeur demandant 2 paramètres

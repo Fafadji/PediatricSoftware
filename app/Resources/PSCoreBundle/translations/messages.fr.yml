@@ -1,0 +1,12 @@
+pediatric.title: Pédiatrie
+consultation.new: 'Nouvelle consultation'
+consultation.manage: 'Gerer les consultations'
+consultation.list: 'Liste des consultations'
+patient.add: 'Ajouter un nouveau patient'
+patient.list: 'Liste des patients'
+logout: Déconnexion
+login: Connexion
+footer.signature: 'Logiciel de Pédiatrie © 2017 par Fafadji GNOFAME : fafadji.gnofame@gmail.com'
+pediatric.software: 'Logiciel de Pédiatrie'
+patient.manage: 'Gérer les patients'
+connected.as: 'Connecté en tant que: %username%'

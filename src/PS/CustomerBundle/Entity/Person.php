@@ -37,6 +37,11 @@ abstract class Person
      * @var string
      *
      * @ORM\Column(name="sex", type="string", length=255)
+     * @Assert\Regex(
+     *     pattern="/^(fe)?male$/",
+     *     match=true,
+     *     message="Sex should be male or female"
+     * )
      * 
      */
     protected $sex;
@@ -59,8 +64,8 @@ abstract class Person
     protected $personalPhone;
 
 
-    const SEX_MALE='M';
-    const SEX_FEMALE='F';
+    const SEX_MALE='male';
+    const SEX_FEMALE='female';
     
     
     public static $TYPES= array (

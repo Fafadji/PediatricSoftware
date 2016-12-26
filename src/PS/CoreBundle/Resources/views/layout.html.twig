@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}Pediactric Software{% endblock %}</title>
+    <title>{% block title %}{{ 'pediatric.software'|trans }}{% endblock %}</title>
 
     {% block stylesheets %}
       {# On charge le CSS de bootstrap depuis le site directement #}
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
 
       {% stylesheets filter="cssrewrite, ?scssphp"
 
@@ -20,50 +20,71 @@
 
   <body>
   <div class="container">
-    <div id="header" class="jumbotron">
-      <h1>Pediatric Software</h1>
-      <p>
-        Manage your Patients
-      </p>
-    </div>
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"> {{ 'pediatric.title'|trans }} </a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#"> {{ 'consultation.new'|trans }} </a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ 'consultation.manage'|trans }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"> {{ 'consultation.new'|trans }} </a></li>
+                  <li><a href="#"> {{ 'consultation.list'|trans }} </a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ 'patient.manage'|trans }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('ps_patient_add') }}"> {{ 'patient.add'|trans }} </a></li>
+                  <li><a href="#"> {{ 'patient.list'|trans }} </a></li>
+                </ul>
+              </li>             
+            </ul>
+              
+            <ul class="nav navbar-nav navbar-right">               
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="active"><a href="#"> {{ 'connected.as'|trans({'%username%': app.user.username}) }} <span class="sr-only">(current)</span></a></li>
+                    <li> <a href="{{ path('fos_user_security_logout') }}">  {{ 'logout'|trans }} </a></li>
+                {% else %}
+                    <li> <a href="{{ path('fos_user_security_login') }}"> {{ 'login'|trans }}</a></li>
+                {% endif %}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+      
+      
 
-    <div class="row">
-      <div id="menu" class="col-md-3">
-        <h3>Menu</h3>
-        <ul class="nav nav-pills nav-stacked">
-          <li><a href="{{ path('ps_customer_homepage') }}">Accueil</a></li>
-          {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('ps_patient_add') }}">Ajouter un patient</a></li>
-          {% endif %}
-        </ul>
-
-        <h3>Utilisateur</h3>
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          Connecté en tant que {{ app.user.username }}
-          <br>
-          <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-        {% else %}
-          <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-        {% endif %}
-      </div>
-      <div id="content" class="col-md-9">
+      <div id="content" class="col-md-12">
         {% block body %}
         {% endblock %}
       </div>
-    </div>
 
     <hr>
 
-    <footer>
-      <p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+    <footer class="col-md-12" >
+      <p>  {{ 'footer.signature'|trans }} </p>
     </footer>
   </div>
+  
+    {% javascripts 
+      'assets/jquery/jquery.min.js' 
+      'assets/bootstrap/js/bootstrap.min.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
-  {% block javascripts %}
-    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  {% endblock %}
+  
 
   </body>
 </html>

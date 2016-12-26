@@ -1,13 +1,13 @@
 {% extends "PSCoreBundle::layout.html.twig" %}
 
 {% block title %}
-  Patient - {{ parent() }}
+  patient - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
   {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-  <h1>Patient</h1>
+  <h1>{{ 'patient.title'|trans }}</h1>
 
   <hr>
 
