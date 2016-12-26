@@ -22,13 +22,13 @@ class Patient extends Person
     protected $id;
     
   /**
-   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother")
+   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    */
     protected $mother;
     
   /**
-   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father")
+   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    */
     protected $father;

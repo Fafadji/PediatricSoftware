@@ -21,6 +21,11 @@ class Father extends Person
      */
     protected $id;
 
+    
+    public function __construct() 
+    {
+        parent::__construct(Person::$TYPES['TYPE_FATHER']);
+    }
 
     /**
      * Get id

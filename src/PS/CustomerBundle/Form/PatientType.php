@@ -17,9 +17,8 @@ class PatientType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name',           TextType::class, array('label' => 'name'))
-            ->add('surname',        TextType::class,  array('required' => false, 'label' => 'surname'))
+        PersonFormUtils::addPrimaryInfo($builder);
+        $builder 
             ->add('sex',ChoiceType::class,
                 array(
                     'label' => 'sex',
@@ -28,17 +27,11 @@ class PatientType extends AbstractType
                         'female' => 'female'),
                     'multiple'=>false,'expanded'=>true
                     ))
-            ->add('birthday',       BirthdayType::class,  
-                array(
-                    'label' => 'birthday',
-                    'required' => false,
-                    'format' => 'dd MM yyyy',
-                    ))
             ->add('codeSiblings',        TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
             ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
                 
-            ->add('mother',        PersonType::class,  array('required' => false, 'label' => false))
-            ->add('father',        PersonType::class,  array('required' => false, 'label' => false))
+            ->add('mother',        MotherType::class,  array('required' => false, 'label' => false))
+            ->add('father',        FatherType::class,  array('required' => false, 'label' => false))
                 
             ->add('save',           SubmitType::class, array('label' => 'save'))
           ;

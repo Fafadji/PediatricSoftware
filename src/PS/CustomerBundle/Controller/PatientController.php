@@ -33,7 +33,7 @@ class PatientController extends Controller
             return $this->redirectToRoute('ps_patient_view', array('id' => $patient->getId()));
         }
 
-        return $this->render('PSCustomerBundle:Patient:test.html.twig', array(
+        return $this->render('PSCustomerBundle:Patient:add.html.twig', array(
           'form' => $form->createView(),
         ));
 

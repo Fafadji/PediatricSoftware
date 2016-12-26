@@ -81,7 +81,7 @@ abstract class Person
                                 );
 
     
-  protected function __construct($type) // Constructeur demandant 2 paramètres
+  protected function __construct($type)
   {
     $this->setType($type);
   }
@@ -109,11 +109,11 @@ abstract class Person
         
         if($type == Person::$TYPES['TYPE_FATHER'])
         {
-            setSex(Person::SEX_MALE);
+            $this->setSex(Person::SEX_MALE);
         } 
         elseif ($type == Person::$TYPES['TYPE_MOTHER']) 
         {
-            setSex(Person::SEX_FEMALE);
+            $this->setSex(Person::SEX_FEMALE);
         }
 
         return $this;
