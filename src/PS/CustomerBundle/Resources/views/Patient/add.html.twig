@@ -26,7 +26,7 @@
                 {% include 'PSCustomerBundle:Patient:addPatientForm.html.twig' %}
             </div>
             <ul class="list-inline pull-right">
-                <li><button type="button" class="btn btn-primary next-step">Next</button></li>
+                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
             </ul>
         </div>
 
@@ -36,8 +36,8 @@
             </div>
     
             <ul class="list-inline pull-right">
-                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                <li><button type="button" class="btn btn-primary next-step">Next</button></li>
+                <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
+                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
             </ul>
         </div>
             
@@ -47,19 +47,20 @@
             </div>
     
             <ul class="list-inline pull-right">
-                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                <li><button type="button" class="btn btn-primary next-step">Next</button></li>
+                <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
+                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
             </ul>
         </div>            
 
                 
         <div class="tab-pane" role="tabpanel" id="complete">
-            <div class="step44">
-                <h5>Completed</h5>
+            <div class="step4">
+                {% include 'PSCustomerBundle:Patient:addSummaryForm.html.twig' %}
+            </div>
                 <div class="form-group">
                     <ul class="list-inline pull-right">
-                        <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                        <li>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}<li>
+                        <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
+                        <li>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}<li>
                     </ul>
                     
                     {{ form_rest(form) }}

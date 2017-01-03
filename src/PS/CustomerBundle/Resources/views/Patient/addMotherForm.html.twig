@@ -1,19 +1,19 @@
 
 <div class="col-md-12">
-    <h3> mother.patient</h3>
+    <h3> {{ 'mother.info'|trans }}</h3>
   
     
     <fieldset id="fieldsetSEM" class="form-group">
-        <legend>Select Existing Mother</legend>
+        <legend>{{ 'select.existing.mother'|trans }}</legend>
        {{ form_row(form.mother) }}
     </fieldset>
 
     <div id="createNewMotherCBDiv" class="form-group checkbox">
-        <label><input id="createNewMotherCB" type="checkbox"> create new mother</label>
+        <label><input id="createNewMotherCB" type="checkbox"> {{ 'create.new.mother'|trans }}</label>
     </div>
     
     <fieldset id="fieldsetCNM" class="form-group">
-        <legend>Create New Mother</legend>
+        <legend>{{ 'create.new.mother'|trans }}</legend>
         {{ form_row(form.motherNew) }}
     </fieldset>
 
