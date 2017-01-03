@@ -1,0 +1,10 @@
+patient.title: __patient.title
+next: Suivant
+previous: Précédent
+patient.info: Patient
+mother.info: Mère
+father.info: Père
+create.new.father: 'Créer un nouveau père'
+select.existing.mother: 'Sélectionner une mère existante'
+create.new.mother: 'Créer une nouvelle mère'
+summary: Synthèse

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{{ 'pediatric.software'|trans }}{% endblock %}</title>
+
+    {% block stylesheets %}
+      {# On charge le CSS de bootstrap depuis le site directement #}
+
+      {% stylesheets filter="cssrewrite, ?scssphp"
+        'assets/bootstrap/css/bootstrap.min.css'
+        'assets/custom/custom.css'
+         %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+      {% endstylesheets %}
+    {% endblock %}
+  </head>
+
+  <body>
+      
+  <div class="container">
+      
+      <div class="col-md-12">
+        {% include 'PSCoreBundle::menu.html.twig' %}
+      </div>
+      
+
+      <div id="content" class="col-md-12">
+        {% block body %}
+        {% endblock %}
+      </div>
+
+    <hr>
+
+    <footer class="col-md-12" >
+      <p>  {{ 'footer.signature'|trans }} </p>
+    </footer>
+  </div>
+  
+    {% javascripts 
+      'assets/jquery/jquery.min.js' 
+      'assets/bootstrap/js/bootstrap.min.js'
+      'assets/custom/custom.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+  
+
+  </body>
+</html>

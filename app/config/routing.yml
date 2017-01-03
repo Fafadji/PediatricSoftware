@@ -1,2 +1,10 @@
+ps_core:
+    resource: "@PSCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ps_customer:
+    resource: "@PSCustomerBundle/Resources/config/routing.yml"
+    prefix:   /customer
+
 ps_user:
     resource: "@PSUserBundle/Resources/config/routing.yml"

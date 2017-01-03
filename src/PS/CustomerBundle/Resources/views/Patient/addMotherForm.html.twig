@@ -1,0 +1,19 @@
+
+<div class="col-md-12">
+    <h3> {{ 'mother.info'|trans }}</h3>
+  
+    
+    <fieldset id="fieldsetSEM" class="form-group">
+        <legend>{{ 'select.existing.mother'|trans }}</legend>
+       {{ form_row(form.mother) }}
+    </fieldset>
+
+
+        {{ form_row(form.createNewMotherCB) }}
+    
+    <fieldset id="fieldsetCNM" class="form-group">
+        <legend>{{ 'create.new.mother'|trans }}</legend>
+        {{ form_row(form.motherNew) }}
+    </fieldset>
+
+</div>

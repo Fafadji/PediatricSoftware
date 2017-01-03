@@ -1,0 +1,77 @@
+{% extends "PSCustomerBundle::layout.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+
+    
+{% for message in app.session.flashbag.get('error') %}
+    <div class="row">
+    <div class="alert col-lg-6 alert-danger">
+        <strong>{{ message }}</strong>
+    </div>
+    </div>
+ {% endfor %}
+    
+    
+<div class="wizard">
+    {% include 'PSCustomerBundle:Patient:wizardPresentation.html.twig' %}
+     
+    {{ form_start(form) }}
+    {# General errors of the form #}
+    {{ form_errors(form) }}
+    <div class="tab-content">
+        <div class="tab-pane active" role="tabpanel" id="step1">
+            <div class="step1">
+                {% include 'PSCustomerBundle:Patient:addPatientForm.html.twig' %}
+            </div>
+            <ul class="list-inline pull-right">
+                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
+            </ul>
+        </div>
+
+        <div class="tab-pane" role="tabpanel" id="step2">
+            <div class="step2">
+                {% include 'PSCustomerBundle:Patient:addMotherForm.html.twig' %}
+            </div>
+    
+            <ul class="list-inline pull-right">
+                <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
+                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
+            </ul>
+        </div>
+            
+        <div class="tab-pane" role="tabpanel" id="step3">
+            <div class="step3">
+                {% include 'PSCustomerBundle:Patient:addFatherForm.html.twig' %}
+            </div>
+    
+            <ul class="list-inline pull-right">
+                <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
+                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
+            </ul>
+        </div>            
+
+                
+        <div class="tab-pane" role="tabpanel" id="complete">
+            <div class="step4">
+                {% include 'PSCustomerBundle:Patient:addSummaryForm.html.twig' %}
+            </div>
+                <div class="form-group">
+                    <ul class="list-inline pull-right">
+                        <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
+                        <li>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}<li>
+                    </ul>
+                    
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+                
+    {# Fermeture de la balise <form> du formulaire HTML #}
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+

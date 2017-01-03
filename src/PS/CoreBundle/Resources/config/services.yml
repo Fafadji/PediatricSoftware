@@ -1,0 +1,4 @@
+services:
+#    ps_core.example:
+#        class: PS\CoreBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
