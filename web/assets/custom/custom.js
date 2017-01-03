@@ -1,3 +1,13 @@
+// begin DataTable
+$(document).ready(function() {
+    $('#listPatients').DataTable({
+            colReorder: true,
+            "order": [[ 1, "asc" ]]
+        });
+} );
+
+// End DataTable
+
 // Begin Wizard
 
 $(document).ready(function () {
@@ -100,3 +110,4 @@ $(function () {
 });
 
 // End Custom
+

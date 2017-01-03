@@ -1,0 +1,57 @@
+{% extends "PSCustomerBundle::layout.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+    
+    {% if listPatients is defined and listPatients|length %}
+ 
+        <table id="listPatients" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>view</th>
+                    <th>{{ 'id'|trans }}</th>
+                    <th>{{ 'name'|trans }}</th>
+                    <th>{{ 'surname'|trans }}</th>
+                    <th>{{ 'sex'|trans }}</th>
+                    <th>{{ 'birthday'|trans }}</th>
+                    <th>{{ 'patient.code.siblings'|trans }}</th>
+                    <th>{{ 'comment'|trans }}</th>
+                    <th>view</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>view</th>
+                    <th>{{ 'id'|trans }}</th>
+                    <th>{{ 'name'|trans }}</th>
+                    <th>{{ 'surname'|trans }}</th>
+                    <th>{{ 'sex'|trans }}</th>
+                    <th>{{ 'birthday'|trans }}</th>
+                    <th>{{ 'patient.code.siblings'|trans }}</th>
+                    <th>{{ 'comment'|trans }}</th>
+                    <th>view</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for patient in listPatients %}
+                    <tr>
+                        <th><i class="glyphicon glyphicon-search"></i></th>
+                        <td>{{ patient.id }}</td>
+                        <td>{{ patient.name }}</td>
+                        <td>{{ patient.surname }}</td>
+                        <td>{{ patient.sex }}</td>
+                        <td>{{ patient.birthday is empty ? "inconnu" : patient.birthday |date("d/m/Y") }}</td>
+                        <td>{{ patient.codeSiblings }}</td>
+                        <td>{{ patient.comment }}</td>
+                        <th><i class="glyphicon glyphicon-search"></i></th>
+                    </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+                
+    {% else %}
+        Pas encore de patient    
+    {% endif %}
+</div>
+{% endblock %}

@@ -13,7 +13,7 @@ class PersonFormUtils
     public static function addPrimaryInfo(FormBuilderInterface $builder)
     {
         $builder
-            ->add('name',           TextType::class, array('label' => 'name'))
+            ->add('name',           TextType::class, array('label' => 'name.required'))
             ->add('surname',        TextType::class,  array('required' => false, 'label' => 'surname'))
             ->add('birthday',       BirthdayType::class,  
                 array(

@@ -48,4 +48,12 @@ class PatientController extends Controller
     {
         return $this->render('PSCustomerBundle:Customer:index.html.twig');
     }
+    
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $listPatients = $em->getRepository('PSCustomerBundle:Patient')->findAll();
+        return $this->render('PSCustomerBundle:Patient:index.html.twig', 
+                ['listPatients' => $listPatients]);
+    }
 }

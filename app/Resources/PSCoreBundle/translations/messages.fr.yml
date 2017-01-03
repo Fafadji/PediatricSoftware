@@ -12,9 +12,11 @@ patient.manage: 'Gérer les patients'
 connected.as: 'Connecté en tant que: %username%'
 patient.mother.add: 'Ajouter une nouvelle mère'
 patient.father.add: 'Ajouter un nouveau père'
-name: Nom*
+name: Nom
+name.required: Nom*
 surname: Prénom
-sex: Sexe*
+sex: Sexe
+sex.required: Sexe*
 birthday: 'Date de naissance'
 save: Sauvegarder
 cancel: Annuler
