@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
 
 
 class PatientType extends AbstractType
@@ -39,6 +41,13 @@ class PatientType extends AbstractType
                     'required' => false, 'label' => false,
                     
                   ))
+                
+            ->add('createNewMotherCB', CheckboxType::class, array(
+                    'label'    => 'create.new.mother',
+                    'required' => false,
+                    'mapped'   => false
+                ))
+                
             ->add('motherNew',        MotherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
             ->add('father',        FatherType::class,  array('required' => false, 'label' => false))
                 
@@ -53,12 +62,14 @@ class PatientType extends AbstractType
         $data = $event->getData();
         $form = $event->getForm();
 
-        if (empty($data['mother']) && !empty($data['motherNew']['name'])) {
-            $form->remove('motherNew');
+        if (isset($data['createNewMotherCB'])) {
+            if ($data['createNewMotherCB']  && !empty($data['motherNew']['name'])) {
+                $form->remove('motherNew');
 
-            $form->add('motherNew', MotherType::class, array(
-                'property_path' => 'mother',
-            ));
+                $form->add('motherNew', MotherType::class, array(
+                    'property_path' => 'mother',
+                ));
+            }
         }
     }
     

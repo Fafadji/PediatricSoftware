@@ -59,7 +59,7 @@ function prevTab(elem) {
 
 $(function () {
     selectExistingMotherForm();
-    var createNewMotherCB = $('#createNewMotherCB');
+    var createNewMotherCB = $('#ps_customerbundle_patient_createNewMotherCB');
     
     createNewMotherCB.click(function() {        
         if(createNewMotherCB.prop('checked') ) {
