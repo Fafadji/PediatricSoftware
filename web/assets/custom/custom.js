@@ -7,15 +7,25 @@ $(document).ready(function() {
     }
     full_url = '/'+currentLocale + '/datatable_lang' ;
 
+    /*
+    // Setup - add a text input to each footer cell
+    $('#listPatients tfoot th').each( function () {
+        var title = $(this).text();
+        if(title) {
+            $(this).html( '<input type="text" placeholder="Recherche '+title+'" />' );
+        }
+    } );
+    */
+    
     
     table = $('#listPatients').DataTable({
             language: {
                 'url': full_url
             },
-            order: [[ 1, "asc" ]],
-            columnDefs: [ { "orderable": false, "targets": [0] } ],
+            order: [[ 0, "asc" ]],
+            columnDefs: [ { "orderable": false, "targets": [1, 2, 3] } ],
             colReorder: {
-                fixedColumnsLeft: 1
+                fixedColumnsLeft: 4
             },
             dom: 'lBfrtip',
             stateSave: true,
@@ -24,7 +34,7 @@ $(document).ready(function() {
                 {
                     extend: 'colvis',
                     collectionLayout: 'fixed two-column',
-                    columns: ':not(:nth-child(1), :nth-child(2))',
+                    columns: ':not(#viewIcon, #editIcon, #deleteIcon, #IDPatient)',
                     text : 'colonnes'
                 },
                 {
@@ -40,6 +50,20 @@ $(document).ready(function() {
                 footer: true
             }
         });
+        
+    /*    
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } ); */
 } );
 
 // End DataTable
