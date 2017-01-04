@@ -1,6 +1,9 @@
 // begin DataTable
 $(document).ready(function() {
     $('#listPatients').DataTable({
+            "language": {
+                "url": "/datatable_fr"
+            },
             colReorder: true,
             "order": [[ 1, "asc" ]]
         });
