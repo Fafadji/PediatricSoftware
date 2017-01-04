@@ -13,8 +13,16 @@ class CoreController extends Controller
 {
     public function datatableLangAction(Request $request)
     {
-        $rootDiri18nDataTable = $this->get('kernel')->getRootDir() . '/../web/assets/DataTables/Plugins-master/i18n';
-        $jsonLangFilepath = $rootDiri18nDataTable.'/French.lang';
+        $currentLang='French.lang';
+        
+        $locale = $request->getLocale();
+        if($locale == "en") {
+            $currentLang='English.lang';
+        }
+        
+        
+        $rootDiri18nDataTable = $this->get('kernel')->getRootDir() . '/../web/assets/DataTables/Plugins-master/i18n/';
+        $jsonLangFilepath = $rootDiri18nDataTable.$currentLang;
         $fileContentJsonWithComments  = file_get_contents($jsonLangFilepath);
         
         $pattern = '/\/\*\*(.|\n)*\*\//';

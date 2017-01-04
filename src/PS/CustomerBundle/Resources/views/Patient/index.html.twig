@@ -9,34 +9,32 @@
         <table id="listPatients" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>view</th>
-                    <th>{{ 'id'|trans }}</th>
-                    <th>{{ 'name'|trans }}</th>
-                    <th>{{ 'surname'|trans }}</th>
-                    <th>{{ 'sex'|trans }}</th>
-                    <th>{{ 'birthday'|trans }}</th>
-                    <th>{{ 'patient.code.siblings'|trans }}</th>
-                    <th>{{ 'comment'|trans }}</th>
-                    <th>view</th>
+                    <th><i class="glyphicon glyphicon-search"></i></th>
+                    <th>{{ 'patient.id'|trans }}</th>
+                    <th>{{ 'patient.name'|trans }}</th>
+                    <th>{{ 'patient.surname'|trans }}</th>
+                    <th>{{ 'patient.sex'|trans }}</th>
+                    <th>{{ 'patient.birthday'|trans }}</th>
+                    <th>{{ 'patient.patient.code.siblings'|trans }}</th>
+                    <th>{{ 'patient.comment'|trans }}</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>view</th>
-                    <th>{{ 'id'|trans }}</th>
-                    <th>{{ 'name'|trans }}</th>
-                    <th>{{ 'surname'|trans }}</th>
-                    <th>{{ 'sex'|trans }}</th>
-                    <th>{{ 'birthday'|trans }}</th>
-                    <th>{{ 'patient.code.siblings'|trans }}</th>
-                    <th>{{ 'comment'|trans }}</th>
-                    <th>view</th>
+                    <th><i class="glyphicon glyphicon-search"></i></th>
+                    <th>{{ 'patient.id'|trans }}</th>
+                    <th>{{ 'patient.name'|trans }}</th>
+                    <th>{{ 'patient.surname'|trans }}</th>
+                    <th>{{ 'patient.sex'|trans }}</th>
+                    <th>{{ 'patient.birthday'|trans }}</th>
+                    <th>{{ 'patient.patient.code.siblings'|trans }}</th>
+                    <th>{{ 'patient.comment'|trans }}</th>
                 </tr>
             </tfoot>
             <tbody>
                 {% for patient in listPatients %}
                     <tr>
-                        <th><i class="glyphicon glyphicon-search"></i></th>
+                        <td><i class="glyphicon glyphicon-search"></i></td>
                         <td>{{ patient.id }}</td>
                         <td>{{ patient.name }}</td>
                         <td>{{ patient.surname }}</td>
@@ -44,7 +42,6 @@
                         <td>{{ patient.birthday is empty ? "inconnu" : patient.birthday |date("d/m/Y") }}</td>
                         <td>{{ patient.codeSiblings }}</td>
                         <td>{{ patient.comment }}</td>
-                        <th><i class="glyphicon glyphicon-search"></i></th>
                     </tr>
                  {% endfor %}
             </tbody>

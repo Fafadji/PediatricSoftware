@@ -1,11 +1,44 @@
 // begin DataTable
 $(document).ready(function() {
-    $('#listPatients').DataTable({
-            "language": {
-                "url": "/datatable_fr"
+    currentLocaleFull = navigator.languages[0];
+    currentLocale = "fr";
+    if ( currentLocaleFull.indexOf("en") !== -1) {
+        currentLocale = "en";
+    }
+    full_url = '/'+currentLocale + '/datatable_lang' ;
+
+    
+    table = $('#listPatients').DataTable({
+            language: {
+                'url': full_url
             },
-            colReorder: true,
-            "order": [[ 1, "asc" ]]
+            order: [[ 1, "asc" ]],
+            columnDefs: [ { "orderable": false, "targets": [0] } ],
+            colReorder: {
+                fixedColumnsLeft: 1
+            },
+            dom: 'lBfrtip',
+            stateSave: true,
+            stateDuration: 0,
+            buttons: [
+                {
+                    extend: 'colvis',
+                    collectionLayout: 'fixed two-column',
+                    columns: ':not(:nth-child(1), :nth-child(2))',
+                    text : 'colonnes'
+                },
+                {
+                    text: 'configuration par défaut',
+                    action: function ( e, dt, node, config ) {                   
+                        table.state.clear();
+                        window.location.reload();
+                    }
+                }
+            ],
+            fixedHeader: {
+                header: true,
+                footer: true
+            }
         });
 } );
 

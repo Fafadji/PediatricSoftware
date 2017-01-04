@@ -8,3 +8,19 @@ create.new.father: 'Créer un nouveau Père'
 select.existing.mother: 'Sélectionner une mère existante'
 create.new.mother: 'Créer une nouvelle Mère'
 summary: Synthèse
+id: id
+patient.name: 'Nom Patient'
+patient.surname: 'Prénom Patient'
+patient.sex: 'Sexe Patient'
+patient.birthday: 'Date Naissance Patient'
+patient.patient.code.siblings: 'Codification Patient'
+patient.comment: 'Commentaire Patient'
+name: Nom
+name.required: 'Nom*'
+surname: Prénom
+sex: Sexe
+sex.required: 'Sexe*'
+birthday: 'Date de naissance'
+patient.code.siblings: 'Codification fraterie'
+comment: Commentaire
+patient.id: ID Patient

@@ -1,3 +1,4 @@
 datatable_lang:
-    path: /datatable_fr
+    path: /datatable_lang/
     defaults: { _controller: PSCoreBundle:Core:datatableLang,  _format: json}
+
