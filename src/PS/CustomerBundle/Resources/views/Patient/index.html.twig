@@ -8,34 +8,10 @@
  
         <table id="listPatients" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
             <thead>
-                <tr>
-                    <th id="IDPatient" title="titi" >{{ 'patient.id'|trans }}</th>
-                    <th id="viewIcon" ></th>
-                    <th id="editIcon" ></th>
-                    <th id="deleteIcon" ></th>
-                    
-                    <th>{{ 'patient.name'|trans }}</th>
-                    <th>{{ 'patient.surname'|trans }}</th>
-                    <th>{{ 'patient.sex'|trans }}</th>
-                    <th>{{ 'patient.birthday'|trans }}</th>
-                    <th>{{ 'patient.patient.code.siblings'|trans }}</th>
-                    <th>{{ 'patient.comment'|trans }}</th>
-                </tr>
+                {% include 'PSCustomerBundle:Patient:tableCommonHeaderFooter.html.twig' %}
             </thead>
             <tfoot>
-                <tr>
-                    <th>{{ 'patient.id'|trans }}</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    
-                    <th>{{ 'patient.name'|trans }}</th>
-                    <th>{{ 'patient.surname'|trans }}</th>
-                    <th>{{ 'patient.sex'|trans }}</th>
-                    <th>{{ 'patient.birthday'|trans }}</th>
-                    <th>{{ 'patient.patient.code.siblings'|trans }}</th>
-                    <th>{{ 'patient.comment'|trans }}</th>
-                </tr>
+                {% include 'PSCustomerBundle:Patient:tableCommonHeaderFooter.html.twig' %}
             </tfoot>
             <tbody>
                 {% for patient in listPatients %}

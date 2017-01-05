@@ -34,7 +34,7 @@ $(document).ready(function() {
                 {
                     extend: 'colvis',
                     collectionLayout: 'fixed two-column',
-                    columns: ':not(#viewIcon, #editIcon, #deleteIcon, #IDPatient)',
+                    columns: ':not(thead .viewIcon, thead .editIcon, thead .deleteIcon, thead .IDPatient)',
                     text : 'colonnes'
                 },
                 {

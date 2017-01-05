@@ -23,4 +23,11 @@ sex.required: 'Sexe*'
 birthday: 'Date de naissance'
 patient.code.siblings: 'Codification fraterie'
 comment: Commentaire
-patient.id: ID Patient
+patient.id: 'ID Patient'
+patient.id.abbr: 'ID Pa.'
+patient.name.abbr: 'Nom Pa.'
+patient.surname.abbr: 'Prénom Pa.'
+patient.sex.abbr: 'Sexe Pa.'
+patient.birthday.abbr: 'Naiss. Pa.'
+patient.patient.code.siblings.abbr: 'Code Pa.'
+patient.comment.abbr: 'Comment. Pa.'
