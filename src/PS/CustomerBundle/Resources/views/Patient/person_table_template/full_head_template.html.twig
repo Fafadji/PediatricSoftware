@@ -1,0 +1,6 @@
+{% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
+{% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
+
+{{ include( table_template_dir_path ~ '/head_icons_template.html.twig' ) }}
+{{ include( table_template_dir_path ~ '/head_template.html.twig', {'person_type' : person_type_list.patient} ) }}
+{{ include( table_template_dir_path ~ '/head_template.html.twig', {'person_type' : person_type_list.mother} ) }}

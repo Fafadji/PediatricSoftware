@@ -11,6 +11,7 @@ use \DateTime;
  * Person
  *
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
 abstract class Person
 {
@@ -54,7 +55,8 @@ abstract class Person
      */
     protected $birthday;
     
-    protected $type;
+    
+    private $type;
 
     /**
      * @var string
@@ -75,18 +77,24 @@ abstract class Person
     
     
     public static $TYPES= array (
-        'TYPE_FATHER' => 'FATHER',
-        'TYPE_MOTHER' => 'MOTHER',
-        'TYPE_TUTOR' => 'TUTOR',
-        'TYPE_CHILD' => 'CHILD',
+        'TYPE_FATHER' => 'father',
+        'TYPE_MOTHER' => 'mother',
+        'TYPE_TUTOR' => 'tutor',
+        'TYPE_PATIENT' => 'patient',
                                 );
 
+    /**
+    * @ORM\PostLoad
+    */
+    public function reloadConstructInit() {
+        $this->__construct();
+    }
     
     protected function __construct($type)
     {
       $this->setType($type);
     }
-    
+
     public function getAge()
     {
         $age = null;
@@ -134,6 +142,7 @@ abstract class Person
     
     public function getType()
     {
+        if(!isset($this->type)) return "unknown";
         return $this->type;
     }
 
@@ -207,6 +216,21 @@ abstract class Person
     public function getSex()
     {
         return $this->sex;
+    }
+    
+    public function isMale()
+    {
+        return ($this->getSex() == Person::SEX_MALE);
+    }
+    
+    public function isFemale()
+    {
+        return ($this->getSex() == Person::SEX_FEMALE);
+    }
+    
+    public function isPatient()
+    {
+        return ($this->getType() == Person::$TYPES['TYPE_PATIENT']);
     }
 
     /**

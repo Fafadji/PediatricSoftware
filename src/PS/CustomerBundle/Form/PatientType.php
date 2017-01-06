@@ -53,24 +53,7 @@ class PatientType extends AbstractType
                 
             ->add('save',           SubmitType::class, array('label' => 'save'))
           ;
-        
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'handleSubmit'));
-    }
-    
-    public function handleSubmit(FormEvent $event) 
-    {
-        $data = $event->getData();
-        $form = $event->getForm();
 
-        if (isset($data['createNewMotherCB'])) {
-            if ($data['createNewMotherCB']  && !empty($data['motherNew']['name'])) {
-                $form->remove('motherNew');
-
-                $form->add('motherNew', MotherType::class, array(
-                    'property_path' => 'mother',
-                ));
-            }
-        }
     }
     
     /**

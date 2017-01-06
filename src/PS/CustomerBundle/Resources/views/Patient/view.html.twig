@@ -1,73 +1,40 @@
-{% extends "PSCustomerBundle:Patient:layout_view.html.twig" %}
+{% extends "PSCoreBundle::layout.html.twig" %}
 
-{% block content_patient_panel_div %} 
-    {% if patient.sex is defined and patient.sex == "male" %}
-        <div class="panel panel-success"> 
-    {% elseif patient.sex is defined and patient.sex == "female" %} 
-        <div class="panel panel-warning"> 
-    {% else %}
-        <div class="panel panel-primary"> 
-    {% endif %}     
-{% endblock %}
-
-{# endDate and startDate are strings or DateTime objects #}
-{% set age = patient.age %}
-{% if age is not null %}
-    {% set ageFull = age.y %} 
-{% else %}
-    {% set ageFull = 'Unknown' %} 
-{% endif %} 
-
-
-
-
-{% block content_patient %}
-    <tbody>
-        <tr>
-            <th>{{ 'id' | trans }}</th>
-            <td>{{ patient.id }}</th>
-        </tr>
-        <tr>
-            <th>{{ 'name' | trans }}</th>
-            <td>{{ patient.name }}</th>
-        </tr>
-        <tr>
-            <th>{{ 'surname' | trans }}</th>
-            <td>{{ patient.surname }}</th>
-        </tr>
-        <tr>
-            <th>{{ 'sex' | trans }}</th>
-            <td>{{ patient.sex | trans }}</th>
-        </tr>
-        <tr>
-            <th>{{ 'birthday' | trans }}</th>
-            <td>{{ patient.birthday | date("d/m/Y") }}</th>
-        </tr>
-        <tr>
-            <th>{{ 'age' | trans }}</th>
-            <td>
-                {% if patient.age is null %}
-                    {{ 'Unknown' | trans }}
-                {% else %}
-                    {{ 'patient.age.years'|transchoice(patient.age.y) }}
-                    {{ 'patient.age.months'|transchoice(patient.age.m) }}
-                    
-                    {% if patient.age.y == 0 %}
-                        {{ 'patient.age.days'|transchoice(patient.age.d) }}
-                    {% endif %} 
-                {% endif %} 
-                
-            </th>
-        </tr>
-        <tr>
-            <th>{{ 'patient.code.siblings' | trans }}</th>
-            <td>{{ patient.codeSiblings }}</th>
-        </tr>
-        <tr>
-            <th>{{ 'comment' | trans }}</th>
-            <td>{{ patient.comment }}</th>
-        </tr>
         
-      </tbody>
-      
+
+{% block content %}
+    <section class="row">
+        
+        {% set person_misc= {info : 'patient.info'} %}
+        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient, 'person_misc' : person_misc }) }}
+
+        <article  class="col-md-6">
+            <div class="panel panel-info">
+                <table class="table table-striped table-bordered table-view-patient">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ 'patient.general.medical.info'|trans }}</h3>
+                    </div>
+                    <tbody>
+                        <tr>
+                            <th>{{ 'patient.personalDiseasesHistory' | trans }}</th>
+                            <td>{{ patient.personalDiseasesHistory }}</th>
+                        </tr>
+                        <tr>
+                            <th>{{ 'patient.familyDiseasesHistory' | trans }}</th>
+                            <td>{{ patient.familyDiseasesHistory }}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+                        
+    </section>
+
+    <section class="row">
+        {% set person_misc= {info : 'mother.info', sex:  'female' } %}
+        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient.mother, 'person_misc' : person_misc }) }}
+        
+        {% set person_misc= {info : 'father.info', sex:  'male'} %}
+        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient.father, 'person_misc' : person_misc }) }}
+    </section>
 {% endblock %}

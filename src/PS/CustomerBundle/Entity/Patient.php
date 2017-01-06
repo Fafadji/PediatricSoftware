@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="ps_patient")
  * @ORM\Entity(repositoryClass="PS\CustomerBundle\Repository\PatientRepository")
+ * 
  */
 class Patient extends Person
 {
@@ -58,9 +59,11 @@ class Patient extends Person
 
     public function __construct() // Constructeur demandant 2 paramètres
     {
-        parent::__construct(Person::$TYPES['TYPE_CHILD']);
+        parent::__construct(Person::$TYPES['TYPE_PATIENT']);
     }
 
+    
+    
     /**
      * Get id
      *
@@ -92,7 +95,11 @@ class Patient extends Person
      */
     public function getMother()
     {
-        return $this->mother;
+        $mother = $this->mother ;
+        if ( $mother == null) {
+            $mother = new Mother();
+        }
+        return $mother;
     }
 
     /**

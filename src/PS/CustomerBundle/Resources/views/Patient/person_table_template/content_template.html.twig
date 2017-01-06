@@ -1,0 +1,17 @@
+    <td>{{ person.id }}</td>
+    
+    <td>{{ person.name }} {{ patient.type }}</td>
+    
+    <td>{{ person.surname }}</td>
+    
+{% if person_type == 'patient' %}
+    <td>{{ person.sex |trans }}</td>
+{% endif %}
+
+    <td>{{ person.birthday is empty ? "inconnu" : patient.birthday |date("d/m/Y") }}</td>
+    
+{% if person_type == 'patient' %}
+    <td>{{ person.codeSiblings }}</td>
+{% endif %}
+
+    <td>{{ person.comment }}</td>
