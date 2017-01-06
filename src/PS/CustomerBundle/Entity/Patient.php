@@ -95,11 +95,7 @@ class Patient extends Person
      */
     public function getMother()
     {
-        $mother = $this->mother ;
-        if ( $mother == null) {
-            $mother = new Mother();
-        }
-        return $mother;
+        return $this->mother ;
     }
 
     /**

@@ -1,14 +1,18 @@
-    <th class="ID" title="{{ "#{person_type}.id" |trans }}" > {{ "#{person_type}.id.abbr"|trans }} </th>
+{% if showID  %} 
+    <th class="id" title="{{ "#{person_type}.id" |trans }}" > {{ "#{person_type}.id.abbr"|trans }} </th>
+ {% endif %}
+ 
+    <th class="defaultColumn" title="{{ "#{person_type}.name"|trans }}" > {{ "#{person_type}.name.abbr"|trans }} </th>
     
-    <th title="{{ "#{person_type}.name"|trans }}" > {{ "#{person_type}.name.abbr"|trans }} </th>
-    
-    <th title="{{ "#{person_type}.surname"|trans }}" > {{ "#{person_type}.surname.abbr"|trans }} </th>
+    <th class="defaultColumn" title="{{ "#{person_type}.surname"|trans }}" > {{ "#{person_type}.surname.abbr"|trans }} </th>
     
 {% if person_type == 'patient' %}    
-    <th title="{{ "#{person_type}.sex"|trans }}" > {{ "#{person_type}.sex.abbr"|trans }} </th>
+    <th class="defaultColumn" title="{{ "#{person_type}.sex"|trans }}" > {{ "#{person_type}.sex.abbr"|trans }} </th>
 {% endif %}
     
     <th title="{{ "#{person_type}.birthday"|trans }}" > {{ "#{person_type}.birthday.abbr"|trans }} </th>
+    
+    <th class="{{ "#{person_type}-age" }}" title="{{ "#{person_type}.age"|trans }}" > {{ "#{person_type}.age.abbr"|trans }} </th>
     
 {% if person_type == 'patient' %}
     <th title="{{ "#{person_type}.code.siblings"|trans }}" > {{ "#{person_type}.code.siblings.abbr"|trans }} </th>

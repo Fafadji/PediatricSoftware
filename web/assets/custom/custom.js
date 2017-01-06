@@ -33,7 +33,7 @@ $(document).ready(function() {
             buttons: [
                 {
                     extend: 'colvis',
-                    collectionLayout: 'fixed two-column',
+                    collectionLayout: 'fixed four-column',
                     columns: ':not(thead .viewIcon, thead .editIcon, thead .deleteIcon, thead .IDPatient)',
                     text : 'colonnes'
                 },
@@ -51,6 +51,9 @@ $(document).ready(function() {
             }
         });
         
+        
+        table.columns( ':not(.defaultColumn, .patient-age)' ).visible( false );
+        table.columns.adjust().draw( false ); // adjust column sizing and redraw
     /*    
     // Apply the search
     table.columns().every( function () {

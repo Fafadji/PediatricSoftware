@@ -57,7 +57,7 @@
                         {{ 'person.age.months'|transchoice(person.age.m) }}
 
                         {% if person.age.y == 0 %}
-                            {{ 'person.age.days'|transchoice(person.age.d) | raw }}
+                            {{ 'person.age.days.longdesc'|transchoice(person.age.d) | raw }}
                         {% endif %} 
                     {% endif %} 
 
