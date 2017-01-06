@@ -5,6 +5,7 @@ namespace PS\CustomerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+use \DateTime;
 
 /**
  * Person
@@ -81,11 +82,23 @@ abstract class Person
                                 );
 
     
-  protected function __construct($type)
-  {
-    $this->setType($type);
-  }
+    protected function __construct($type)
+    {
+      $this->setType($type);
+    }
     
+    public function getAge()
+    {
+        $age = null;
+        if(isset($this->birthday)) {
+            $today = new DateTime("now"); 
+            $interval = $this->birthday->diff($today); 
+            $age = $interval;
+            
+        }
+        return $age;
+    }
+            
 
     /**
      * Get id

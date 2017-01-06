@@ -7,5 +7,7 @@ ps_patient_add:
     defaults: { _controller: PSCustomerBundle:Patient:add }
     
 ps_patient_view:
-    path:     /view
+    path:     /view/{id}
     defaults: { _controller: PSCustomerBundle:Patient:view }
+    requirements:
+        id: \d+

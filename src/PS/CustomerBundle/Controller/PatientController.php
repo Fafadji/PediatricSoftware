@@ -43,10 +43,11 @@ class PatientController extends Controller
         ));
 
     }
-    //TODO
-    public function viewAction()
+
+    
+    public function viewAction(Patient $patient)
     {
-        return $this->render('PSCustomerBundle:Customer:index.html.twig');
+        return $this->render('PSCustomerBundle:Patient:view.html.twig', ['patient' => $patient]);
     }
     
     public function indexAction()

@@ -23,4 +23,18 @@ sex.required: 'Sexe*'
 birthday: 'Date de naissance'
 patient.code.siblings: 'Codification fraterie'
 comment: Commentaire
-patient.id: ID Patient
+patient.id: 'ID Patient'
+patient.id.abbr: 'ID Pa.'
+patient.name.abbr: 'Nom Pa.'
+patient.surname.abbr: 'Prénom Pa.'
+patient.sex.abbr: 'Sexe Pa.'
+patient.birthday.abbr: 'Naiss. Pa.'
+patient.patient.code.siblings.abbr: 'Code Pa.'
+patient.comment.abbr: 'Comment. Pa.'
+age: Âge
+patient.age: 'Âge Patient'
+patient.age.years: '{0} |{1} %count% an |[2,Inf[ %count% ans'
+patient.age.months: '{0} |[1,Inf[ %count% mois'
+patient.age.days: "{0} Le patient est né aujourd'hui. Il a %count% jour. \nNous lui souhaitons la Bienvenue sur terre! |{1} %count% jour |[2,Inf[ %count% jours\n"
+patient.general.medical.info: 'Informations Médicales Générales du Patient'
+

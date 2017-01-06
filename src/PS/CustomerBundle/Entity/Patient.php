@@ -40,6 +40,20 @@ class Patient extends Person
      * @ORM\Column(name="code_siblings", type="string", length=255, nullable=true)
      */
     protected $codeSiblings;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="personal_diseases_history", type="text", nullable=true)
+     */
+    private $personalDiseasesHistory;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="family_diseases_history", type="text", nullable=true)
+     */
+    private $familyDiseasesHistory;
 
 
     public function __construct() // Constructeur demandant 2 paramètres
@@ -127,5 +141,53 @@ class Patient extends Person
     public function getCodeSiblings()
     {
         return $this->codeSiblings;
+    }
+
+    /**
+     * Set personalDiseasesHistory
+     *
+     * @param string $personalDiseasesHistory
+     *
+     * @return Patient
+     */
+    public function setPersonalDiseasesHistory($personalDiseasesHistory)
+    {
+        $this->personalDiseasesHistory = $personalDiseasesHistory;
+
+        return $this;
+    }
+
+    /**
+     * Get personalDiseasesHistory
+     *
+     * @return string
+     */
+    public function getPersonalDiseasesHistory()
+    {
+        return $this->personalDiseasesHistory;
+    }
+
+    /**
+     * Set familyDiseasesHistory
+     *
+     * @param string $familyDiseasesHistory
+     *
+     * @return Patient
+     */
+    public function setFamilyDiseasesHistory($familyDiseasesHistory)
+    {
+        $this->familyDiseasesHistory = $familyDiseasesHistory;
+
+        return $this;
+    }
+
+    /**
+     * Get familyDiseasesHistory
+     *
+     * @return string
+     */
+    public function getFamilyDiseasesHistory()
+    {
+        return $this->familyDiseasesHistory;
     }
 }

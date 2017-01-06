@@ -1,10 +1,8 @@
-{% extends "PSCustomerBundle::layout.html.twig" %}
+{% extends "PSCoreBundle::layout.html.twig" %}
 
-{% block body %}
+{% block content %}
 
-<div class="container">
-
-    
+   
 {% for message in app.session.flashbag.get('error') %}
     <div class="row">
     <div class="alert col-lg-6 alert-danger">
@@ -15,7 +13,7 @@
     
     
 <div class="wizard">
-    {% include 'PSCustomerBundle:Patient:wizardPresentation.html.twig' %}
+    {% include 'PSCustomerBundle:Patient:addInclude/wizardPresentation.html.twig' %}
      
     {{ form_start(form) }}
     {# General errors of the form #}
@@ -23,7 +21,7 @@
     <div class="tab-content">
         <div class="tab-pane active" role="tabpanel" id="step1">
             <div class="step1">
-                {% include 'PSCustomerBundle:Patient:addPatientForm.html.twig' %}
+                {% include 'PSCustomerBundle:Patient:addInclude/addPatientForm.html.twig' %}
             </div>
             <ul class="list-inline pull-right">
                 <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
@@ -32,7 +30,7 @@
 
         <div class="tab-pane" role="tabpanel" id="step2">
             <div class="step2">
-                {% include 'PSCustomerBundle:Patient:addMotherForm.html.twig' %}
+                {% include 'PSCustomerBundle:Patient:addInclude/addMotherForm.html.twig' %}
             </div>
     
             <ul class="list-inline pull-right">
@@ -43,7 +41,7 @@
             
         <div class="tab-pane" role="tabpanel" id="step3">
             <div class="step3">
-                {% include 'PSCustomerBundle:Patient:addFatherForm.html.twig' %}
+                {% include 'PSCustomerBundle:Patient:addInclude/addFatherForm.html.twig' %}
             </div>
     
             <ul class="list-inline pull-right">
@@ -55,7 +53,7 @@
                 
         <div class="tab-pane" role="tabpanel" id="complete">
             <div class="step4">
-                {% include 'PSCustomerBundle:Patient:addSummaryForm.html.twig' %}
+                {% include 'PSCustomerBundle:Patient:addInclude/addSummaryForm.html.twig' %}
             </div>
                 <div class="form-group">
                     <ul class="list-inline pull-right">
@@ -72,6 +70,5 @@
                 
     {# Fermeture de la balise <form> du formulaire HTML #}
     {{ form_end(form) }}
-</div>
 {% endblock %}
 

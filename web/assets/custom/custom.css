@@ -291,4 +291,17 @@ legend {
     margin: 0 0 1.5em 0 !important;  
 }
 
+.boxShadow {
+border-top: 10px solid #8c8b8b;
+}
+
+.table-view-patient th{
+    white-space: nowrap;
+}
+.table-view-patient td:last-child {
+    width: 100%;
+}
+    
+
+
 /*** End Custom-Fafa CSS ***/

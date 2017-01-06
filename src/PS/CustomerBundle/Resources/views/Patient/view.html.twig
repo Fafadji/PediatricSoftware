@@ -1,0 +1,73 @@
+{% extends "PSCustomerBundle:Patient:layout_view.html.twig" %}
+
+{% block content_patient_panel_div %} 
+    {% if patient.sex is defined and patient.sex == "male" %}
+        <div class="panel panel-success"> 
+    {% elseif patient.sex is defined and patient.sex == "female" %} 
+        <div class="panel panel-warning"> 
+    {% else %}
+        <div class="panel panel-primary"> 
+    {% endif %}     
+{% endblock %}
+
+{# endDate and startDate are strings or DateTime objects #}
+{% set age = patient.age %}
+{% if age is not null %}
+    {% set ageFull = age.y %} 
+{% else %}
+    {% set ageFull = 'Unknown' %} 
+{% endif %} 
+
+
+
+
+{% block content_patient %}
+    <tbody>
+        <tr>
+            <th>{{ 'id' | trans }}</th>
+            <td>{{ patient.id }}</th>
+        </tr>
+        <tr>
+            <th>{{ 'name' | trans }}</th>
+            <td>{{ patient.name }}</th>
+        </tr>
+        <tr>
+            <th>{{ 'surname' | trans }}</th>
+            <td>{{ patient.surname }}</th>
+        </tr>
+        <tr>
+            <th>{{ 'sex' | trans }}</th>
+            <td>{{ patient.sex | trans }}</th>
+        </tr>
+        <tr>
+            <th>{{ 'birthday' | trans }}</th>
+            <td>{{ patient.birthday | date("d/m/Y") }}</th>
+        </tr>
+        <tr>
+            <th>{{ 'age' | trans }}</th>
+            <td>
+                {% if patient.age is null %}
+                    {{ 'Unknown' | trans }}
+                {% else %}
+                    {{ 'patient.age.years'|transchoice(patient.age.y) }}
+                    {{ 'patient.age.months'|transchoice(patient.age.m) }}
+                    
+                    {% if patient.age.y == 0 %}
+                        {{ 'patient.age.days'|transchoice(patient.age.d) }}
+                    {% endif %} 
+                {% endif %} 
+                
+            </th>
+        </tr>
+        <tr>
+            <th>{{ 'patient.code.siblings' | trans }}</th>
+            <td>{{ patient.codeSiblings }}</th>
+        </tr>
+        <tr>
+            <th>{{ 'comment' | trans }}</th>
+            <td>{{ patient.comment }}</th>
+        </tr>
+        
+      </tbody>
+      
+{% endblock %}

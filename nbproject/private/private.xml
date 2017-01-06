@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/web/assets/custom/custom.js</file>
-            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CoreBundle/Resources/views/layout.html.twig</file>
-            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Resources/views/Patient/index.html.twig</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Resources/views/Patient/view.html.twig</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/web/assets/custom/custom.css</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Form/PatientType.php</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Resources/views/Patient/layout_view.html.twig</file>
             <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/app/Resources/PSCustomerBundle/translations/messages.fr.yml</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Entity/Patient.php</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Form/PersonFormUtils.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,8 +1,6 @@
-{% extends "PSCustomerBundle::layout.html.twig" %}
+{% extends "PSCoreBundle::layout.html.twig" %}
 
-{% block body %}
-
-<div class="container">
+{% block content %}
     
     {% if listPatients is defined and listPatients|length %}
  
@@ -17,14 +15,14 @@
                 {% for patient in listPatients %}
                     <tr>
                         <td>{{ patient.id }}</td>
-                        <td><i class="glyphicon glyphicon-search"></i></td>
+                        <td><a href=" {{ path( 'ps_patient_view', {'id': patient.id} ) }} "> <i class="glyphicon glyphicon-search"></i></a></td>
                         <td><i class="glyphicon glyphicon-pencil"></i></td>
                         <td><i class="glyphicon glyphicon-trash"></i></td>
                         
                         
                         <td>{{ patient.name }}</td>
                         <td>{{ patient.surname }}</td>
-                        <td>{{ patient.sex }}</td>
+                        <td>{{ patient.sex |trans }}</td>
                         <td>{{ patient.birthday is empty ? "inconnu" : patient.birthday |date("d/m/Y") }}</td>
                         <td>{{ patient.codeSiblings }}</td>
                         <td>{{ patient.comment }}</td>
@@ -36,5 +34,5 @@
     {% else %}
         Pas encore de patient    
     {% endif %}
-</div>
+    
 {% endblock %}
