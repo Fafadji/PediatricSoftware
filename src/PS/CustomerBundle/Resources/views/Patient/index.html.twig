@@ -3,29 +3,30 @@
 {% block content %}
     
     {% if listPatients is defined and listPatients|length %}
- 
+        {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
+        {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
+        
         <table id="listPatients" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
             <thead>
-                {% include 'PSCustomerBundle:Patient:tableCommonHeaderFooter.html.twig' %}
+                <tr>
+                    {{ include( table_template_dir_path ~ '/full_head_template.html.twig' ) }}
+                </tr>
             </thead>
             <tfoot>
-                {% include 'PSCustomerBundle:Patient:tableCommonHeaderFooter.html.twig' %}
+                <tr>
+                    {{ include( table_template_dir_path ~ '/full_head_template.html.twig' ) }}
+                </tr>
             </tfoot>
             <tbody>
                 {% for patient in listPatients %}
+           
                     <tr>
-                        <td>{{ patient.id }}</td>
-                        <td><a href=" {{ path( 'ps_patient_view', {'id': patient.id} ) }} "> <i class="glyphicon glyphicon-search"></i></a></td>
-                        <td><i class="glyphicon glyphicon-pencil"></i></td>
-                        <td><i class="glyphicon glyphicon-trash"></i></td>
                         
+                    {{ include( table_template_dir_path ~ '/content_icons_template.html.twig', {'person' : patient, 'person_type' : person_type_list.patient} ) }}    
+                    {{ include( table_template_dir_path ~ '/content_template.html.twig', {'person' : patient, 'person_type' : person_type_list.patient} ) }}  
+                    {{ include( table_template_dir_path ~ '/content_template.html.twig', {'person' : patient.mother, 'person_type' : person_type_list.mother} ) }} 
                         
-                        <td>{{ patient.name }}</td>
-                        <td>{{ patient.surname }}</td>
-                        <td>{{ patient.sex |trans }}</td>
-                        <td>{{ patient.birthday is empty ? "inconnu" : patient.birthday |date("d/m/Y") }}</td>
-                        <td>{{ patient.codeSiblings }}</td>
-                        <td>{{ patient.comment }}</td>
+
                     </tr>
                  {% endfor %}
             </tbody>
