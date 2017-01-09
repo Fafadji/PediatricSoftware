@@ -1,4 +1,4 @@
-// begin DataTable
+// begin DataTable for listPatients
 $(document).ready(function() {
     currentLocaleFull = navigator.languages[0];
     currentLocale = "fr";
@@ -6,19 +6,23 @@ $(document).ready(function() {
         currentLocale = "en";
     }
     full_url = '/'+currentLocale + '/datatable_lang' ;
-
-    /*
-    // Setup - add a text input to each footer cell
-    $('#listPatients tfoot th').each( function () {
-        var title = $(this).text();
-        if(title) {
-            $(this).html( '<input type="text" placeholder="Recherche '+title+'" />' );
-        }
-    } );
-    */
+   
+    var defaultNotVisibleColumns, defaultNotVisibleColumnsObject;
+    defaultNotVisibleColumns= [];
+    defaultNotVisibleColumnsObject = $('#listPatients thead .defaultNotVisColList')
+    $( defaultNotVisibleColumnsObject ).each(function( index ) {
+        defaultNotVisibleColumns.push(this.cellIndex);
+    });
     
     
-    table = $('#listPatients').DataTable({
+    var defaultVisibleColumns, defaultVisibleColumnsObject;
+    defaultVisibleColumns= [];
+    defaultVisibleColumnsObject = $('#listPatients thead .defaultVisColList')
+    $( defaultVisibleColumnsObject ).each(function( index ) {
+        defaultVisibleColumns.push(this.cellIndex);
+    });
+        
+    tablePatient = $('#listPatients').DataTable({
             language: {
                 'url': full_url
             },
@@ -27,6 +31,12 @@ $(document).ready(function() {
             colReorder: {
                 fixedColumnsLeft: 4
             },
+            "columnDefs": [
+                {
+                    "targets": defaultNotVisibleColumns,
+                    "visible": false
+                }
+            ],
             dom: 'lBfrtip',
             stateSave: true,
             stateDuration: 0,
@@ -35,14 +45,26 @@ $(document).ready(function() {
                     extend: 'colvis',
                     collectionLayout: 'fixed four-column',
                     columns: ':not(thead .viewIcon, thead .editIcon, thead .deleteIcon, thead .IDPatient)',
-                    text : 'colonnes'
+                    text : 'Sélection Col.'
                 },
                 {
-                    text: 'configuration par défaut',
+                    text: 'Conf. par défaut',
                     action: function ( e, dt, node, config ) {                   
-                        table.state.clear();
+                        tablePatient.state.clear();
                         window.location.reload();
                     }
+                },
+                {
+                    extend: 'columnVisibility',
+                    text: 'Toutes les col.',
+                    visibility: true
+                },
+                {
+                    extend: 'colvisGroup',
+                    text: 'Col. par défaut',
+                    hide: defaultNotVisibleColumns,
+                    show: defaultVisibleColumns,
+                    
                 }
             ],
             fixedHeader: {
@@ -50,26 +72,86 @@ $(document).ready(function() {
                 footer: true
             }
         });
-        
-        
-        table.columns( ':not(.defaultColumn, .patient-age)' ).visible( false );
-        table.columns.adjust().draw( false ); // adjust column sizing and redraw
-    /*    
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
- 
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } ); */
+
 } );
 
-// End DataTable
+// End DataTable for list patients
+
+
+
+
+
+
+
+// begin DataTable for list mothers
+$(document).ready(function() {
+    currentLocaleFull = navigator.languages[0];
+    currentLocale = "fr";
+    if ( currentLocaleFull.indexOf("en") !== -1) {
+        currentLocale = "en";
+    }
+    full_url = '/'+currentLocale + '/datatable_lang' ;    
+    
+    
+    var defaultNotVisCol, defaultNotVisColObj;
+    defaultNotVisCol= [];
+    defaultNotVisColObj = $('#listMothers thead .defaultNotVisColList')
+    $( defaultNotVisColObj ).each(function( index ) {
+        defaultNotVisCol.push(this.cellIndex);
+    });
+    
+    tableMother = $('#listMothers').DataTable({
+            language: {
+                'url': full_url
+            },
+            order: [[ 0, "asc" ]],
+            // columnDefs: [ { "orderable": false, "targets": [1, 2, 3] } ],
+            //colReorder: {
+            //    fixedColumnsLeft: 1
+            //},
+            "columnDefs": [
+                {
+                    "targets": defaultNotVisCol,
+                    "visible": false
+                }
+            ],
+            dom: 'lBfrtip',
+            stateSave: true,
+            stateDuration: 0,
+            buttons: [
+                {
+                    extend: 'colvis',
+                    collectionLayout: 'fixed two-column',
+                    columns: ':not(thead .id)',
+                    text : 'Sélection Col.',
+                },
+                {
+                    extend: 'columnVisibility',
+                    text: 'Toutes les col.',
+                    visibility: true
+                },
+                {
+                    extend: 'colvisGroup',
+                    text: 'Col. par défaut',
+                    show: '#listMothers thead .defaultVisColList',
+                    hide: '#listMothers thead .defaultNotVisColList'
+                }
+            ],
+            fixedHeader: {
+                header: true,
+                footer: true
+            }
+        });
+
+} );
+
+// End DataTable for list mothers
+
+
+
+
+
+
 
 // Begin Wizard
 

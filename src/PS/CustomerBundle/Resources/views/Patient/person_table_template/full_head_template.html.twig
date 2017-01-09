@@ -3,7 +3,7 @@
 {% set table_head_template_dir_path = table_template_dir_path ~ '/head_template.html.twig' %}
 
 
-<th class="id defaultColumn" title="{{ 'patient.id' |trans }}" > {{ 'patient.id.abbr'|trans }} </th>
+<th class="IDPatient" title="{{ 'patient.id' |trans }}" > {{ 'patient.id.abbr'|trans }} </th>
 {{ include( table_template_dir_path ~ '/head_icons_template.html.twig' ) }}
 {{ include( table_head_template_dir_path, {'person_type' : person_type_list.patient, 'showID' :false} ) }}
 {{ include( table_head_template_dir_path, {'person_type' : person_type_list.mother, 'showID' :true} ) }}

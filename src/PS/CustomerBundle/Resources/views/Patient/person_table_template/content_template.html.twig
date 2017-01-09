@@ -10,7 +10,7 @@
     <td>{{ person.sex is not defined ?  "" : person.sex|trans }}</td>
 {% endif %}
 
-    <td>{{ (person.birthday is not defined or person.birthday is empty ) ? "" : patient.birthday |date("d/m/Y") }}</td>
+    <td>{{ (person.birthday is not defined or person.birthday is empty ) ? "" : person.birthday |date("d/m/Y") }}</td>
 
     <td>
         {% if (person.age is defined) and ( person.age is not null) %}
