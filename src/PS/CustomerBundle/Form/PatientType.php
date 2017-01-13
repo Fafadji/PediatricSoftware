@@ -45,7 +45,7 @@ class PatientType extends AbstractType
                     'required' => false,
                     'mapped'   => false
                 ))
-            ->add('mother_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
+            ->add('mother_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped' => false,))
             /** End Mother's Fields */    
 
             /** Begin Father's Fields */
