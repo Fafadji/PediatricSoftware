@@ -26,7 +26,6 @@ patient.personalDiseasesHistory: 'Maladies personnelles'
 patient.familyDiseasesHistory: 'Maladies de famille'
 no.info: 'Il n''y a aucune information pour cette personne dans l''application'
 '': ''
-
 patient.id: 'ID Patient'
 patient.id.abbr: 'ID Pa.'
 patient.name: 'Nom Patient'
@@ -43,7 +42,6 @@ patient.comment: 'Commentaire Patient'
 patient.comment.abbr: 'Comment. Pa.'
 patient.age: 'Âge Patient'
 patient.age.abbr: 'Âge Pa.'
-
 mother.id: 'ID Mère'
 mother.id.abbr: 'ID Mè.'
 mother.name: 'Nom Mère'
@@ -60,7 +58,6 @@ mother.comment: 'Commentaire Mère'
 mother.comment.abbr: 'Comment. Mè.'
 mother.age: 'Âge Mère'
 mother.age.abbr: 'Âge Mè.'
-
 father.id: 'ID Père'
 father.id.abbr: 'ID Pè.'
 father.name: 'Nom Père'
@@ -79,3 +76,4 @@ father.age: 'Âge Père'
 father.age.abbr: 'Âge Pè.'
 edit: Editer
 delete: Supprimer
+create.new.patient: Créer un nouveau Patient

@@ -1,0 +1,58 @@
+body{ 
+    margin-top:20px; 
+}
+
+/*** Begin Custom-Fafa CSS ***/
+
+.control-label.required:after { 
+    content:" *"; 
+}
+
+
+fieldset {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+#createNewMotherCBDiv {
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;  
+}
+
+.boxShadow {
+border-top: 10px solid #8c8b8b;
+}
+
+.table-view-patient th{
+    white-space: nowrap;
+}
+.table-view-patient td:last-child {
+    width: 100%;
+}
+
+#list_mother_wrapper, #list_father_wrapper, .table_body_padding {
+    padding: 10px;
+}
+
+.checkbox_parent_add_form input{ 
+    width:20px; 
+    height:20px;
+}
+
+
+
+/*** End Custom-Fafa CSS ***/
+

@@ -2,20 +2,32 @@
 
 {% set form_person = attribute(form, person_type) %}
 
-{% set panel_type = 'panel-primary' %}
+{% set panel_type = 'panel-info' %}
+{% set bs_calltoaction_type = 'bs-calltoaction-info' %}
+
 {% if (person_type == person_type_list.father)  %}
     {% set panel_type = 'panel-success' %}
+    {% set bs_calltoaction_type = 'bs-calltoaction-success' %}
 {% elseif (person_type == person_type_list.mother) %} 
     {% set panel_type = 'panel-warning' %}
+    {% set bs_calltoaction_type = 'bs-calltoaction-warning' %}
 {% endif %} 
 
 
 {% do form_person.setRendered %}
 
 <div class="col-md-12">
-    <h3> {{ "#{person_type}.info"|trans }}</h3>
-  
-    {{ form_row(attribute(form, "create_new_#{person_type}_cb")) }}
+    <div class="bs-calltoaction {{ bs_calltoaction_type }}  cta-contents">
+        <h3 class="cta-title"> {{ "#{person_type}.info"|trans }}</h3>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5" >
+        <div class="jumbotron checkbox_parent_add_form bs-calltoaction {{ "#{bs_calltoaction_type}-deep" }} cta-contents cta-title">
+            <h3>{{ form_row(attribute(form, "create_new_#{person_type}_cb")) }}</h3>
+        </div>
+        </div>
+    </div>
 
     {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
     {% set table_content_template_dir_path = table_template_dir_path ~ '/content_template.html.twig' %}
@@ -25,8 +37,8 @@
         
     <div id="{{ "panel_list_#{person_type}" }}" class="panel {{ panel_type }}"> 
         <table id="{{ "list_#{person_type}" }}" class="list_parent table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ "select.existing.#{person_type}"|trans }} </h3>
+            <div class="panel-heading form-group">
+               <h3 class="panel-title">{{ "select.existing.#{person_type}"|trans }} </h3>
             </div> 
             <thead>
                 <tr>
@@ -61,7 +73,13 @@
                 <h3 class="panel-title">{{ "create.new.#{person_type}"|trans }} </h3>
             </div>
             <tbody>
-                <tr>{{ form_row(attribute(form, "#{person_type}_new")) }}</tr>
+                
+                    <tr>
+                        <div class="table_body_padding">
+                            {{ form_row(attribute(form, "#{person_type}_new")) }}
+                        </div>
+                    </tr>
+                
             </tbody>
          </table>
     </div>
