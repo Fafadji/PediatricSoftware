@@ -9,8 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
@@ -34,22 +32,37 @@ class PatientType extends AbstractType
                     ))
             ->add('codeSiblings',        TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
             ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
+            
+            /** Begin Mother's Fields */
             ->add('mother', EntityType::class, array(
                     'class'        => 'PSCustomerBundle:Mother',
                     'choice_label' => 'name', 'multiple' => false, 'expanded' => true,
                     'required' => false, 'label' => false,
                     
                   ))
-                
             ->add('create_new_mother_cb', CheckboxType::class, array(
                     'label'    => 'create.new.mother',
                     'required' => false,
                     'mapped'   => false
                 ))
-                
-            ->add('motherNew',        MotherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
-            ->add('father',        FatherType::class,  array('required' => false, 'label' => false))
-                
+            ->add('mother_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
+            /** End Mother's Fields */    
+
+            /** Begin Father's Fields */
+            ->add('father', EntityType::class, array(
+                    'class'        => 'PSCustomerBundle:Father',
+                    'choice_label' => 'name', 'multiple' => false, 'expanded' => true,
+                    'required' => false, 'label' => false,
+                    
+                  ))
+            ->add('create_new_father_cb', CheckboxType::class, array(
+                    'label'    => 'create.new.father',
+                    'required' => false,
+                    'mapped'   => false
+                ))
+            ->add('father_new',        FatherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
+            /** End Father's Fields */
+
             ->add('save',           SubmitType::class, array('label' => 'save'))
           ;
 

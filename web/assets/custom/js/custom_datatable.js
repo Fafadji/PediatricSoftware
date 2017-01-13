@@ -79,7 +79,7 @@ $(document).ready(function() {
 
 
 
-// begin DataTable for list mothers
+// begin DataTable for list parent
 $(document).ready(function() {
     currentLocaleFull = navigator.languages[0];
     currentLocale = "fr";
@@ -96,7 +96,7 @@ $(document).ready(function() {
         defaultNotVisCol.push(this.cellIndex);
     });
     
-    tableMother = $('#listMothers').DataTable({
+    tableMother = $('.listParent').DataTable({
             language: {
                 'url': full_url
             },

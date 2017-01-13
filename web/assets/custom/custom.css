@@ -302,7 +302,7 @@ border-top: 10px solid #8c8b8b;
     width: 100%;
 }
 
-#listMothers_wrapper {
+#list_mother_wrapper, #list_father_wrapper {
     padding: 10px;
 }
     

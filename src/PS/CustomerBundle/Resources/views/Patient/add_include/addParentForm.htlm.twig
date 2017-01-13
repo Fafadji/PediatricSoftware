@@ -1,0 +1,58 @@
+
+
+{% set form_person = attribute(form, person_type) %}
+
+{% do form_person.setRendered %}
+
+<div class="col-md-12">
+    <h3> {{ "#{person_type}.info"|trans }}</h3>
+  
+    {{ form_row(attribute(form, "create_new_#{person_type}_cb")) }}
+
+        {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
+        {% set table_content_template_dir_path = table_template_dir_path ~ '/content_template.html.twig' %}
+        {% set table_head_template_dir_path = table_template_dir_path ~ '/head_template.html.twig' %}
+        
+    <div class="panel panel-primary"> 
+        <table id="{{ "list_#{person_type}" }}" class="listParent table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ "select.existing.#{person_type}"|trans }} </h3>
+            </div> 
+            <thead>
+                <tr>
+                    <th></th>
+                    {{ include( table_head_template_dir_path, {'person_type' : person_type, 'showID' :true} ) }}
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    {{ include( table_head_template_dir_path, {'person_type' : person_type, 'showID' :true} ) }}
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for person_choice  in  form_person.vars.choices %}
+                    {% set checked_opt = false %}
+                    {% if person_choice.value == form_person.vars.value %}
+                        {% set checked_opt = true %}
+                    {% endif %}
+                    <tr>
+                        <td> <label><input type="radio" id="{{ "ps_customerbundle_patient_#{person_type}_#{person_choice.value}"  }}" name="{{ "ps_customerbundle_patient[#{person_type}]" }}" value="{{ person_choice.value }}" {{ checked_opt? 'checked="checked"':'' }} /> </label> </td> 
+                        {{ include( table_content_template_dir_path, {'person' : person_choice.data, 'person_type' : person_type, 'showID' :true} ) }}                       
+                    </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+            
+        
+    
+    <fieldset id="fieldsetCNM" class="form-group">
+        <legend>{{    "create.new.#{person_type}"|trans }}</legend>
+        {{ form_row(attribute(form, "#{person_type}_new")) }}
+        
+       
+    </fieldset>
+
+</div>

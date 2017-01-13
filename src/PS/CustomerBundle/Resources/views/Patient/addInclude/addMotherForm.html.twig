@@ -1,7 +1,0 @@
-        {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
-        {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
-        {% set add_template_dir_path = 'PSCustomerBundle:Patient:addInclude' %}
-        {% set table_content_template_dir_path = table_template_dir_path ~ '/content_template.html.twig' %}
-        {% set table_head_template_dir_path = table_template_dir_path ~ '/head_template.html.twig' %}
-
-{{ include( add_template_dir_path ~ '/addParentForm.htlm.twig', {'person_type' : person_type_list.mother} ) }}

@@ -2,7 +2,7 @@
 
 $(function () {
     selectExistingMotherForm();
-    var createNewMotherCB = $('#ps_customerbundle_patient_createNewMotherCB');
+    var createNewMotherCB = $('#ps_customerbundle_patient_create_new_mother_cb');
     
     createNewMotherCB.click(function() {        
         if(createNewMotherCB.prop('checked') ) {
@@ -16,6 +16,7 @@ $(function () {
     
     function selectExistingMotherForm() {    
         // enable select existing mother
+        var existingMotherDom = 
         $('#fieldsetSEM').css('color','#333333').css('background','white');
         $('#fieldsetSEM legend').css('color','#333333');
         $('#fieldsetSEM select').attr('disabled',false);
