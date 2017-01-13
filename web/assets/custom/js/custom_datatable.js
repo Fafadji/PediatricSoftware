@@ -62,8 +62,8 @@ $(document).ready(function() {
                 {
                     extend: 'colvisGroup',
                     text: 'Col. par défaut',
-                    hide: defaultNotVisibleColumns,
-                    show: defaultVisibleColumns,
+                    show: '.defaultVisColList',
+                    hide: '.defaultNotVisColList'
                     
                 }
             ],
@@ -96,7 +96,7 @@ $(document).ready(function() {
         defaultNotVisCol.push(this.cellIndex);
     });
     
-    tableMother = $('.list_parent').DataTable({
+    $('.list_parent').DataTable({
            /* language: {
                 'url': full_url
             },*/
@@ -126,14 +126,10 @@ $(document).ready(function() {
                 {
                     extend: 'colvisGroup',
                     text: 'Col. par défaut',
-                    show: '#listMothers thead .defaultVisColList',
-                    hide: '#listMothers thead .defaultNotVisColList'
+                    show: '.defaultVisColList',
+                    hide: '.defaultNotVisColList'
                 }
-            ],
-            fixedHeader: {
-                header: true,
-                footer: true
-            }
+            ]
         });
 
 } );

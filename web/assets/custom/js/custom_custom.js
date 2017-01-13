@@ -2,58 +2,47 @@
 
 $(function () {
     
-    var listMotherDom = $('#panel_list_mother');
-    var createMotherDom = $('#panel_create_mother');
-    var createNewMotherCB = $('#ps_customerbundle_patient_create_new_mother_cb');
-    
-    var listFatherDom = $('#panel_list_father');
-    var createFatherDom = $('#panel_create_father');
-    var createNewFatherCB = $('#ps_customerbundle_patient_create_new_father_cb');
-    
     var activeTimer = 2000;
     var delayTimer = 1000;
     
-    selectExistingMotherForm();
-    selectExistingFatherForm();
+    addParentAnimation(
+        '#panel_list_mother',
+        '#panel_create_mother',
+        '#ps_customerbundle_patient_create_new_mother_cb'
+    );
     
-    createNewMotherCB.click(function() {        
-        if(createNewMotherCB.prop('checked') ) {
-            createNewMotherForm();
-        } else {
-            selectExistingMotherForm();
+    addParentAnimation(
+        '#panel_list_father',
+        '#panel_create_father',
+        '#ps_customerbundle_patient_create_new_father_cb'
+    );
+    
+    function addParentAnimation(listSel, creteSel, createCbSel) 
+    {
+        var listParentDom = $(listSel);
+        var createParentDom = $(creteSel);
+        var createNewParentCBDom = $(createCbSel);
+        
+        selectExistingParentForm();
+        createNewParentCBDom.click(function() {        
+            if(createNewParentCBDom.prop('checked') ) {
+                createNewParentForm();
+            } else {
+                selectExistingParentForm();
+            }
+
+        });
+        
+        function selectExistingParentForm() {    
+            createParentDom.hide(activeTimer);
+            listParentDom.delay(delayTimer).show(activeTimer);
         }
 
-    });
-    
-    createNewFatherCB.click(function() {        
-        if(createNewFatherCB.prop('checked') ) {
-            createNewFatherForm();
-        } else {
-            selectExistingFatherForm();
+        function createNewParentForm(){
+            listParentDom.hide(activeTimer);
+            createParentDom.delay(delayTimer).show(activeTimer);
         }
-
-    });
-    
-    function selectExistingMotherForm() {    
-        createMotherDom.hide(activeTimer);
-        listMotherDom.delay(delayTimer).show(activeTimer);
     }
-    
-    function createNewMotherForm(){
-        listMotherDom.hide(activeTimer);
-        createMotherDom.delay(delayTimer).show(activeTimer);
-    }
-    
-    function selectExistingFatherForm() {    
-        createFatherDom.hide(activeTimer);
-        listFatherDom.delay(delayTimer).show(activeTimer);
-    }
-    
-    function createNewFatherForm(){
-        listFatherDom.hide(activeTimer);
-        createFatherDom.delay(delayTimer).show(activeTimer);
-    }
-
     
 });
 
