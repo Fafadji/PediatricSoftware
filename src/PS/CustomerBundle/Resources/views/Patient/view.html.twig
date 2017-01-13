@@ -4,6 +4,14 @@
 
 {% block content %}
     <section class="row">
+        <aside class="col-md-12">
+        <ul class="list-inline">
+            <li><a class="btn btn-primary btn-lg" href="{{ path( 'ps_patient_edit', {'id': patient.id} ) }}">{{ 'edit'|trans }}</a></li>
+            <li><a class="btn btn-default btn-lg" >{{ 'delete'|trans }}</a></li>
+        </ul>
+        </aside>
+    </section>    
+    <section class="row">
         
         {% set person_misc= {info : 'patient.info'} %}
         {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient, 'person_misc' : person_misc }) }}

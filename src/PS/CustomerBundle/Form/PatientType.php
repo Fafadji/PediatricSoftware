@@ -24,7 +24,7 @@ class PatientType extends AbstractType
         $builder 
             ->add('sex',ChoiceType::class,
                 array(
-                    'label' => 'sex.required',
+                    'label' => 'sex',
                     'choices' => array(
                         'male' => 'male',
                         'female' => 'female'),

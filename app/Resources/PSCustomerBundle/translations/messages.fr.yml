@@ -10,10 +10,8 @@ create.new.mother: 'Créer une nouvelle Mère'
 summary: Synthèse
 id: id
 name: Nom
-name.required: 'Nom*'
 surname: Prénom
 sex: Sexe
-sex.required: 'Sexe*'
 birthday: 'Date de naissance'
 comment: Commentaire
 age: Âge
@@ -78,3 +76,5 @@ father.comment: 'Commentaire Père'
 father.comment.abbr: 'Comment. Pè.'
 father.age: 'Âge Père'
 father.age.abbr: 'Âge Pè.'
+edit: Editer
+delete: Supprimer

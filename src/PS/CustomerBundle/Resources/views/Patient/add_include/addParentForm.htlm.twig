@@ -2,6 +2,15 @@
 
 {% set form_person = attribute(form, person_type) %}
 
+{% set panel_type = 'panel-primary' %}
+{% if (person_type == person_type_list.father)  %}
+    {% set panel_type = 'panel-success' %}
+{% elseif (person_type == person_type_list.mother) %} 
+    {% set panel_type = 'panel-warning' %}
+{% endif %} 
+
+
+
 {% do form_person.setRendered %}
 
 <div class="col-md-12">
@@ -12,9 +21,11 @@
         {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
         {% set table_content_template_dir_path = table_template_dir_path ~ '/content_template.html.twig' %}
         {% set table_head_template_dir_path = table_template_dir_path ~ '/head_template.html.twig' %}
+        {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
+    
         
-    <div class="panel panel-primary"> 
-        <table id="{{ "list_#{person_type}" }}" class="listParent table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+    <div class="panel {{ panel_type }}"> 
+        <table id="{{ "list_#{person_type}" }}" class="list_parent table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ "select.existing.#{person_type}"|trans }} </h3>
             </div> 
@@ -44,15 +55,16 @@
             </tbody>
         </table>
     </div>
-
             
-        
-    
-    <fieldset id="fieldsetCNM" class="form-group">
-        <legend>{{    "create.new.#{person_type}"|trans }}</legend>
-        {{ form_row(attribute(form, "#{person_type}_new")) }}
-        
-       
-    </fieldset>
+    <div class="panel {{ panel_type }}">                
+        <table id="{{ "create_#{person_type}_table" }}" class="table table-striped table-bordered table-view-patient" cellspacing="0" width="100%">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ "create.new.#{person_type}"|trans }} </h3>
+            </div>
+            <tbody>
+                <tr>{{ form_row(attribute(form, "#{person_type}_new")) }}</tr>
+            </tbody>
+         </table>
+    </div>
 
 </div>

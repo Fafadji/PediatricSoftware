@@ -41,7 +41,7 @@ class PatientController extends Controller
                 $fatherNew = $form->get('father_new')->getData();
                 
                 if($createNewFatherCB) {
-                    $patient->setMother($fatherNew);
+                    $patient->setFather($fatherNew);
                 }
 
                 $em = $this->getDoctrine()->getManager();

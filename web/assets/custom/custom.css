@@ -267,6 +267,10 @@ span.round-tab:hover {
 
 /*** Begin Custom-Fafa CSS ***/
 
+.control-label.required:after { 
+    content:" *"; 
+}
+
 
 fieldset {
     border: 1px groove #ddd !important;
@@ -302,7 +306,7 @@ border-top: 10px solid #8c8b8b;
     width: 100%;
 }
 
-#list_mother_wrapper, #list_father_wrapper {
+#list_mother_wrapper, #list_father_wrapper, #ps_customerbundle_patient_mother_new, #ps_customerbundle_patient_father_new {
     padding: 10px;
 }
     
