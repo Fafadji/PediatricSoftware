@@ -1,8 +1,20 @@
 // Begin Custom
 
 $(function () {
-    selectExistingMotherForm();
+    
+    var listMotherDom = $('#panel_list_mother');
+    var createMotherDom = $('#panel_create_mother');
     var createNewMotherCB = $('#ps_customerbundle_patient_create_new_mother_cb');
+    
+    var listFatherDom = $('#panel_list_father');
+    var createFatherDom = $('#panel_create_father');
+    var createNewFatherCB = $('#ps_customerbundle_patient_create_new_father_cb');
+    
+    var activeTimer = 2000;
+    var delayTimer = 1000;
+    
+    selectExistingMotherForm();
+    selectExistingFatherForm();
     
     createNewMotherCB.click(function() {        
         if(createNewMotherCB.prop('checked') ) {
@@ -12,34 +24,36 @@ $(function () {
         }
 
     });
-     
+    
+    createNewFatherCB.click(function() {        
+        if(createNewFatherCB.prop('checked') ) {
+            createNewFatherForm();
+        } else {
+            selectExistingFatherForm();
+        }
+
+    });
     
     function selectExistingMotherForm() {    
-        // enable select existing mother
-        var existingMotherDom = 
-        $('#fieldsetSEM').css('color','#333333').css('background','white');
-        $('#fieldsetSEM legend').css('color','#333333');
-        $('#fieldsetSEM select').attr('disabled',false);
-        
-        //disable create new mother form
-        $('#fieldsetCNM').css('color','gray').css('background','#DCDCDC');
-        $('#fieldsetCNM legend').css('color','gray');
-        $('#fieldsetCNM input').prop('readonly',true);
-        $('#fieldsetCNM select').attr('disabled',true);
+        createMotherDom.hide(activeTimer);
+        listMotherDom.delay(delayTimer).show(activeTimer);
     }
     
     function createNewMotherForm(){
-        // disable select existing mother
-        $('#fieldsetSEM').css('color','#gray').css('background','#DCDCDC');
-        $('#fieldsetSEM legend').css('color','gray');
-        $('#fieldsetSEM select').attr('disabled',true);
-        
-        //enable create new mother form
-        $('#fieldsetCNM').css('color','#333333').css('background','white');
-        $('#fieldsetCNM legend').css('color','#333333');
-        $('#fieldsetCNM input').prop('readonly',false);
-        $('#fieldsetCNM select').attr('disabled',false);
+        listMotherDom.hide(activeTimer);
+        createMotherDom.delay(delayTimer).show(activeTimer);
     }
+    
+    function selectExistingFatherForm() {    
+        createFatherDom.hide(activeTimer);
+        listFatherDom.delay(delayTimer).show(activeTimer);
+    }
+    
+    function createNewFatherForm(){
+        listFatherDom.hide(activeTimer);
+        createFatherDom.delay(delayTimer).show(activeTimer);
+    }
+
     
 });
 

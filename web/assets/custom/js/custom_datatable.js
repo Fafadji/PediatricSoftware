@@ -23,9 +23,9 @@ $(document).ready(function() {
     });
         
     tablePatient = $('#listPatients').DataTable({
-            language: {
+           /* language: {
                 'url': full_url
-            },
+            },*/
             order: [[ 0, "asc" ]],
             columnDefs: [ { "orderable": false, "targets": [1, 2, 3] } ],
             colReorder: {
@@ -97,14 +97,10 @@ $(document).ready(function() {
     });
     
     tableMother = $('.list_parent').DataTable({
-            language: {
+           /* language: {
                 'url': full_url
-            },
+            },*/
             order: [[ 0, "asc" ]],
-            // columnDefs: [ { "orderable": false, "targets": [1, 2, 3] } ],
-            //colReorder: {
-            //    fixedColumnsLeft: 1
-            //},
             "columnDefs": [
                 {
                     "targets": defaultNotVisCol,

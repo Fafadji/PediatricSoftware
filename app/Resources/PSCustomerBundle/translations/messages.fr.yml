@@ -6,6 +6,7 @@ mother.info: Mère
 father.info: Père
 create.new.father: 'Créer un nouveau Père'
 select.existing.mother: 'Sélectionner une mère existante'
+select.existing.father: 'Sélectionner un père existant'
 create.new.mother: 'Créer une nouvelle Mère'
 summary: Synthèse
 id: id

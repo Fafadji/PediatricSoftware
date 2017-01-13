@@ -10,7 +10,6 @@
 {% endif %} 
 
 
-
 {% do form_person.setRendered %}
 
 <div class="col-md-12">
@@ -18,13 +17,13 @@
   
     {{ form_row(attribute(form, "create_new_#{person_type}_cb")) }}
 
-        {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
-        {% set table_content_template_dir_path = table_template_dir_path ~ '/content_template.html.twig' %}
-        {% set table_head_template_dir_path = table_template_dir_path ~ '/head_template.html.twig' %}
-        {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
+    {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
+    {% set table_content_template_dir_path = table_template_dir_path ~ '/content_template.html.twig' %}
+    {% set table_head_template_dir_path = table_template_dir_path ~ '/head_template.html.twig' %}
+    {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
     
         
-    <div class="panel {{ panel_type }}"> 
+    <div id="{{ "panel_list_#{person_type}" }}" class="panel {{ panel_type }}"> 
         <table id="{{ "list_#{person_type}" }}" class="list_parent table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ "select.existing.#{person_type}"|trans }} </h3>
@@ -56,7 +55,7 @@
         </table>
     </div>
             
-    <div class="panel {{ panel_type }}">                
+    <div id="{{ "panel_create_#{person_type}" }}" class="panel {{ panel_type }}">                
         <table id="{{ "create_#{person_type}_table" }}" class="table table-striped table-bordered table-view-patient" cellspacing="0" width="100%">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ "create.new.#{person_type}"|trans }} </h3>
