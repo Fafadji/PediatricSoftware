@@ -301,6 +301,10 @@ border-top: 10px solid #8c8b8b;
 .table-view-patient td:last-child {
     width: 100%;
 }
+
+#listMothers_wrapper {
+    padding: 10px;
+}
     
 
 

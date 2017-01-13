@@ -34,15 +34,14 @@ class PatientType extends AbstractType
                     ))
             ->add('codeSiblings',        TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
             ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
-             
-             ->add('mother', EntityType::class, array(
+            ->add('mother', EntityType::class, array(
                     'class'        => 'PSCustomerBundle:Mother',
-                    'choice_label' => 'name', 'multiple' => false,
+                    'choice_label' => 'name', 'multiple' => false, 'expanded' => true,
                     'required' => false, 'label' => false,
                     
                   ))
                 
-            ->add('createNewMotherCB', CheckboxType::class, array(
+            ->add('create_new_mother_cb', CheckboxType::class, array(
                     'label'    => 'create.new.mother',
                     'required' => false,
                     'mapped'   => false

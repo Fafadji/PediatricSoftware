@@ -109,7 +109,8 @@ $(document).ready(function() {
                 {
                     "targets": defaultNotVisCol,
                     "visible": false
-                }
+                },
+                { "orderDataType": "dom-checkbox", "targets": 0 }
             ],
             dom: 'lBfrtip',
             stateSave: true,

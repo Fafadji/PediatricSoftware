@@ -4,8 +4,6 @@ php console cache:clear
 ## clear cache prod
 php console cache:clear -e prod
 
-## create db
-
 ## generate entity
 php bin/console doctrine:generate:entity
 

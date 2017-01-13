@@ -5,9 +5,9 @@
         <group>
             <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/web/assets/custom/custom.js</file>
             <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CoreBundle/Resources/views/layout.html.twig</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Form/PatientType.php</file>
             <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/web/assets/custom/js/custom_custom.js</file>
-            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Resources/views/Patient/index.html.twig</file>
-            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Entity/Patient.php</file>
+            <file>file:/media/fafa/Data/NetBeansProjects/PediatricSoftware/src/PS/CustomerBundle/Resources/views/Patient/addInclude/addMotherForm.html.twig</file>
         </group>
     </open-files>
 </project-private>
