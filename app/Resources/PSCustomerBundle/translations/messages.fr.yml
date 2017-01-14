@@ -77,3 +77,4 @@ father.age.abbr: 'Âge Pè.'
 edit: Editer
 delete: Supprimer
 create.new.patient: Créer un nouveau Patient
+tranlate.here: 'Lors de la création d''un nouveau Père, son Nom* doit obligatoirement être renseigné'

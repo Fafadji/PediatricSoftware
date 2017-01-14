@@ -11,6 +11,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormError;
+
 
 
 class PatientType extends AbstractType
@@ -66,6 +70,26 @@ class PatientType extends AbstractType
             ->add('save',           SubmitType::class, array('label' => 'save'))
           ;
 
+        
+        
+        // VALIDATING NON MAPPED FIELD Symfony 2.1.2 way (and forward)
+        // http://stackoverflow.com/questions/12911686/symfony-validate-form-with-mapped-false-form-fields
+        /** @var \closure $myExtraFieldValidator **/
+        $myNonMappedFieldsValidator = function(FormEvent $event){
+            $form = $event->getForm();
+            $motherNewField = $form->get('mother_new')->getData();
+            $fatherNewField = $form->get('father_new')->getData();
+            if (!$motherNewField->isPersonValid()) {
+              $form['mother_new']->addError(new FormError("Lors de la création d'une nouvelle Mère, son Nom* doit obligatoirement être renseigné"));
+            }
+            if (!$fatherNewField->isPersonValid()) {
+              $form['father_new']->addError(new FormError("Lors de la création d'un nouveau Père, son Nom* doit obligatoirement être renseigné"));
+            }
+        };
+
+        // adding the validator to the FormBuilderInterface
+        $builder->addEventListener(FormEvents::POST_SUBMIT, $myNonMappedFieldsValidator);
+        
     }
     
     /**

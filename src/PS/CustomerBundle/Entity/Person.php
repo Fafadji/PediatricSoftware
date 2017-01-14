@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use \DateTime;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Person
@@ -83,18 +84,46 @@ abstract class Person
         'TYPE_PATIENT' => 'patient',
                                 );
 
+
+    
+    protected function __construct($type)
+    {
+      $this->setType($type);
+    }
+    
     /**
     * @ORM\PostLoad
     */
     public function reloadConstructInit() {
         $this->__construct();
     }
-    
-    protected function __construct($type)
-    {
-      $this->setType($type);
-    }
 
+    // if any of the properties is set, then the name should not be null
+   /**
+   * @Assert\Callback
+   */
+    public function personValidation(ExecutionContextInterface $context) {
+        if(!$this->isPersonValid()) {
+            $context
+                ->buildViolation('person.not.valid.name.empty') 
+                ->atPath('name')                                                   
+                ->addViolation() ;
+        }
+    }
+    
+    public function isPersonValid() {
+        $onePropertySet = false;
+        if(!empty( $this->getBirthday() ) or !empty( $this->getPersonalPhone() ) or !empty( $this->getSex() ) or !empty( $this->getSurname() )  ) {
+            $onePropertySet = true;
+        }
+
+        if($onePropertySet and empty( $this->getName() )) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     public function getAge()
     {
         $age = null;
