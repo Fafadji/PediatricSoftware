@@ -31,30 +31,30 @@ $(function () {
         parentActionDom.change(showCorrectForm);
         
         function showCorrectForm() {
-             if(parentActionDom.val() == 'create' ) {
-                createNewParentForm();
+             if(parentActionDom.val() == 'none' ) {
+                hideAll();
             } else if (parentActionDom.val() == 'select' )
                 selectExistingParentForm();
             else {
-                hideAll();
+                createNewParentForm();
             }
         }
         
         function selectExistingParentForm() {    
-            createParentDom.hide(activeTimer);
-            listParentDom.delay(delayTimer).show(activeTimer);
+            createParentDom.slideUp(activeTimer);
+            listParentDom.delay(delayTimer).slideDown(activeTimer);
             createParentNameInputDom.removeAttr("required");
         }
 
         function createNewParentForm(){
-            listParentDom.hide(activeTimer);
-            createParentDom.delay(delayTimer).show(activeTimer);
+            listParentDom.slideUp(activeTimer);
+            createParentDom.delay(delayTimer).slideDown(activeTimer);
             createParentNameInputDom.attr("required","required");
         }
         
         function hideAll() {
-            listParentDom.hide(activeTimer);
-            createParentDom.hide(activeTimer);
+            listParentDom.slideUp(activeTimer);
+            createParentDom.slideUp(activeTimer);
             createParentNameInputDom.removeAttr("required");
         }
 
