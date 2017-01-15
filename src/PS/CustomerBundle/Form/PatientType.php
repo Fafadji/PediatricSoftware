@@ -44,10 +44,13 @@ class PatientType extends AbstractType
                     'required' => false, 'label' => false,
                     
                   ))
-            ->add('create_new_mother_cb', CheckboxType::class, array(
-                    'label'    => 'create.new.mother',
-                    'required' => false,
-                    'mapped'   => false
+            ->add('mother_action_selector', ChoiceType::class, array(
+                    'label'    => 'action.selection',
+                    'choices' => array(
+                        'select.existing.mother' => 'select',
+                        'create.new.mother' => 'create',
+                        'no.mother' => 'none'),
+                    'multiple'=>false,'expanded'=>false, 'mapped'   => false
                 ))
             ->add('mother_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped' => false,))
             /** End Mother's Fields */    
@@ -56,13 +59,16 @@ class PatientType extends AbstractType
             ->add('father', EntityType::class, array(
                     'class'        => 'PSCustomerBundle:Father',
                     'choice_label' => 'name', 'multiple' => false, 'expanded' => true,
-                    'required' => false, 'label' => false,
+                    'required' => false, 'label' => false, 
                     
                   ))
-            ->add('create_new_father_cb', CheckboxType::class, array(
-                    'label'    => 'create.new.father',
-                    'required' => false,
-                    'mapped'   => false
+            ->add('father_action_selector', ChoiceType::class, array(
+                    'label'    => 'action.selection',
+                    'choices' => array(
+                        'select.existing.father' => 'select',
+                        'create.new.father' => 'create',
+                        'no.father' => 'none'),
+                    'multiple'=>false,'expanded'=>false, 'mapped'   => false
                 ))
             ->add('father_new',        FatherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
             /** End Father's Fields */
@@ -79,10 +85,10 @@ class PatientType extends AbstractType
             $form = $event->getForm();
             $motherNewField = $form->get('mother_new')->getData();
             $fatherNewField = $form->get('father_new')->getData();
-            if (!$motherNewField->isPersonValid()) {
+            if (isset($motherNewField) and !$motherNewField->isPersonValid()) {
               $form['mother_new']->addError(new FormError("Lors de la création d'une nouvelle Mère, son Nom* doit obligatoirement être renseigné"));
             }
-            if (!$fatherNewField->isPersonValid()) {
+            if (isset($fatherNewField) and !$fatherNewField->isPersonValid()) {
               $form['father_new']->addError(new FormError("Lors de la création d'un nouveau Père, son Nom* doit obligatoirement être renseigné"));
             }
         };

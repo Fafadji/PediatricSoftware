@@ -115,7 +115,7 @@ $(document).ready(function() {
                 {
                     extend: 'colvis',
                     collectionLayout: 'fixed two-column',
-                    columns: ':not(thead .id)',
+                    columns: ':not(thead .radioColumn)',
                     text : 'Sélection Col.',
                 },
                 {

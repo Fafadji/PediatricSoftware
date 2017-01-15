@@ -11,32 +11,32 @@ $(function () {
     addParentAnimation(
         '#panel_list_mother',
         '#panel_create_mother',
-        '#ps_customerbundle_patient_create_new_mother_cb'
+        '#ps_customerbundle_patient_mother_action_selector'
     );
     
     addParentAnimation(
         '#panel_list_father',
         '#panel_create_father',
-        '#ps_customerbundle_patient_create_new_father_cb'
+        '#ps_customerbundle_patient_father_action_selector'
     );
     
     function addParentAnimation(listSel, createSel, createCbSel) 
     {
         var listParentDom = $(listSel);
         var createParentDom = $(createSel);
-        var createNewParentCBDom = $(createCbSel);
+        var parentActionDom = $(createCbSel);
         var createParentNameInputDom = $(createSel + " input").first();
         
         showCorrectForm() ;
-        createNewParentCBDom.click(function() {        
-            showCorrectForm() ;
-        });
+        parentActionDom.change(showCorrectForm);
         
         function showCorrectForm() {
-             if(createNewParentCBDom.prop('checked') ) {
+             if(parentActionDom.val() == 'create' ) {
                 createNewParentForm();
-            } else {
+            } else if (parentActionDom.val() == 'select' )
                 selectExistingParentForm();
+            else {
+                hideAll();
             }
         }
         
@@ -50,6 +50,12 @@ $(function () {
             listParentDom.hide(activeTimer);
             createParentDom.delay(delayTimer).show(activeTimer);
             createParentNameInputDom.attr("required","required");
+        }
+        
+        function hideAll() {
+            listParentDom.hide(activeTimer);
+            createParentDom.hide(activeTimer);
+            createParentNameInputDom.removeAttr("required");
         }
 
     }
