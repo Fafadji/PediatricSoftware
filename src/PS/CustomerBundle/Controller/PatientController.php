@@ -26,12 +26,26 @@ class PatientController extends Controller
         {
             if ($form->handleRequest($request)->isValid()) {
                 
+                // check if new mother creation is requested
+                // if yes, then set mother to the new mother
+                $motherActionSelector = $form->get('mother_action_selector')->getData();
+                $motherNew = $form->get('mother_new')->getData();
                 
-                $createNewMotherCB = $form->get('createNewMotherCB')->getData();
-                $motherNew = $form->get('motherNew')->getData();
-                
-                if($createNewMotherCB) {
+                if($motherActionSelector == 'create') {
                     $patient->setMother($motherNew);
+                } else if ($motherActionSelector == 'none') {
+                    $patient->setMother(null);
+                }
+                
+                // check if new father creation is requested
+                // if yes, then set father to the new father
+                $fatherActionSelector = $form->get('father_action_selector')->getData();
+                $fatherNew = $form->get('father_new')->getData();
+                
+                if($fatherActionSelector == 'create') {
+                    $patient->setFather($fatherNew);
+                } else if ($fatherActionSelector == 'none') {
+                    $patient->setFather(null);
                 }
 
                 $em = $this->getDoctrine()->getManager();

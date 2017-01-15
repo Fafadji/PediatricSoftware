@@ -3,13 +3,14 @@
 namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Patient
  *
  * @ORM\Table(name="ps_patient")
  * @ORM\Entity(repositoryClass="PS\CustomerBundle\Repository\PatientRepository")
- * 
+ * @ORM\HasLifecycleCallbacks()
  */
 class Patient extends Person
 {
@@ -25,12 +26,14 @@ class Patient extends Person
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
     protected $mother;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
     protected $father;
     
@@ -95,11 +98,7 @@ class Patient extends Person
      */
     public function getMother()
     {
-        $mother = $this->mother ;
-        if ( $mother == null) {
-            $mother = new Mother();
-        }
-        return $mother;
+        return $this->mother ;
     }
 
     /**
