@@ -3,12 +3,14 @@
 namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Patient
  *
  * @ORM\Table(name="ps_patient")
  * @ORM\Entity(repositoryClass="PS\CustomerBundle\Repository\PatientRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Patient extends Person
 {
@@ -24,12 +26,14 @@ class Patient extends Person
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
     protected $mother;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
     protected $father;
     
@@ -40,13 +44,29 @@ class Patient extends Person
      * @ORM\Column(name="code_siblings", type="string", length=255, nullable=true)
      */
     protected $codeSiblings;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="personal_diseases_history", type="text", nullable=true)
+     */
+    private $personalDiseasesHistory;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="family_diseases_history", type="text", nullable=true)
+     */
+    private $familyDiseasesHistory;
 
 
     public function __construct() // Constructeur demandant 2 paramètres
     {
-        parent::__construct(Person::$TYPES['TYPE_CHILD']);
+        parent::__construct(Person::$TYPES['TYPE_PATIENT']);
     }
 
+    
+    
     /**
      * Get id
      *
@@ -78,7 +98,7 @@ class Patient extends Person
      */
     public function getMother()
     {
-        return $this->mother;
+        return $this->mother ;
     }
 
     /**
@@ -127,5 +147,53 @@ class Patient extends Person
     public function getCodeSiblings()
     {
         return $this->codeSiblings;
+    }
+
+    /**
+     * Set personalDiseasesHistory
+     *
+     * @param string $personalDiseasesHistory
+     *
+     * @return Patient
+     */
+    public function setPersonalDiseasesHistory($personalDiseasesHistory)
+    {
+        $this->personalDiseasesHistory = $personalDiseasesHistory;
+
+        return $this;
+    }
+
+    /**
+     * Get personalDiseasesHistory
+     *
+     * @return string
+     */
+    public function getPersonalDiseasesHistory()
+    {
+        return $this->personalDiseasesHistory;
+    }
+
+    /**
+     * Set familyDiseasesHistory
+     *
+     * @param string $familyDiseasesHistory
+     *
+     * @return Patient
+     */
+    public function setFamilyDiseasesHistory($familyDiseasesHistory)
+    {
+        $this->familyDiseasesHistory = $familyDiseasesHistory;
+
+        return $this;
+    }
+
+    /**
+     * Get familyDiseasesHistory
+     *
+     * @return string
+     */
+    public function getFamilyDiseasesHistory()
+    {
+        return $this->familyDiseasesHistory;
     }
 }

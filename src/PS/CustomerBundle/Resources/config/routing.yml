@@ -1,11 +1,19 @@
-ps_customer_homepage:
+ps_patient_homepage:
     path:     /
-    defaults: { _controller: PSCustomerBundle:Customer:index }
+    defaults: { _controller: PSCustomerBundle:Patient:index }
 
 ps_patient_add:
     path:     /add
-    defaults: { _controller: PSCustomerBundle:Patient:add }
+    defaults: { _controller: PSCustomerBundle:Patient:addOrEdit }
     
 ps_patient_view:
-    path:     /view
+    path:     /view/{id}
     defaults: { _controller: PSCustomerBundle:Patient:view }
+    requirements:
+        id: \d+
+        
+ps_patient_edit:
+    path:     /edit/{id}
+    defaults: { _controller: PSCustomerBundle:Patient:addOrEdit }
+    requirements:
+        id: \d+

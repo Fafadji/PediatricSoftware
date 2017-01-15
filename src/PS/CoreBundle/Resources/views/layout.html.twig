@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}{{ 'pediatric.software'|trans }}{% endblock %}</title>
+        <title>{% block title %}{{ 'pediatric.software'|trans }}{% endblock %}</title>
 
-    {% block stylesheets %}
-      {# On charge le CSS de bootstrap depuis le site directement #}
+        {% block stylesheets %}
+        {# On charge le CSS de bootstrap depuis le site directement #}
 
-      {% stylesheets filter="cssrewrite, ?scssphp"
-        'assets/bootstrap/css/bootstrap.min.css'
-        'assets/custom/custom.css'
-         %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-      {% endstylesheets %}
-    {% endblock %}
-  </head>
-
-  <body>
-      
-  <div class="container">
-      
-      <div class="col-md-12">
-        {% include 'PSCoreBundle::menu.html.twig' %}
-      </div>
-      
-
-      <div id="content" class="col-md-12">
-        {% block body %}
+            {% stylesheets filter="cssrewrite, ?scssphp"
+                'assets/bootstrap/css/bootstrap.min.css'
+                'assets/DataTables/media/css/dataTables.bootstrap.min.css'
+                'assets/DataTables/extensions/Responsive/css/responsive.dataTables.min.css'
+                'assets/DataTables/extensions/Buttons/css/buttons.dataTables.min.css'
+                'assets/DataTables/extensions/FixedHeader/css/fixedHeader.dataTables.min.css'
+                'assets/custom/css/custom.css'
+                'assets/custom/css/call-to-action.css'
+                'assets/custom/css/wizard.css'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+            {% endstylesheets %}
         {% endblock %}
-      </div>
+    </head>
 
-    <hr>
+    <body>
+      
+        <div class="container">
+            <header class="row">
+                <div class="col-md-12">
+                    {% include 'PSCoreBundle::menu.html.twig' %}
+                </div>
+            </header>
 
-    <footer class="col-md-12" >
-      <p>  {{ 'footer.signature'|trans }} </p>
-    </footer>
-  </div>
-  
-    {% javascripts 
-      'assets/jquery/jquery.min.js' 
-      'assets/bootstrap/js/bootstrap.min.js'
-      'assets/custom/custom.js'
-    %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+            <section class="row">
+                <div id="content" class="col-md-12">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </section>
+            
+            <footer class="row" >
+               <div class="col-md-12">
+                    <p class="text-muted">  {{ 'footer.signature'|trans }} </p>
+                </div>
+            </footer>
+        </div>
 
-  
+        {% block javascripts %}
+            {% javascripts 
+                'assets/jquery/jquery.min.js' 
+                'assets/bootstrap/js/bootstrap.min.js'
+                'assets/DataTables/media/js/jquery.dataTables.min.js'
+                'assets/DataTables/media/js/dataTables.bootstrap.min.js'
+                'assets/DataTables/extensions/ColReorder/js/dataTables.colReorder.min.js'
+                'assets/DataTables/extensions/Responsive/js/dataTables.responsive.min.js'
+                'assets/DataTables/extensions/Buttons/js/dataTables.buttons.min.js'
+                'assets/DataTables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js'
+                'assets/DataTables/buttons.colvis/buttons.colVis.min.js'
+                'assets/DataTables/Plugins-master/sorting/custom-data-source/dom-checkbox.js'
 
-  </body>
+                'assets/custom/js/custom_custom.js'
+                'assets/custom/js/custom_datatable.js'
+                'assets/custom/js/custom_add_wizard.js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
 </html>

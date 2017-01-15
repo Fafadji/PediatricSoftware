@@ -5,11 +5,14 @@ namespace PS\CustomerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+use \DateTime;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Person
  *
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
 abstract class Person
 {
@@ -53,7 +56,8 @@ abstract class Person
      */
     protected $birthday;
     
-    protected $type;
+    
+    private $type;
 
     /**
      * @var string
@@ -74,18 +78,64 @@ abstract class Person
     
     
     public static $TYPES= array (
-        'TYPE_FATHER' => 'FATHER',
-        'TYPE_MOTHER' => 'MOTHER',
-        'TYPE_TUTOR' => 'TUTOR',
-        'TYPE_CHILD' => 'CHILD',
+        'TYPE_FATHER' => 'father',
+        'TYPE_MOTHER' => 'mother',
+        'TYPE_TUTOR' => 'tutor',
+        'TYPE_PATIENT' => 'patient',
                                 );
 
+
     
-  protected function __construct($type)
-  {
-    $this->setType($type);
-  }
+    protected function __construct($type)
+    {
+      $this->setType($type);
+    }
     
+    /**
+    * @ORM\PostLoad
+    */
+    public function reloadConstructInit() {
+        $this->__construct();
+    }
+
+    // if any of the properties is set, then the name should not be null
+   /**
+   * @Assert\Callback
+   */
+    public function personValidation(ExecutionContextInterface $context) {
+        if(!$this->isPersonValid()) {
+            $context
+                ->buildViolation('person.not.valid.name.empty') 
+                ->atPath('name')                                                   
+                ->addViolation() ;
+        }
+    }
+    
+    public function isPersonValid() {
+        $onePropertySet = false;
+        if(!empty( $this->getBirthday() ) or !empty( $this->getPersonalPhone() ) or !empty( $this->getSex() ) or !empty( $this->getSurname() )  ) {
+            $onePropertySet = true;
+        }
+
+        if($onePropertySet and empty( $this->getName() )) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public function getAge()
+    {
+        $age = null;
+        if(isset($this->birthday)) {
+            $today = new DateTime("now"); 
+            $interval = $this->birthday->diff($today); 
+            $age = $interval;
+            
+        }
+        return $age;
+    }
+            
 
     /**
      * Get id
@@ -121,6 +171,7 @@ abstract class Person
     
     public function getType()
     {
+        if(!isset($this->type)) return "unknown";
         return $this->type;
     }
 
@@ -194,6 +245,21 @@ abstract class Person
     public function getSex()
     {
         return $this->sex;
+    }
+    
+    public function isMale()
+    {
+        return ($this->getSex() == Person::SEX_MALE);
+    }
+    
+    public function isFemale()
+    {
+        return ($this->getSex() == Person::SEX_FEMALE);
+    }
+    
+    public function isPatient()
+    {
+        return ($this->getType() == Person::$TYPES['TYPE_PATIENT']);
     }
 
     /**

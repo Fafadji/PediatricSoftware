@@ -1,0 +1,29 @@
+## clear cache dev
+php console cache:clear
+
+## clear cache prod
+php console cache:clear -e prod
+
+## generate entity
+php bin/console doctrine:generate:entity
+
+## generate getters / setters
+php bin/console doctrine:generate:entities OCPlatformBundle:Advert
+
+## update schema
+php bin/console doctrine:schema:update
+
+## create db
+php bin/console doctrine:database:create
+
+## load fixture
+php bin/console doctrine:fixtures:load
+
+## create form
+php bin/console doctrine:generate:form OCPlatformBundle:Advert
+
+## generate fos user in db
+php bin/console fos:user:create
+
+## view all routes
+php bin/console debug:router

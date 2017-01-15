@@ -1,3 +1,4 @@
-ps_core_homepage:
-    path:     /
-    defaults: { _controller: PSCoreBundle:Default:index }
+datatable_lang:
+    path: /datatable_lang/
+    defaults: { _controller: PSCoreBundle:Core:datatableLang,  _format: json}
+

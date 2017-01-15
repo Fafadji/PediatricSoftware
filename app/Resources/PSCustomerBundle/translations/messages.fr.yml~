@@ -1,10 +1,45 @@
-patient.title: __patient.title
+patient.title: Patient
 next: Suivant
 previous: Précédent
 patient.info: Patient
 mother.info: Mère
 father.info: Père
-create.new.father: 'Créer un nouveau père'
+create.new.father: 'Créer un nouveau Père'
 select.existing.mother: 'Sélectionner une mère existante'
-create.new.mother: 'Créer une nouvelle mère'
+create.new.mother: 'Créer une nouvelle Mère'
 summary: Synthèse
+id: id
+name: Nom
+name.required: 'Nom*'
+surname: Prénom
+sex: Sexe
+sex.required: 'Sexe*'
+birthday: 'Date de naissance'
+comment: Commentaire
+age: Âge
+person.age.years: '{0} |{1} %count% an |[2,Inf[ %count% ans'
+person.age.months: '{0} |[1,Inf[ %count% mois'
+person.age.days.longdesc: '{0} Le patient est né aujourd''hui. Il a %count% jour. <br>Nous lui souhaitons la Bienvenue sur terre! |{1} %count% jour |[2,Inf[ %count% jours'
+person.age.days: '{0,1}  %count% jour | [2,Inf[ %count% jours'
+patient.general.medical.info: 'Informations Médicales Générales du Patient'
+Unknown: Inconnu
+patient.personalDiseasesHistory: 'Maladies personnelles'
+patient.familyDiseasesHistory: 'Maladies de famille'
+no.info: 'Il n''y a aucune information pour cette personne dans l''application'
+patient.id: 'ID Patient'
+patient.id.abbr: 'ID Pa.'
+patient.name: 'Nom Patient'
+patient.name.abbr: 'Nom Pa.'
+patient.surname: 'Prénom Patient'
+patient.surname.abbr: 'Prénom Pa.'
+patient.sex: 'Sexe Patient'
+patient.sex.abbr: 'Sexe Pa.'
+patient.birthday: 'Date Naissance Patient'
+patient.birthday.abbr: 'Naiss. Pa.'
+patient.code.siblings: 'Codification Patient'
+patient.code.siblings.abbr: 'Code Pa.'
+patient.comment: 'Commentaire Patient'
+patient.comment.abbr: 'Comment. Pa.'
+patient.age: 'Âge Patient'
+'': ''
+patient.age.abbr: 'Âge Pa.'

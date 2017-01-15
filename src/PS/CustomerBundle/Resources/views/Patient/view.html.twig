@@ -1,0 +1,48 @@
+{% extends "PSCoreBundle::layout.html.twig" %}
+
+        
+
+{% block content %}
+    <section class="row">
+        <aside class="col-md-12">
+        <ul class="list-inline">
+            <li><a class="btn btn-primary btn-lg" href="{{ path( 'ps_patient_edit', {'id': patient.id} ) }}">{{ 'edit'|trans }}</a></li>
+            <li><a class="btn btn-default btn-lg" >{{ 'delete'|trans }}</a></li>
+        </ul>
+        </aside>
+    </section>    
+    <section class="row">
+        
+        {% set person_misc= {info : 'patient.info'} %}
+        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient, 'person_misc' : person_misc }) }}
+
+        <article  class="col-md-6">
+            <div class="panel panel-info">
+                <table class="table table-striped table-bordered table-view-patient">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ 'patient.general.medical.info'|trans }}</h3>
+                    </div>
+                    <tbody>
+                        <tr>
+                            <th>{{ 'patient.personalDiseasesHistory' | trans }}</th>
+                            <td>{{ patient.personalDiseasesHistory }}</th>
+                        </tr>
+                        <tr>
+                            <th>{{ 'patient.familyDiseasesHistory' | trans }}</th>
+                            <td>{{ patient.familyDiseasesHistory }}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+                        
+    </section>
+
+    <section class="row">
+        {% set person_misc= {info : 'mother.info', sex:  'female' } %}
+        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient.mother, 'person_misc' : person_misc }) }}
+        
+        {% set person_misc= {info : 'father.info', sex:  'male'} %}
+        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient.father, 'person_misc' : person_misc }) }}
+    </section>
+{% endblock %}
