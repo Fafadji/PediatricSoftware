@@ -6,6 +6,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PersonFormUtils
 {
@@ -33,6 +35,53 @@ class PersonFormUtils
         PersonFormUtils::addPrimaryInfo($builder);
         $builder->add('personalPhone', TextType::class, array('required' => false, 'label' => 'personal_phone'));
         PersonFormUtils::addComment($builder);
+    }
+    
+    public static function builParentTypeForm(FormBuilderInterface $builder, $personType)
+    { 
+        $builder
+            ->add($personType.'_action_selector', ChoiceType::class, array(
+                    'label'    => 'action.selection',
+                    'choices' => array(
+                        'select.existing.'.$personType => 'select',
+                        'create.new.'.$personType => 'create',
+                        'no.'.$personType => 'none'),
+                    'multiple'=>false,'expanded'=>false, 'mapped'   => false
+                ))
+                
+            ->add($personType, EntityType::class, array(
+                    'class'        => 'PSCustomerBundle:'.ucfirst($personType),
+                    'choice_label' => 'name', 'multiple' => false, 'expanded' => true,
+                    'required' => false, 'label' => false,
+                    
+                  ))
+            ->add($personType.'_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped' => false,))
+        ;
+    }
+    
+    public static function buildAddressTypeForm(FormBuilderInterface $builder, $personType)
+    {   
+        /** Begin Address's Fields */
+        $builder
+            ->add($personType.'_address_action_selector', ChoiceType::class, array(
+                    'label'    => 'action.selection',
+                    'choices' => array(
+                        'select.existing.address' => 'select',
+                        'create.new.address' => 'create',
+                        'no.address' => 'none'),
+                    'multiple'=>false,'expanded'=>false, 'mapped'   => false
+                ))
+                
+            ->add($personType.'_address', EntityType::class, array(
+                    'class'        => 'PSCustomerBundle:Address',
+                    'choice_label' => 'id', 'multiple' => false, 'expanded' => true,
+                    'required' => false, 'label' => false, 'mapped'   => false
+
+                  ))
+            
+            ->add($personType.'_address_new',  AddressType::class,  array('required' => false, 'label' => false, 'mapped' => false,))
+         ;
+        /** Begin Address's Fields */
     }
     
    

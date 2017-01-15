@@ -1,36 +1,29 @@
+{% set count_step = 1 %}
+{% set add_template_dir_path = 'PSCustomerBundle:Patient:add_include' %}
+{% set add_wizard_step_template_dir_path = add_template_dir_path ~ '/wizardPresentationStep.html.twig' %}
+
 <div class="wizard-inner">
     <div class="connecting-line"></div>
     <ul class="nav nav-tabs" role="tablist">
 
-        <li role="presentation" class="active">
-            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="{{ 'patient.info'|trans }}">
-                <span class="round-tab">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                </span>
-            </a>
-        </li>
+        {# Patient #}
+        {{ include( add_wizard_step_template_dir_path, {'step_class' : 'active', 'step_title' : 'patient.info' } ) }}
+        {% set count_step = count_step + 1 %}
 
-        <li role="presentation" class="disabled">
-            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="{{ 'mother.info'|trans }}">
-                <span class="round-tab">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                </span>
-            </a>
-        </li>
-        <li role="presentation" class="disabled">
-            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="{{ 'father.info'|trans }}">
-                <span class="round-tab">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                </span>
-            </a>
-        </li>
+        {# Mother #}
+        {{ include( add_wizard_step_template_dir_path, {'step_title' : 'mother.info' } ) }}
+        {% set count_step = count_step + 1 %}
+        
+        {# Mother Address #}
+        {{ include( add_wizard_step_template_dir_path, {'step_title' : 'mother.address.info' } ) }}
+        {% set count_step = count_step + 1 %}
+        
+        {# Father #}
+        {{ include( add_wizard_step_template_dir_path, {'step_title' : 'father.info' } ) }}
+        {% set count_step = count_step + 1 %}
 
-        <li role="presentation" class="disabled">
-            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="{{ 'summary'|trans }}">
-                <span class="round-tab">
-                    <i class="glyphicon glyphicon-ok"></i>
-                </span>
-            </a>
-        </li>
+        {# Summary #}
+        {{ include( add_wizard_step_template_dir_path, {'step_title' : 'summary', 'step_number' : 'complete', 'glyphicon_type': 'ok' } ) }}
+
     </ul>
 </div>

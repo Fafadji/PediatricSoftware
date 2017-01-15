@@ -19,22 +19,25 @@ abstract class Person
     /**
      * @var int
      *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255, nullable=true)
      */
-    protected $surname;
+    private $surname;
 
     /**
      * @var string
@@ -46,7 +49,7 @@ abstract class Person
      *     message="Sex should be male or female"
      * )
      */
-    protected $sex;
+    private $sex;
 
     /**
      * @var \DateTime
@@ -54,7 +57,7 @@ abstract class Person
      * @ORM\Column(name="birthday", type="datetime", nullable=true)
      * @Assert\DateTime()
      */
-    protected $birthday;
+    private $birthday;
     
     
     private $type;
@@ -64,15 +67,37 @@ abstract class Person
      *
      * @ORM\Column(name="personal_phone", type="string", length=255, nullable=true)
      */
-    protected $personalPhone;
+    private $personalPhone;
     
     /**
      * @var string
      *
      * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
-    protected $comment;
+    private $comment;
 
+    
+  /**
+   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
+   */    
+    private $address;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="livesWith", type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *     pattern="/^[mother|father|tutor]$/",
+     *     match=true,
+     *     message="livesWith should be mother or father or tutor"
+     * )
+     */
+    private $livesWith;
+    
+    
     const SEX_MALE='male';
     const SEX_FEMALE='female';
     
@@ -99,10 +124,11 @@ abstract class Person
     }
 
     // if any of the properties is set, then the name should not be null
-   /**
+  /**
    * @Assert\Callback
    */
     public function personValidation(ExecutionContextInterface $context) {
+        
         if(!$this->isPersonValid()) {
             $context
                 ->buildViolation('person.not.valid.name.empty') 
@@ -113,7 +139,11 @@ abstract class Person
     
     public function isPersonValid() {
         $onePropertySet = false;
-        if(!empty( $this->getBirthday() ) or !empty( $this->getPersonalPhone() ) or !empty( $this->getSex() ) or !empty( $this->getSurname() )  ) {
+        if(!empty( $this->getBirthday() ) or !empty( $this->getPersonalPhone() ) or !empty( $this->getSurname() )  ) {
+            $onePropertySet = true;
+        }
+        
+        if( $this->isPatient() and !empty( $this->getSex() )) {
             $onePropertySet = true;
         }
 
@@ -333,5 +363,60 @@ abstract class Person
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \PS\CustomerBundle\Entity\Address $address
+     *
+     * @return Person
+     */
+    public function setAddress(\PS\CustomerBundle\Entity\Address $address = null)
+    {
+        $this->address = $address;
+        if(!empty($address)) {
+            $this->setLivesWith(null);
+        }
+        
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \PS\CustomerBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set livesWith
+     *
+     * @param string $livesWith
+     *
+     * @return Person
+     */
+    public function setLivesWith($livesWith)
+    {
+        $this->livesWith = $livesWith;
+        if(!empty($livesWith)) {
+            $this->setAddress(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get livesWith
+     *
+     * @return string
+     */
+    public function getLivesWith()
+    {
+        return $this->livesWith;
     }
 }

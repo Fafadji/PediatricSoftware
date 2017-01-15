@@ -3,6 +3,7 @@
 namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Mother
@@ -12,30 +13,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Mother extends Person
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    
     public function __construct() 
     {
         parent::__construct(Person::$TYPES['TYPE_MOTHER']);
     }
     
-
     /**
-     * Get id
+     * Get livesWith
+     * @Assert\Regex(
+     *     pattern="/^father$/",
+     *     match=true,
+     *     message="livesWith should be father"
+     * )
      *
-     * @return int
+     * @return string
      */
-    public function getId()
+    public function getLivesWith()
     {
-        return $this->id;
+        parent::getLivesWith();
     }
 }
 

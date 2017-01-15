@@ -8,7 +8,7 @@ php console cache:clear -e prod
 php bin/console doctrine:generate:entity
 
 ## generate getters / setters
-php bin/console doctrine:generate:entities OCPlatformBundle:Advert
+php bin/console doctrine:generate:entities PSCustomerBundle:Person
 
 ## update schema
 php bin/console doctrine:schema:update
@@ -20,7 +20,7 @@ php bin/console doctrine:database:create
 php bin/console doctrine:fixtures:load
 
 ## create form
-php bin/console doctrine:generate:form OCPlatformBundle:Advert
+php bin/console doctrine:generate:form PSCustomerBundle:Address
 
 ## generate fos user in db
 php bin/console fos:user:create

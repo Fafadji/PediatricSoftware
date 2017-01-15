@@ -14,14 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Patient extends Person
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother", cascade={"persist"})
@@ -58,23 +50,14 @@ class Patient extends Person
      * @ORM\Column(name="family_diseases_history", type="text", nullable=true)
      */
     private $familyDiseasesHistory;
+    
+    
+    private $liveWith;
 
 
     public function __construct() // Constructeur demandant 2 paramètres
     {
         parent::__construct(Person::$TYPES['TYPE_PATIENT']);
-    }
-
-    
-    
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -196,4 +179,17 @@ class Patient extends Person
     {
         return $this->familyDiseasesHistory;
     }
+    
+    /**
+     * Set livesWith
+     *
+     * @param string $livesWith
+     *
+     * @return Person
+     */
+    public function setAddress(\PS\CustomerBundle\Entity\Address $address = null)
+    {
+        throw new LogicException("Not allowed to set Address in Patient. Use setLivesWith insted");
+    }
+    
 }

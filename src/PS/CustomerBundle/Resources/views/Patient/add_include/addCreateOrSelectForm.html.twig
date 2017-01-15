@@ -1,0 +1,93 @@
+
+{% if(suffixe is defined) %}
+    {% set full_object = person_type~suffixe %}
+{% else %}
+    {% set full_object = person_type %}
+    {% set suffixe = '' %}
+{% endif %} 
+
+{% set form_list = attribute(form, full_object) %}
+
+{% set panel_type = 'panel-info' %}
+{% set bs_calltoaction_type = 'bs-calltoaction-info' %}
+
+{% if (person_type == person_type_list.father)  %}
+    {% set panel_type = 'panel-success' %}
+    {% set bs_calltoaction_type = 'bs-calltoaction-success' %}
+{% elseif (person_type == person_type_list.mother) %} 
+    {% set panel_type = 'panel-warning' %}
+    {% set bs_calltoaction_type = 'bs-calltoaction-warning' %}
+{% endif %} 
+
+
+{% do form_list.setRendered %}
+
+<div class="col-md-12">
+    <div class="bs-calltoaction {{ bs_calltoaction_type }}  cta-contents">
+        <h3 class="cta-title"> {{ "#{full_object}.info"|trans }}</h3>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5" >
+        <div class="jumbotron checkbox_parent_add_form bs-calltoaction {{ "#{bs_calltoaction_type}-deep" }} cta-contents cta-title">
+            <h3>{{ form_row(attribute(form, "#{full_object}_action_selector")) }}</h3>
+        </div>
+        </div>
+    </div>
+
+    {% set table_template_dir_path = 'PSCustomerBundle:Patient:table_templates' %}
+    {% set table_content_template_dir_path = table_template_dir_path ~ '/content' ~ suffixe ~ '_template.html.twig' %}
+    {% set table_head_template_dir_path = table_template_dir_path ~ '/head' ~ suffixe ~ '_template.html.twig' %}
+    {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
+    
+        
+    <div id="{{ "panel_list_#{person_type}" }}" class="panel {{ panel_type }}"> 
+        <table id="{{ "list_#{person_type}" }}" class="list_parent table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+            <div class="panel-heading form-group">
+               <h3 class="panel-title">{{ "select.existing.#{full_object}"|trans }} </h3>
+            </div> 
+            <thead>
+                <tr>
+                    <th class="radioColumn"></th>
+                    {{ include( table_head_template_dir_path, {'person_type' : person_type, 'showID' :true} ) }}
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    {{ include( table_head_template_dir_path, {'person_type' : person_type, 'showID' :true} ) }}
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for list_value  in  form_list.vars.choices %}
+                    {% set checked_opt = false %}
+                    {% if list_value.value == form_list.vars.value %}
+                        {% set checked_opt = true %}
+                    {% endif %}
+                    <tr>
+                        <td> <label><input type="radio" id="{{ "ps_customerbundle_patient_#{person_type}_#{list_value.value}"  }}" name="{{ "ps_customerbundle_patient[#{person_type}]" }}" value="{{ list_value.value }}" {{ checked_opt? 'checked="checked"':'' }} /> </label> </td> 
+                        {{ include( table_content_template_dir_path, {'person' : list_value.data, 'address' : list_value.data, 'person_type' : person_type, 'showID' :true} ) }}                       
+                    </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+    </div>
+            
+    <div id="{{ "panel_create_#{full_object}" }}" class="panel {{ panel_type }}">                
+        <table id="{{ "create_#{full_object}_table" }}" class="table table-striped table-bordered table-view-patient" cellspacing="0" width="100%">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ "create.new.#{full_object}"|trans }} </h3>
+            </div>
+            <tbody>
+                
+                    <tr>
+                        <div class="table_body_padding">
+                            {{ form_row(attribute(form, "#{full_object}_new")) }}
+                        </div>
+                    </tr>
+                
+            </tbody>
+         </table>
+    </div>
+
+</div>

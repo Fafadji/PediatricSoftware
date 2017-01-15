@@ -90,3 +90,9 @@ assetic:
     jsqueeze:   ~
     scssphp:
       formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+      
+# Stof\DoctrineExtensionsBundle configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
