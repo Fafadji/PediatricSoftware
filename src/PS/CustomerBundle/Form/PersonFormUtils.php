@@ -35,7 +35,7 @@ class PersonFormUtils
     public static function buildPersonTypeForm(FormBuilderInterface $builder)
     {
         PersonFormUtils::addPrimaryInfo($builder);
-        $builder->add('personalPhone', TextType::class, array('required' => false, 'label' => 'personal_phone'));
+        $builder->add('personalPhone', TextType::class, array('required' => false, 'label' => 'personal.phone'));
         PersonFormUtils::addComment($builder);
     }
     

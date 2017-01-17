@@ -20,7 +20,7 @@
             </div>
 
             <tbody>
-            {% if person is defined and person != null %}
+            {% if person is defined and person is not null %}
                 <tr>
                     <th>{{ 'id' | trans }}</th>
                     <td>{{ person.id }}</td>
@@ -33,7 +33,8 @@
                     <th>{{ 'surname' | trans }}</th>
                     <td>{{ person.surname }}</td>
                 </tr>
-            {% if person.patient is defined and  person.patient  %}
+            {# person.patient calls person->isPatient() #}
+            {% if person.patient  %}
                 <tr>
                     <th>{{ 'sex' | trans }}</th>
                     <td>{{ person.sex | trans }}</td>
@@ -65,16 +66,33 @@
 
                     </td>
                 </tr>
-            {% if person.patient is defined and  person.patient  %}
+            {# person.patient calls person->isPatient() #}
+            {% if person.patient  %}
                 <tr>
                     <th>{{ 'patient.code.siblings' | trans }}</th>
-                    <td>{{ patient.codeSiblings }}</td>
+                    <td>{{ person.codeSiblings }}</td>
                 </tr>
             {% endif %} 
                 <tr>
                     <th>{{ 'comment' | trans }}</th>
                     <td>{{ person.comment }}</td>
                 </tr>
+            {# person.patient calls person->isPatient() #}
+            {% if not person.patient  %}
+                <tr>
+                    <th>{{ 'personal.phone' | trans }}</th>
+                    <td>{{ person.personalPhone }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'home.phone' | trans }}</th>
+                    <td>{{ person.address is null ? "" : person.address.homePhone }}</td>
+
+                </tr>
+                <tr>
+                    <th>{{ 'home.full.address' | trans }}</th>
+                    <td>{{ person.address is null ? "" : person.address.homeFullAddress }}</td>
+                </tr>
+            {% endif %}
         {% else %} 
             <tr><th>{{ 'no.info' | trans }}</th></tr>
         {% endif %}  
