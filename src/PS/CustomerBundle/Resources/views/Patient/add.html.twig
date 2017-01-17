@@ -2,10 +2,6 @@
 
 {% block content %}
 
-{% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
-{% set add_template_dir_path = 'PSCustomerBundle:Patient:add_include' %}
-{% set add_create_or_select_template_dir_path = add_template_dir_path ~ '/addCreateOrSelectForm.html.twig' %}
-{% set add_button_template_dir_path = add_template_dir_path ~ '/addButtonForm.html.twig' %}
 
 {% set count_step = 1 %}
     
@@ -20,7 +16,7 @@
     
     
 <div class="wizard">
-    {{ include( add_template_dir_path ~ '/wizardPresentation.html.twig' ) }}
+    {{ include( incl_f_wizard_presentation ) }}
      
     {{ form_start(form) }}
     {# General errors of the form #}
@@ -30,40 +26,40 @@
         {# Patient #}
         <div class="tab-pane active" role="tabpanel" id="{{ 'step' ~ count_step }}">
             <div class="{{ 'step' ~ count_step }}">
-                {{ include( add_template_dir_path ~ '/addPatientForm.html.twig' ) }}
+                {{ include( incl_f_add_patient_form ) }}
             </div>
             
-            {{ include( add_button_template_dir_path, {'next':'next'} ) }}
+            {{ include( templ_f_next_previous_button, {'next':'next'} ) }}
         </div>
         {% set count_step = count_step + 1 %}
 
         {# Mother #}
         <div class="tab-pane" role="tabpanel" id="{{ 'step' ~ count_step }}">
             <div class="{{ 'step' ~ count_step }}">
-                {{ include( add_create_or_select_template_dir_path, {'person_type' : person_type_list.mother} ) }}
+                {{ include( templ_f_create_or_select_form, {'person_type' : person_type_list.mother} ) }}
             </div>
     
-            {{ include( add_button_template_dir_path, {'previous':'previous','next':'next'} ) }}
+            {{ include( templ_f_next_previous_button, {'previous':'previous','next':'next'} ) }}
         </div>
         {% set count_step = count_step + 1 %}
         
         {# Mother Address #}
         <div class="tab-pane" role="tabpanel" id="{{ 'step' ~ count_step }}">
             <div class="{{ 'step' ~ count_step }}">
-                {{ include( add_create_or_select_template_dir_path, {'person_type' : person_type_list.mother, suffixe : '_address'} ) }}
+                {{ include( templ_f_create_or_select_form, {'person_type' : person_type_list.mother, suffixe : '_address'} ) }}
             </div>
     
-            {{ include( add_button_template_dir_path, {'previous':'previous','next':'next'} ) }}
+            {{ include( templ_f_next_previous_button, {'previous':'previous','next':'next'} ) }}
         </div>
         {% set count_step = count_step + 1 %}
            
         {# Father #}
         <div class="tab-pane" role="tabpanel" id="{{ 'step' ~ count_step }}">
             <div class="{{ 'step' ~ count_step }}">
-                {{ include( add_create_or_select_template_dir_path, {'person_type' : person_type_list.father} ) }}
+                {{ include( templ_f_create_or_select_form, {'person_type' : person_type_list.father} ) }}
             </div>
     
-            {{ include( add_button_template_dir_path, {'previous':'previous','next':'next'} ) }}
+            {{ include( templ_f_next_previous_button, {'previous':'previous','next':'next'} ) }}
         </div>
         {% set count_step = count_step + 1 %}
 
@@ -71,14 +67,14 @@
         {# Summary #}
         <div class="tab-pane" role="tabpanel" id="complete">
             <div class="complete">
-                {{ include( add_template_dir_path ~ '/addSummaryForm.html.twig' ) }}
+                {{ include( incl_f_add_summary_form ) }}
             </div>
             <div class="form-group">
 
                 <ul class="list-inline pull-right">
                     <li>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}<li>
                 </ul>
-                {{ include( add_button_template_dir_path, {'previous':'previous'} ) }}
+                {{ include( templ_f_next_previous_button, {'previous':'previous'} ) }}
 
                 {{ form_rest(form) }}
             </div>

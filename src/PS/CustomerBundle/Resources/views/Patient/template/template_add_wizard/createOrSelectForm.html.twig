@@ -1,8 +1,12 @@
 
 {% if(suffixe is defined) %}
     {% set full_object = person_type~suffixe %}
+    {% set templ_f_thead_to_incl = templ_f_thead_address %}
+    {% set templ_f_tbody_to_incl = templ_f_tbody_address %}
 {% else %}
     {% set full_object = person_type %}
+    {% set templ_f_thead_to_incl = templ_f_thead_person %}
+    {% set templ_f_tbody_to_incl = templ_f_tbody_person %}
     {% set suffixe = '' %}
 {% endif %} 
 
@@ -34,28 +38,23 @@
         </div>
         </div>
     </div>
-
-    {% set table_template_dir_path = 'PSCustomerBundle:Patient:table_templates' %}
-    {% set table_content_template_dir_path = table_template_dir_path ~ '/content' ~ suffixe ~ '_template.html.twig' %}
-    {% set table_head_template_dir_path = table_template_dir_path ~ '/head' ~ suffixe ~ '_template.html.twig' %}
-    {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
     
         
-    <div id="{{ "panel_list_#{person_type}" }}" class="panel {{ panel_type }}"> 
-        <table id="{{ "list_#{person_type}" }}" class="list_parent table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+    <div id="{{ "panel_list_#{full_object}" }}" class="panel {{ panel_type }}"> 
+        <table id="{{ "list_#{full_object}" }}" class="list_objects table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
             <div class="panel-heading form-group">
                <h3 class="panel-title">{{ "select.existing.#{full_object}"|trans }} </h3>
             </div> 
             <thead>
                 <tr>
                     <th class="radioColumn"></th>
-                    {{ include( table_head_template_dir_path, {'person_type' : person_type, 'showID' :true} ) }}
+                    {{ include(templ_f_thead_to_incl, {'person_type' : person_type, 'showID' :true} ) }}
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th></th>
-                    {{ include( table_head_template_dir_path, {'person_type' : person_type, 'showID' :true} ) }}
+                    {{ include( templ_f_thead_to_incl, {'person_type' : person_type, 'showID' :true} ) }}
                 </tr>
             </tfoot>
             <tbody>
@@ -65,8 +64,8 @@
                         {% set checked_opt = true %}
                     {% endif %}
                     <tr>
-                        <td> <label><input type="radio" id="{{ "ps_customerbundle_patient_#{person_type}_#{list_value.value}"  }}" name="{{ "ps_customerbundle_patient[#{person_type}]" }}" value="{{ list_value.value }}" {{ checked_opt? 'checked="checked"':'' }} /> </label> </td> 
-                        {{ include( table_content_template_dir_path, {'person' : list_value.data, 'address' : list_value.data, 'person_type' : person_type, 'showID' :true} ) }}                       
+                        <td> <label><input type="radio" id="{{ "ps_customerbundle_patient_#{full_object}_#{list_value.value}"  }}" name="{{ "ps_customerbundle_patient[#{full_object}]" }}" value="{{ list_value.value }}" {{ checked_opt? 'checked="checked"':'' }} /> </label> </td> 
+                        {{ include( templ_f_tbody_to_incl, {'person' : list_value.data, 'address' : list_value.data, 'person_type' : person_type, 'showID' :true} ) }}                       
                     </tr>
                  {% endfor %}
             </tbody>

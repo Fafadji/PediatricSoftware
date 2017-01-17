@@ -96,7 +96,7 @@ $(document).ready(function() {
         defaultNotVisCol.push(this.cellIndex);
     });
     
-    $('.list_parent').DataTable({
+    $('.list_objects').DataTable({
            /* language: {
                 'url': full_url
             },*/

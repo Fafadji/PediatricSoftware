@@ -3,19 +3,17 @@
 {% block content %}
     
     {% if listPatients is defined and listPatients|length %}
-        {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
-        {% set table_template_dir_path = 'PSCustomerBundle:Patient:person_table_template' %}
-        {% set table_content_template_dir_path = table_template_dir_path ~ '/content_template.html.twig' %}
+        
         
         <table id="listPatients" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    {{ include( table_template_dir_path ~ '/full_head_template.html.twig' ) }}
+                    {{ include( incl_f_thead_full_person ) }}
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    {{ include( table_template_dir_path ~ '/full_head_template.html.twig' ) }}
+                    {{ include( incl_f_thead_full_person ) }}
                 </tr>
             </tfoot>
             <tbody>
@@ -24,10 +22,10 @@
                     <tr>
                         
                         <td>{{ patient.id }}</td>    
-                        {{ include( table_template_dir_path ~ '/content_icons_template.html.twig', {'person' : patient, 'person_type' : person_type_list.patient} ) }}    
-                        {{ include( table_content_template_dir_path, {'person' : patient, 'person_type' : person_type_list.patient, 'showID' :false} ) }}  
-                        {{ include( table_content_template_dir_path, {'person' : patient.mother, 'person_type' : person_type_list.mother, 'showID' :true} ) }} 
-                        {{ include( table_content_template_dir_path, {'person' : patient.father, 'person_type' : person_type_list.father, 'showID' :true} ) }} 
+                        {{ include( templ_f_tbody_icons, {'person' : patient, 'person_type' : person_type_list.patient} ) }}    
+                        {{ include( templ_f_tbody_person, {'person' : patient, 'person_type' : person_type_list.patient, 'showID' :false} ) }}  
+                        {{ include( templ_f_tbody_person, {'person' : patient.mother, 'person_type' : person_type_list.mother, 'showID' :true} ) }} 
+                        {{ include( templ_f_tbody_person, {'person' : patient.father, 'person_type' : person_type_list.father, 'showID' :true} ) }} 
                         
 
                     </tr>
