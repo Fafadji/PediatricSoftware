@@ -20,14 +20,14 @@ class Patient extends Person
    * @ORM\JoinColumn(nullable=true)
    * @Assert\Valid()
    */
-    protected $mother;
+    private $mother;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    * @Assert\Valid()
    */
-    protected $father;
+    private $father;
     
     
     /**
@@ -35,7 +35,7 @@ class Patient extends Person
      *
      * @ORM\Column(name="code_siblings", type="string", length=255, nullable=true)
      */
-    protected $codeSiblings;
+    private $codeSiblings;
     
     /**
      * @var string
@@ -52,7 +52,12 @@ class Patient extends Person
     private $familyDiseasesHistory;
     
     
-    private $liveWith;
+      /**
+   * @ORM\OneToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
+   */    
+    private $address;
 
 
     public function __construct() // Constructeur demandant 2 paramètres
@@ -181,15 +186,26 @@ class Patient extends Person
     }
     
     /**
-     * Set livesWith
+     * Set address
      *
-     * @param string $livesWith
+     * @param \PS\CustomerBundle\Entity\Address $address
      *
      * @return Person
      */
     public function setAddress(\PS\CustomerBundle\Entity\Address $address = null)
     {
-        throw new LogicException("Not allowed to set Address in Patient. Use setLivesWith insted");
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \PS\CustomerBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
     
 }

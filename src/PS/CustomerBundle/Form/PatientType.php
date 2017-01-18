@@ -37,12 +37,13 @@ class PatientType extends AbstractType
             ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
         ;
         
-        PersonFormUtils::builParentTypeForm($builder,"mother"); 
-        PersonFormUtils::buildAddressTypeForm($builder,"mother"); 
+        PersonFormUtils::builParentTypeForm($builder,"mother");         
+        PersonFormUtils::builParentTypeForm($builder,"father");
         
-        PersonFormUtils::builParentTypeForm($builder,"father");  
-
-         $builder->add('save', SubmitType::class, array('label' => 'save'));
+        $builder
+            ->add('address',  AddressType::class,  array('required' => false, 'label' => false))
+            ->add('save', SubmitType::class, array('label' => 'save'))
+        ;
      
         
         // VALIDATING NON MAPPED FIELD Symfony 2.1.2 way (and forward)

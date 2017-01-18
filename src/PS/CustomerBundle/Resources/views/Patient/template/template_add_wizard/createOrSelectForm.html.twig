@@ -1,6 +1,6 @@
 
 {% if(suffixe is defined) %}
-    {% set full_object = person_type~suffixe %}
+    {% set full_object = person_type ~ '_' ~ suffixe %}
     {% set templ_f_thead_to_incl = templ_f_thead_address %}
     {% set templ_f_tbody_to_incl = templ_f_tbody_address %}
 {% else %}

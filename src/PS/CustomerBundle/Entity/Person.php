@@ -75,27 +75,6 @@ abstract class Person
      * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
-
-    
-  /**
-   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=true)
-   * @Assert\Valid()
-   */    
-    private $address;
-    
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="livesWith", type="string", length=255, nullable=true)
-     * @Assert\Regex(
-     *     pattern="/^[mother|father|tutor]$/",
-     *     match=true,
-     *     message="livesWith should be mother or father or tutor"
-     * )
-     */
-    private $livesWith;
     
     
     const SEX_MALE='male';
@@ -365,58 +344,6 @@ abstract class Person
         return $this->comment;
     }
 
-    /**
-     * Set address
-     *
-     * @param \PS\CustomerBundle\Entity\Address $address
-     *
-     * @return Person
-     */
-    public function setAddress(\PS\CustomerBundle\Entity\Address $address = null)
-    {
-        $this->address = $address;
-        if(!empty($address)) {
-            $this->setLivesWith(null);
-        }
-        
 
-        return $this;
-    }
 
-    /**
-     * Get address
-     *
-     * @return \PS\CustomerBundle\Entity\Address
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * Set livesWith
-     *
-     * @param string $livesWith
-     *
-     * @return Person
-     */
-    public function setLivesWith($livesWith)
-    {
-        $this->livesWith = $livesWith;
-        if(!empty($livesWith)) {
-            $this->setAddress(null);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get livesWith
-     *
-     * @return string
-     */
-    public function getLivesWith()
-    {
-        return $this->livesWith;
-    }
 }

@@ -13,16 +13,12 @@
         {{ include( templ_f_wizard_presentation_step, {'step_title' : 'mother.info' } ) }}
         {% set count_step = count_step + 1 %}
         
-        {# Mother Address #}
-        {{ include( templ_f_wizard_presentation_step, {'step_title' : 'mother.address.info' } ) }}
-        {% set count_step = count_step + 1 %}
-        
         {# Father #}
         {{ include( templ_f_wizard_presentation_step, {'step_title' : 'father.info' } ) }}
         {% set count_step = count_step + 1 %}
 
-        {# Summary #}
-        {{ include( templ_f_wizard_presentation_step, {'step_title' : 'summary', 'step_number' : 'complete', 'glyphicon_type': 'ok' } ) }}
+        {# Address #}
+        {{ include( templ_f_wizard_presentation_step, {'step_title' : 'address', 'step_number' : 'complete', 'glyphicon_type': 'ok' } ) }}
 
     </ul>
    

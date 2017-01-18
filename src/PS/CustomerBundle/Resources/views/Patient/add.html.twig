@@ -42,16 +42,6 @@
             {{ include( templ_f_next_previous_button, {'previous':'previous','next':'next'} ) }}
         </div>
         {% set count_step = count_step + 1 %}
-        
-        {# Mother Address #}
-        <div class="tab-pane" role="tabpanel" id="{{ 'step' ~ count_step }}">
-            <div class="{{ 'step' ~ count_step }}">
-                {{ include( templ_f_create_or_select_form, {'person_type' : person_type_list.mother, suffixe : '_address'} ) }}
-            </div>
-    
-            {{ include( templ_f_next_previous_button, {'previous':'previous','next':'next'} ) }}
-        </div>
-        {% set count_step = count_step + 1 %}
            
         {# Father #}
         <div class="tab-pane" role="tabpanel" id="{{ 'step' ~ count_step }}">
@@ -64,10 +54,10 @@
         {% set count_step = count_step + 1 %}
 
         
-        {# Summary #}
+        {# Address #}
         <div class="tab-pane" role="tabpanel" id="complete">
             <div class="complete">
-                {{ include( incl_f_add_summary_form ) }}
+                {{ include( incl_f_add_address_form ) }}
             </div>
             <div class="form-group">
 

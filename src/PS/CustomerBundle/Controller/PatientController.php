@@ -25,47 +25,6 @@ class PatientController extends Controller
         }
     }
     
-    
-    public function manageAddress($patient, $form, $parentType) {
-        // check if new address creation is requested
-        // if yes, then set patientParent->address to the new address
-        //$setParentMethod = 'set'.ucfirst($parentType);
-        $getParentMethod = 'get'.ucfirst($parentType);
-        $patientParent = $patient->$getParentMethod();
-        
-        dump($form);
-        dump($form->get('mother_address')->getData());
-        dump($patient);
-        
-        if($patientParent != null) {
-        
-            $addressActionSelector = $form->get($parentType . '_address_action_selector')->getData();
-            $addressNew = $form->get($parentType . '_address_new')->getData();
-            $addressSelection = $form->get($parentType . '_address')->getData();
-
-            $addressToSet = null;
-            
-            if($addressActionSelector == 'create') {
-                $addressToSet = $addressNew;
-            } else if ($addressActionSelector == 'none') {
-                $addressToSet = null;
-            } else if ($addressActionSelector == 'select') {
-                $addressToSet = $addressSelection ;
-            }
-            
-            
-            dump($addressActionSelector);
-            dump($addressToSet);
-            dump($addressSelection);
-            
-            dump($patientParent->getAddress());
-            
-            $patientParent->setAddress($addressToSet);
-            
-            dump($patientParent->getAddress());
-        }
-    }
-    
     public function addOrEditAction(Request $request, Patient $patient = null)
     {     
         // here if $patient is not set, then we are in the Add action
@@ -89,8 +48,6 @@ class PatientController extends Controller
                 // if yes, then set father to the new father
                 $this->manageParent($patient, $form, 'father');
                 
-                $this->manageAddress($patient, $form, 'mother');
-                //$this->manageAddress($patient, $form, 'father');
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($patient);

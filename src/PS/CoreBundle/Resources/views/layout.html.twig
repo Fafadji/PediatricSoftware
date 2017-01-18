@@ -40,12 +40,13 @@
         {# inlude_add_wizard  #}
         {% set incl_d_add_wizard = 'PSCustomerBundle:Patient:include/include_add_wizard' %}
         {% set incl_f_add_patient_form = incl_d_add_wizard ~ '/addPatientForm.html.twig' %}
-        {% set incl_f_add_summary_form = incl_d_add_wizard ~ '/addSummaryForm.html.twig' %}
+        {% set incl_f_add_address_form = incl_d_add_wizard ~ '/addAddressForm.html.twig' %}
         {% set incl_f_wizard_presentation = incl_d_add_wizard ~ '/wizardPresentation.html.twig' %}
 
         {# template_add_wizard  #}
         {% set templ_d_add_wizard = 'PSCustomerBundle:Patient:template/template_add_wizard' %}
         {% set templ_f_create_or_select_form = templ_d_add_wizard ~ '/createOrSelectForm.html.twig' %}
+        {% set templ_f_create_or_select_parent_form = templ_d_add_wizard ~ '/createOrSelectParentForm.html.twig' %}
         {% set templ_f_next_previous_button = templ_d_add_wizard ~ '/nextPreviousButton.html.twig' %}
         {% set templ_f_wizard_presentation_step = templ_d_add_wizard ~ '/wizardPresentationStep.html.twig' %}
 

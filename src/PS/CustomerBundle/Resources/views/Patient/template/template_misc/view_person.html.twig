@@ -44,7 +44,7 @@
                     <th>{{ 'birthday' | trans }}</th>
                     <td>
                         {% if person.birthday is null %}
-                            {{ 'Unknown' | trans }}
+                            {{ '' | trans }}
                         {% else %}
                             {{ person.birthday | date("d/m/Y") }}
                         {% endif %} 
@@ -54,7 +54,7 @@
                     <th>{{ 'age' | trans }}</th>
                     <td>
                         {% if person.age is null %}
-                            {{ 'Unknown' | trans }}
+                            {{ '' | trans }}
                         {% else %}
                             {{ 'person.age.years'|transchoice(person.age.y) }}
                             {{ 'person.age.months'|transchoice(person.age.m) }}
@@ -73,24 +73,29 @@
                     <td>{{ person.codeSiblings }}</td>
                 </tr>
             {% endif %} 
-                <tr>
-                    <th>{{ 'comment' | trans }}</th>
-                    <td>{{ person.comment }}</td>
-                </tr>
+            
             {# person.patient calls person->isPatient() #}
             {% if not person.patient  %}
                 <tr>
                     <th>{{ 'personal.phone' | trans }}</th>
                     <td>{{ person.personalPhone }}</td>
                 </tr>
+            {% endif %}
+            
                 <tr>
-                    <th>{{ 'home.phone' | trans }}</th>
-                    <td>{{ person.address is null ? "" : person.address.homePhone }}</td>
-
+                    <th>{{ 'comment' | trans }}</th>
+                    <td>{{ person.comment }}</td>
                 </tr>
+                
+            
+            {% if person.patient  %}
                 <tr>
                     <th>{{ 'home.full.address' | trans }}</th>
                     <td>{{ person.address is null ? "" : person.address.homeFullAddress }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'home.phone' | trans }}</th>
+                    <td>{{ person.address is null ? "" : person.address.homePhone }}</td>
                 </tr>
             {% endif %}
         {% else %} 

@@ -17,20 +17,6 @@ class Mother extends Person
     {
         parent::__construct(Person::$TYPES['TYPE_MOTHER']);
     }
-    
-    /**
-     * Get livesWith
-     * @Assert\Regex(
-     *     pattern="/^father$/",
-     *     match=true,
-     *     message="livesWith should be father"
-     * )
-     *
-     * @return string
-     */
-    public function getLivesWith()
-    {
-        parent::getLivesWith();
-    }
+
 }
 
