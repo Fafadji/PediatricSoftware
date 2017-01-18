@@ -1,3 +1,7 @@
+ps_consultation:
+    resource: "@PSConsultationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ps_core:
     resource: "@PSCoreBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/

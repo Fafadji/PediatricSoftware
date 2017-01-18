@@ -4,6 +4,9 @@ php console cache:clear
 ## clear cache prod
 php console cache:clear -e prod
 
+## generate bundle
+php bin/console generate:bundle
+
 ## generate entity
 php bin/console doctrine:generate:entity
 

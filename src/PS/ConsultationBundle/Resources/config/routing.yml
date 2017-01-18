@@ -1,0 +1,3 @@
+ps_consultation_homepage:
+    path:     /
+    defaults: { _controller: PSConsultationBundle:Default:index }
