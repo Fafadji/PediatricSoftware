@@ -1,0 +1,19 @@
+<div class="col-md-12">
+    <div class="bs-calltoaction bs-calltoaction-info  cta-contents">
+        <h3 class="cta-title"> {{ 'address'|trans }} </h3>
+    </div>
+    <div id="panel_create_patient" class="panel panel-info"> 
+        <table id="create_patient_table" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+            <div class="panel-heading form-group">
+               <h3 class="panel-title">{{ "patient.address.info"|trans }} </h3>
+            </div>
+            <tbody>
+                <tr>
+                    <div class="form-group table_body_padding">
+                        {{ form_row(form.address) }}
+                   </div>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -3,11 +3,12 @@
 namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Address
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="ps_address")
  * @ORM\Entity(repositoryClass="PS\CustomerBundle\Repository\AddressRepository")
  */
 class Address
@@ -38,6 +39,7 @@ class Address
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"homeFullAddress"})
      * @ORM\Column(name="homeSlugAdress", type="string", length=255, unique=true)
      */
     private $homeSlugAdress;

@@ -11,6 +11,20 @@ use PS\CustomerBundle\Entity\Mother;
 
 class PatientController extends Controller
 {   
+    public function manageParent($patient, $form, $parentType) {
+        // check if new parent creation is requested
+        // if yes, then set parent to the new parent
+        $setParentMethod = 'set'.ucfirst($parentType);
+        $parentActionSelector = $form->get($parentType . '_action_selector')->getData();
+        $parentNew = $form->get($parentType . '_new')->getData();
+
+        if($parentActionSelector == 'create') {
+            $patient->$setParentMethod($parentNew);
+        } else if ($parentActionSelector == 'none') {
+            $patient->$setParentMethod(null);
+        }
+    }
+    
     public function addOrEditAction(Request $request, Patient $patient = null)
     {     
         // here if $patient is not set, then we are in the Add action
@@ -28,25 +42,12 @@ class PatientController extends Controller
                 
                 // check if new mother creation is requested
                 // if yes, then set mother to the new mother
-                $motherActionSelector = $form->get('mother_action_selector')->getData();
-                $motherNew = $form->get('mother_new')->getData();
-                
-                if($motherActionSelector == 'create') {
-                    $patient->setMother($motherNew);
-                } else if ($motherActionSelector == 'none') {
-                    $patient->setMother(null);
-                }
+                $this->manageParent($patient, $form, 'mother');
                 
                 // check if new father creation is requested
                 // if yes, then set father to the new father
-                $fatherActionSelector = $form->get('father_action_selector')->getData();
-                $fatherNew = $form->get('father_new')->getData();
+                $this->manageParent($patient, $form, 'father');
                 
-                if($fatherActionSelector == 'create') {
-                    $patient->setFather($fatherNew);
-                } else if ($fatherActionSelector == 'none') {
-                    $patient->setFather(null);
-                }
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($patient);

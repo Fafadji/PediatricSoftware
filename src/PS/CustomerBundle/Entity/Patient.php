@@ -14,28 +14,20 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Patient extends Person
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    * @Assert\Valid()
    */
-    protected $mother;
+    private $mother;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    * @Assert\Valid()
    */
-    protected $father;
+    private $father;
     
     
     /**
@@ -43,7 +35,7 @@ class Patient extends Person
      *
      * @ORM\Column(name="code_siblings", type="string", length=255, nullable=true)
      */
-    protected $codeSiblings;
+    private $codeSiblings;
     
     /**
      * @var string
@@ -58,23 +50,19 @@ class Patient extends Person
      * @ORM\Column(name="family_diseases_history", type="text", nullable=true)
      */
     private $familyDiseasesHistory;
+    
+    
+      /**
+   * @ORM\OneToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
+   */    
+    private $address;
 
 
     public function __construct() // Constructeur demandant 2 paramètres
     {
         parent::__construct(Person::$TYPES['TYPE_PATIENT']);
-    }
-
-    
-    
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -196,4 +184,28 @@ class Patient extends Person
     {
         return $this->familyDiseasesHistory;
     }
+    
+    /**
+     * Set address
+     *
+     * @param \PS\CustomerBundle\Entity\Address $address
+     *
+     * @return Person
+     */
+    public function setAddress(\PS\CustomerBundle\Entity\Address $address = null)
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \PS\CustomerBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+    
 }

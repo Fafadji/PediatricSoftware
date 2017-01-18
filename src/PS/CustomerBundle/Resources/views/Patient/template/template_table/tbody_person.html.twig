@@ -29,4 +29,15 @@
     <td>{{ person.codeSiblings is defined ? person.codeSiblings : "" }}</td>
 {% endif %}
 
+{% if person_type != 'patient' %}
+    <td>{{ person.personalPhone is defined ? person.personalPhone : ""}}</td>
+{% endif %}
+
+
     <td>{{ person.comment is defined ? person.comment : ""}}</td>
+    
+{% if person_type == 'patient' %}
+    <td>{{ person.address is null ? "" : person.address.homePhone }}</td>
+    
+    <td>{{ person.address is null ? "" : person.address.homeFullAddress }} </td>
+{% endif %}

@@ -17,5 +17,17 @@
 {% if person_type == 'patient' %}
     <th class="defaultNotVisColList" title="{{ "#{person_type}.code.siblings"|trans }}" > {{ "#{person_type}.code.siblings.abbr"|trans }} </th>
 {% endif %}
+
+{% if person_type != 'patient' %}
+    <th title="{{ "#{person_type}.phone.personal"|trans }}" > {{ "#{person_type}.phone.personal.abbr"|trans }} </th>
+{% endif %}
+
     
     <th class="defaultNotVisColList" title="{{ "#{person_type}.comment"|trans }}" > {{ "#{person_type}.comment.abbr"|trans }} </th>
+
+{% if person_type == 'patient' %}
+    
+    <th class="defaultVisColList" title="{{ "home.phone"|trans }}" > {{ "home.phone"|trans }} </th>
+    
+    <th class="defaultVisColList" title="{{ "address"|trans }}" > {{ "address"|trans }} </th>
+{% endif %}

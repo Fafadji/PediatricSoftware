@@ -1,0 +1,8 @@
+<ul class="list-inline pull-right">
+    {% if previous is defined %}
+        <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
+    {% endif%}
+    {% if next is defined %}
+        <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
+    {% endif%}
+</ul>
