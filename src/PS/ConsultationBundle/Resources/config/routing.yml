@@ -9,14 +9,19 @@ ps_consultation_new:
     requirements:
         id: \d+
 
-ps_consultation_view:
-    path:     /view/{id}
-    defaults: { _controller: PSConsultationBundle:Consultation:view }
-    requirements:
-        id: \d+
-
 ps_consultation_edit:
     path:     /edit/{id}
     defaults: { _controller: PSConsultationBundle:Consultation:edit }
+    requirements:
+        id: \d+
+
+ps_consultation_save:
+    path:     /save
+    defaults: { _controller: PSConsultationBundle:Consultation:save }
+   
+    
+ps_consultation_view:
+    path:     /view/{id}
+    defaults: { _controller: PSConsultationBundle:Consultation:view }
     requirements:
         id: \d+
