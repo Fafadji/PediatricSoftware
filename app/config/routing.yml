@@ -1,6 +1,9 @@
 ps_consultation:
     resource: "@PSConsultationBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/consultation
+    requirements:
+        _locale: en|fr 
+
 
 ps_core:
     resource: "@PSCoreBundle/Resources/config/routing.yml"

@@ -36,37 +36,44 @@
             {# incl_d = include_directory #}
             {# incl_f = include_directory #}
 
+        {## Begin PSCustomerBundle variables ##}
+            {# inlude_add_wizard  #}
+            {% set incl_d_add_wizard = 'PSCustomerBundle:Patient:include/include_add_wizard' %}
+            {% set incl_f_add_patient_form = incl_d_add_wizard ~ '/addPatientForm.html.twig' %}
+            {% set incl_f_add_address_form = incl_d_add_wizard ~ '/addAddressForm.html.twig' %}
+            {% set incl_f_wizard_presentation = incl_d_add_wizard ~ '/wizardPresentation.html.twig' %}
 
-        {# inlude_add_wizard  #}
-        {% set incl_d_add_wizard = 'PSCustomerBundle:Patient:include/include_add_wizard' %}
-        {% set incl_f_add_patient_form = incl_d_add_wizard ~ '/addPatientForm.html.twig' %}
-        {% set incl_f_add_address_form = incl_d_add_wizard ~ '/addAddressForm.html.twig' %}
-        {% set incl_f_wizard_presentation = incl_d_add_wizard ~ '/wizardPresentation.html.twig' %}
+            {# template_add_wizard  #}
+            {% set templ_d_add_wizard = 'PSCustomerBundle:Patient:template/template_add_wizard' %}
+            {% set templ_f_create_or_select_form = templ_d_add_wizard ~ '/createOrSelectForm.html.twig' %}
+            {% set templ_f_create_or_select_parent_form = templ_d_add_wizard ~ '/createOrSelectParentForm.html.twig' %}
+            {% set templ_f_next_previous_button = templ_d_add_wizard ~ '/nextPreviousButton.html.twig' %}
+            {% set templ_f_wizard_presentation_step = templ_d_add_wizard ~ '/wizardPresentationStep.html.twig' %}
 
-        {# template_add_wizard  #}
-        {% set templ_d_add_wizard = 'PSCustomerBundle:Patient:template/template_add_wizard' %}
-        {% set templ_f_create_or_select_form = templ_d_add_wizard ~ '/createOrSelectForm.html.twig' %}
-        {% set templ_f_create_or_select_parent_form = templ_d_add_wizard ~ '/createOrSelectParentForm.html.twig' %}
-        {% set templ_f_next_previous_button = templ_d_add_wizard ~ '/nextPreviousButton.html.twig' %}
-        {% set templ_f_wizard_presentation_step = templ_d_add_wizard ~ '/wizardPresentationStep.html.twig' %}
+            {# template_misc  #}
+            {% set templ_d_misc = 'PSCustomerBundle:Patient:template/template_misc' %}
+            {% set templ_f_view_person = templ_d_misc ~ '/view_person.html.twig' %}
 
-        {# template_misc  #}
-        {% set templ_d_misc = 'PSCustomerBundle:Patient:template/template_misc' %}
-        {% set templ_f_view_person = templ_d_misc ~ '/view_person.html.twig' %}
+            {# inlude_table  #}
+            {% set incl_d_table_customer = 'PSCustomerBundle:Patient:include/include_table' %}
+            {% set incl_f_thead_full_person = incl_d_table_customer ~ '/thead_full_person.html.twig' %}
 
-        {# inlude_table  #}
-        {% set incl_d_table = 'PSCustomerBundle:Patient:include/include_table' %}
-        {% set incl_f_thead_full_person = incl_d_table ~ '/thead_full_person.html.twig' %}
-
-        {# template_table  #}
-        {% set templ_d_table = 'PSCustomerBundle:Patient:template/template_table' %}
-        {% set templ_f_tbody_address = templ_d_table ~ '/tbody_address.html.twig' %}
-        {% set templ_f_tbody_icons = templ_d_table ~ '/tbody_icons.html.twig' %}
-        {% set templ_f_tbody_person = templ_d_table ~ '/tbody_person.html.twig' %}
-        {% set templ_f_thead_address = templ_d_table ~ '/thead_address.html.twig' %}
-        {% set templ_f_thead_icons = templ_d_table ~ '/thead_icons.html.twig' %}
-        {% set templ_f_thead_person = templ_d_table ~ '/thead_person.html.twig' %}
-
+            {# template_table  #}
+            {% set templ_d_table_customer = 'PSCustomerBundle:Patient:template/template_table' %}
+            {% set templ_f_tbody_address = templ_d_table_customer ~ '/tbody_address.html.twig' %}
+            {% set templ_f_tbody_icons_person = templ_d_table_customer ~ '/tbody_icons_person.html.twig' %}
+            {% set templ_f_tbody_person = templ_d_table_customer ~ '/tbody_person.html.twig' %}
+            {% set templ_f_thead_address = templ_d_table_customer ~ '/thead_address.html.twig' %}
+            {% set templ_f_thead_icons = templ_d_table_customer ~ '/thead_icons.html.twig' %}
+            {% set templ_f_thead_person = templ_d_table_customer ~ '/thead_person.html.twig' %}
+        {## End PSCustomerBundle variables ##}
+        
+        {## Begin PSConsultationBundle variables ##}
+            {# inlude  #}
+            {% set incl_d_table_consult = 'PSConsultationBundle:Consultation:include' %}
+            {% set incl_f_thead_full_consult = incl_d_table_consult ~ '/thead_full_consult.html.twig' %}
+        {## End PSConsultationBundle variables ##}
+        
         {# menu #}
         {% set incl_f_menu = 'PSCoreBundle::menu.html.twig' %}
 

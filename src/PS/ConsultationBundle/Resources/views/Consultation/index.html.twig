@@ -1,0 +1,40 @@
+{% extends "PSCoreBundle::layout.html.twig" %}
+
+{% block content %}
+    
+    {% if listConsultations is defined and listConsultations|length %}
+        
+        
+        <table id="listConsultations" class="table table-striped table-bordered display responsive nowrap" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    {{ include( incl_f_thead_full_consult ) }}
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    {{ include( incl_f_thead_full_consult ) }}
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for consultation in listConsultations %}
+           
+                    <tr>
+                        
+                        <td>{{ consultation.id }}</td>    
+                        {{ include( templ_f_tbody_icons_consult, {'conulstation' : consultation} ) }}    
+                        {{ include( templ_f_tbody_person, {'person' : consultation.patient, 'person_type' : person_type_list.patient, 'showID' :true} ) }}  
+                        {{ include( templ_f_tbody_person, {'person' : consultation.patient.mother, 'person_type' : person_type_list.mother, 'showID' :true} ) }} 
+                        {{ include( templ_f_tbody_person, {'person' : consultation.patient.father, 'person_type' : person_type_list.father, 'showID' :true} ) }} 
+                        
+
+                    </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+                
+    {% else %}
+        {{ 'no.consultation' | trans }}  
+    {% endif %}
+    
+{% endblock %}

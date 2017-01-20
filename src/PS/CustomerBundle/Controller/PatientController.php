@@ -7,8 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use PS\CustomerBundle\Entity\Patient;
 use PS\CustomerBundle\Form\PatientType;
 
-use PS\CustomerBundle\Entity\Mother;
-
 class PatientController extends Controller
 {   
     public function manageParent($patient, $form, $parentType) {

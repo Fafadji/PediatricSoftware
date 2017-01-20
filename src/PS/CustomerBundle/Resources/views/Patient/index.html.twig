@@ -22,7 +22,8 @@
                     <tr>
                         
                         <td>{{ patient.id }}</td>    
-                        {{ include( templ_f_tbody_icons, {'person' : patient, 'person_type' : person_type_list.patient} ) }}    
+                        <td><a href=" {{ path( "ps_consultation_new", {'id': patient.id} ) }} "> <i class="glyphicon glyphicon-ok"></i></a></td>
+                        {{ include( templ_f_tbody_icons_person, {'person' : patient, 'person_type' : person_type_list.patient} ) }}    
                         {{ include( templ_f_tbody_person, {'person' : patient, 'person_type' : person_type_list.patient, 'showID' :false} ) }}  
                         {{ include( templ_f_tbody_person, {'person' : patient.mother, 'person_type' : person_type_list.mother, 'showID' :true} ) }} 
                         {{ include( templ_f_tbody_person, {'person' : patient.father, 'person_type' : person_type_list.father, 'showID' :true} ) }} 
@@ -34,7 +35,7 @@
         </table>
                 
     {% else %}
-        Pas encore de patient    
+        {{ 'no.patient' | trans }}    
     {% endif %}
     
 {% endblock %}
