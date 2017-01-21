@@ -2,12 +2,6 @@ ps_consultation_homepage:
     path:     /
     defaults: { _controller: PSConsultationBundle:Consultation:index }
     
-    
-ps_consultation_new:
-    path:     /new/{id}
-    defaults: { _controller: PSConsultationBundle:Consultation:new }
-    requirements:
-        id: \d+
 
 ps_consultation_edit:
     path:     /edit/{id}
@@ -15,10 +9,15 @@ ps_consultation_edit:
     requirements:
         id: \d+
 
-ps_consultation_save:
-    path:     /save
-    defaults: { _controller: PSConsultationBundle:Consultation:save }
-   
+ps_consultation_add_or_edit:
+    path:     /add_or_edit/{patient_id}/{consultation_id}
+    defaults: 
+        _controller: PSConsultationBundle:Consultation:addOrEdit 
+        consultation_id: -1
+    requirements:
+        patient_id: \d+
+        consultation_id: \d+
+
     
 ps_consultation_view:
     path:     /view/{id}

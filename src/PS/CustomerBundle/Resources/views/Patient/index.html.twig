@@ -22,7 +22,7 @@
                     <tr>
                         
                         <td>{{ patient.id }}</td>    
-                        <td><a href=" {{ path( "ps_consultation_new", {'id': patient.id} ) }} "> <i class="glyphicon glyphicon-briefcase"></i></a></td>
+                        <td><a href=" {{ path( "ps_consultation_add_or_edit", {'patient_id': patient.id} ) }} "> <i class="glyphicon glyphicon-briefcase"></i></a></td>
                         {{ include( templ_f_tbody_icons_person, {'person' : patient, 'person_type' : person_type_list.patient} ) }}    
                         {{ include( templ_f_tbody_person, {'person' : patient, 'person_type' : person_type_list.patient, 'showID' :false} ) }}  
                         {{ include( templ_f_tbody_person, {'person' : patient.mother, 'person_type' : person_type_list.mother, 'showID' :true} ) }} 

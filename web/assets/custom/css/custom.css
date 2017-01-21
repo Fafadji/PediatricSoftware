@@ -52,7 +52,22 @@ border-top: 10px solid #8c8b8b;
     height:20px;
 }
 
+.edit_consult_table textarea {
+    resize:vertical;
+}
 
+.edit_consult_table td {
+    border-top: none !important;
+}
+
+.inline_baseline {
+  vertical-align: baseline;
+}
+
+.inline {
+  display: inline;
+  vertical-align: middle;
+}
 
 /*** End Custom-Fafa CSS ***/
 

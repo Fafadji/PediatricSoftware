@@ -26,7 +26,7 @@ class Consultation
     
     
     /**
-     * @ORM\OneToOne(targetEntity="PS\CustomerBundle\Entity\Patient", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Patient", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
@@ -268,6 +268,8 @@ class Consultation
     {
         return $this->treatment;
     }
+
+
 
     /**
      * Set patient

@@ -5,6 +5,9 @@ namespace PS\ConsultationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ConsultationType extends AbstractType
 {
@@ -13,16 +16,37 @@ class ConsultationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('date', DateTimeType::class);
+        $this->buildFormButtonByParam($builder, 'date');
+        
+        $this->buildTextareaFormByParam($builder, 'interview');
+        $this->buildTextareaFormByParam($builder, 'clinicExamination');
+        $this->buildTextareaFormByParam($builder, 'conclusion');
+        $this->buildTextareaFormByParam($builder, 'checkup');
+        $this->buildTextareaFormByParam($builder, 'diagnosis');
+        $this->buildTextareaFormByParam($builder, 'treatment');
+
         $builder
-            ->add('date', DateTimeType::class)
-            ->add('interview', TextArea::class)
-            ->add('clinicExamination')
-            ->add('conclusion')
-            ->add('checkup')
-            ->add('diagnosis')
-            ->add('treatment')
-            ->add('patient')        
+            ->add('saveConsultation1', SubmitType::class, array('label' => 'save.consultation'))   
+            ->add('saveConsultation2', SubmitType::class, array('label' => 'save.consultation'))    
+        ; 
+    }
+    
+    public function buildFormButtonByParam(FormBuilderInterface $builder, $param)
+    {
+        $editButtonName = 'edit'.ucfirst($param);
+        $saveButtonName = 'save'.ucfirst($param);
+        
+        $builder
+            ->add($editButtonName, SubmitType::class, array('label' => 'edit.'.$param))
+            ->add($saveButtonName , SubmitType::class, array('label' => 'save.'.$param))
         ;
+    }
+    
+    public function buildTextareaFormByParam(FormBuilderInterface $builder, $param)
+    {
+        $builder->add($param, TextareaType::class, ['required' => false]);
+        $this->buildFormButtonByParam($builder, $param);
     }
     
     /**

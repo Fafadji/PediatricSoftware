@@ -1,0 +1,32 @@
+{% set form_card_param_capitalied  = form_card_param[:1]|upper ~ form_card_param[1:]  %}
+
+{% set save_button_name = 'save' ~ form_card_param_capitalied  %}
+{% set edit_button_name = 'edit' ~ form_card_param_capitalied  %}
+
+{% set form_card_textarea = attribute(form, form_card_param) %}
+{% set form_card_save_button = attribute(form, save_button_name ) %}
+{% set form_card_edit_button = attribute(form, edit_button_name ) %}
+
+<div class="col-md-6" >
+    <div class="panel panel-info">
+        <table class="table table-bordered table_body_padding edit_consult_table">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ form_label(form_card_textarea) }}</h3>
+            </div>
+            <tbody>
+                <tr>
+                    <td>{{ form_widget(form_card_textarea, {'attr': {'rows': 5}}) }}</td>
+                </tr>
+                <tr>
+                    <td>
+                    {{ form_label(form_card_save_button) }}
+                    {{ form_widget(form_card_save_button, {'attr': {'class':'btn-success'}}) }}
+
+                    {{ form_label(form_card_edit_button) }}
+                    {{ form_widget(form_card_edit_button, {'attr': {'class':'btn-info'}}) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

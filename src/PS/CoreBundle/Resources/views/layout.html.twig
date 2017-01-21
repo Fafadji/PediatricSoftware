@@ -70,8 +70,13 @@
         
         {## Begin PSConsultationBundle variables ##}
             {# inlude  #}
-            {% set incl_d_table_consult = 'PSConsultationBundle:Consultation:include' %}
-            {% set incl_f_thead_full_consult = incl_d_table_consult ~ '/thead_full_consult.html.twig' %}
+            {% set incl_d_consult = 'PSConsultationBundle:Consultation:include' %}
+            {% set incl_f_thead_full_consult = incl_d_consult ~ '/thead_full_consult.html.twig' %}
+            
+            {# template  #}
+            {% set templ_d_consult = 'PSConsultationBundle:Consultation:template' %}
+            {% set templ_f_edit_consult_card_layout = templ_d_consult  ~ '/edit_consult_card_layout.html.twig' %}
+            
         {## End PSConsultationBundle variables ##}
         
         {# menu #}
@@ -111,10 +116,13 @@
                 'assets/DataTables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js'
                 'assets/DataTables/buttons.colvis/buttons.colVis.min.js'
                 'assets/DataTables/Plugins-master/sorting/custom-data-source/dom-checkbox.js'
+                'assets/notify/notify.js'
 
                 'assets/custom/js/custom_custom.js'
                 'assets/custom/js/custom_datatable.js'
                 'assets/custom/js/custom_add_wizard.js'
+                'assets/custom/js/custom_consultation.js'
+
             %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
