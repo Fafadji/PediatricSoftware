@@ -8,7 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
@@ -33,15 +32,15 @@ class PatientType extends AbstractType
                         'female' => 'female'),
                     'multiple'=>false,'expanded'=>true
                     ))
-            ->add('codeSiblings',        TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
-            ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
+            ->add('codeSiblings', TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
+            ->add('comment', TextType::class,  array('required' => false, 'label' => 'comment'))
         ;
         
         PersonFormUtils::builParentTypeForm($builder,"mother");         
         PersonFormUtils::builParentTypeForm($builder,"father");
         
         $builder
-            ->add('address',  AddressType::class,  array('required' => false, 'label' => false))
+            ->add('address', AddressType::class,  array('required' => false, 'label' => false))
             ->add('save', SubmitType::class, array('label' => 'save'))
         ;
      
