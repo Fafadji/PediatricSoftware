@@ -1,17 +1,41 @@
  $(function () {
     jQuery(document).ready(function() {
         
+        $("form button[type=submit]").click(function() {
+            $("button[type=submit]", $(this).parents("form")).removeAttr("clicked");
+            $(this).attr("clicked", "true");
+        });
+        
+        $('body').on('submit', 'form', function (e) {
+            e.preventDefault();
+            
+            var clicked_button = getClickedButton();
+            var clicked_button_id = clicked_button.attr('id');
+            
+            if (/save/i.test(clicked_button_id)) {
+                saveConsultation(this);
+            } else if (/edit/i.test(clicked_button_id)) {
+                editConsultField(this);
+            } 
+        });
+        
+        
+        
         function saveConsultation(form){
-            $.ajax({
+            
+            var clicked_button = getClickedButton();
+            var field_id_next_to_button = getFieldIdNextToButton("save");
+            
+            jQuery.ajaxQueue({
                 type: $(form).attr('method'),
                 url: $(form).attr('action'),
                 data: $(form).serialize()
             })
             .done(function (data) {
                 if (typeof data.message !== 'undefined') {
-                    var form = $('form[name="ps_consultationbundle_consultation"]');
                     var consultation_id = data.consultation_id;
-                    if(consultation_id != null) {
+                    var form = $('form[name=ps_consultationbundle_consultation]');
+                    if(consultation_id !== null) {
                         var currentUrl = form.attr('action') ;
                         
                         if (!currentUrl.match(/add_or_edit\/([0-9]+)\/([0-9]+)/)) {
@@ -20,11 +44,15 @@
                         }
                     }
                     
-                    var field_id = fieldId("save");
-                    $('#' + field_id  ).prop('disabled', true);
-                    $('#' + field_id + ' select'  ).prop('disabled', true);
-                    getClickedButton().prop('disabled', true);
-                    
+                    if( /saveConsultation/i.test(clicked_button.attr('id')) ) {
+                        $("form textarea").prop('readonly', true);
+                        $("form button[id *= 'save']").prop('disabled', true);
+                    } else {
+                        $('#' + field_id_next_to_button  ).prop('readonly', true);
+                        // $('#' + field_id_next_to_button + ' select'  ).prop('readonly', true);
+                        clicked_button.prop('disabled', true);
+                    }
+
                     $.notify(data.message, "success");
                 }
             })
@@ -49,42 +77,35 @@
         }
         
         function editConsultField(form){
-            var field_id = fieldId("edit");
-            var edit_button = getClickedButton();
-            var save_button_id = getClickedButton().attr('id').replace(/edit/g,'save')
+            var clicked_button_id = getClickedButton().attr('id');
             
-            $('#'+field_id ).prop('disabled', false);
-            $('#' + field_id + ' select'  ).prop('disabled', false);
-            $('#'+save_button_id ).prop('disabled', false);
+            if( /editConsultation/i.test(clicked_button_id) ) {
+                $("form textarea").prop('readonly', false);
+                $("form button").prop('disabled', false);
+            } else {
+                var field_id_next_to_button = getFieldIdNextToButton("edit");
+                var edit_button = getClickedButton();
+                var save_button_id = getClickedButton().attr('id').replace(/edit/g,'save')
+
+                $('#'+field_id_next_to_button ).prop('readonly', false);
+                // $('#' + field_id_next_to_button + ' select'  ).prop('readonly', false);
+                $('#'+save_button_id ).prop('disabled', false);
+                $("form button[id *= 'saveConsultation']").prop('disabled', false);
+            }
+            
+
         }
         
-        function fieldId(button_type) {
-            var button_id = getClickedButton().attr('id');
-            var textarea_field_prefix = 'ps_consultationbundle_consultation_';
-            var field = button_id.substring(button_id.indexOf(button_type)+button_type.length);
+        function getFieldIdNextToButton(button_type) {
+            var clicked_button_id = getClickedButton().attr('id');
+            var field_prefix = 'ps_consultationbundle_consultation_';
+            var field = clicked_button_id.substring(clicked_button_id.indexOf(button_type)+button_type.length);
             field = field.substr(0,1).toLowerCase()+field.substr(1);
-            var textarea_field_id = textarea_field_prefix + field;
+            var field_id = field_prefix + field;
             
-            return textarea_field_id;
+            return field_id;
         }
         
-        $("form button[type=submit]").click(function() {
-            $("button[type=submit]", $(this).parents("form")).removeAttr("clicked");
-            $(this).attr("clicked", "true");
-        });
-        
-        $('body').on('submit', 'form', function (e) {
-            e.preventDefault();
-            
-            var button_id = getClickedButton().attr('id');
-            if (/save/i.test(button_id)) {
-                saveConsultation(this);
-            } else if (/edit/i.test(button_id)) {
-                editConsultField(this);
-            } 
-            
-       
-            
-        });
+
     });
  });

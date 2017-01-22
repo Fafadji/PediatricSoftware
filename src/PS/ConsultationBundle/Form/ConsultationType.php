@@ -27,6 +27,8 @@ class ConsultationType extends AbstractType
         $this->buildTextareaFormByParam($builder, 'treatment');
 
         $builder
+            ->add('editConsultation1', SubmitType::class, array('label' => 'edit.consultation'))
+            ->add('editConsultation2', SubmitType::class, array('label' => 'edit.consultation')) 
             ->add('saveConsultation1', SubmitType::class, array('label' => 'save.consultation'))   
             ->add('saveConsultation2', SubmitType::class, array('label' => 'save.consultation'))    
         ; 
@@ -38,14 +40,14 @@ class ConsultationType extends AbstractType
         $saveButtonName = 'save'.ucfirst($param);
         
         $builder
-            ->add($editButtonName, SubmitType::class, array('label' => 'edit.'.$param))
-            ->add($saveButtonName , SubmitType::class, array('label' => 'save.'.$param))
+            ->add($editButtonName, SubmitType::class, array('label' => 'edit'))
+            ->add($saveButtonName , SubmitType::class, array('label' => 'save'))
         ;
     }
     
     public function buildTextareaFormByParam(FormBuilderInterface $builder, $param)
     {
-        $builder->add($param, TextareaType::class, ['required' => false]);
+        $builder->add($param, TextareaType::class, ['required' => false, 'label' => $param]);
         $this->buildFormButtonByParam($builder, $param);
     }
     

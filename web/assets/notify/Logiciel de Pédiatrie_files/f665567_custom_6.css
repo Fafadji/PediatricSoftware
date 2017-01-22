@@ -61,25 +61,12 @@ border-top: 10px solid #8c8b8b;
 }
 
 .inline_baseline {
-  vertical-align: center;
+  vertical-align: baseline;
 }
 
 .inline {
-  display: inline-block;
-  vertical-align: center;
-}
-
-.color_cyan {
-    background-color: cyan;
-}
-
-.align_right {
-    display: inline-block;
-    text-align: right;
-}
-
-footer {
-    margin-top: 30px;
+  display: inline;
+  vertical-align: middle;
 }
 
 /*** End Custom-Fafa CSS ***/

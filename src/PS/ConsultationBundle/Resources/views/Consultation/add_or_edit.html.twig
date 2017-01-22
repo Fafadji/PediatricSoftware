@@ -4,35 +4,32 @@
     {{ form_start(form) }}
     {{ form_errors(form) }}
 
-    
-    
-    <div class="row">
+    <div class="row ">
         <div class="col-md-12" >
-            <div class="bs-calltoaction bs-calltoaction-info jumbotron" >
-        
-        
-                
-                    {{ form_row(form.saveConsultation1, {'attr': {'class':'btn-success btn-lg pull-right '}}) }}
-                    
-                    
-                   <h2 class="inline"> {{ form_label(form.date) }} </h2>
-                
-                    {{ form_widget(form.date, {'attr': {'class':'inline'}}) }}
-                
-              
-                    
-                    
-                    {{ form_label(form.editDate) }}
-                    {{ form_widget(form.editDate, {'attr': {'class':'btn-info'}}) }}
+            <div class="col-md-12 well color_cyan" >
+                <div class="col-md-9" >
+                           <h2 class="inline"> {{ form_label(form.date) }} </h2>
+                            {{ form_widget(form.date, {'attr': {'class':'inline'}}) }}
 
-                    {{ form_label(form.saveDate) }}
-                    {{ form_widget(form.saveDate, {'attr': {'class':'btn-success'}}) }}
-                    
-                    
-            </div>
+                            {{ form_label(form.editDate) }}
+                            {{ form_widget(form.editDate, {'attr': {'class':'btn-info'}}) }}
+
+                            {{ form_label(form.saveDate) }}
+                            {{ form_widget(form.saveDate, {'attr': {'class':'btn-success'}}) }}
+
+                </div>       
+                <div class="col-md-3" >
+                    <div class="col-md-12" >
+                    {{ form_row(form.saveConsultation1, {'attr': {'class':'btn-success btn-lg'}}) }}
+                    </div>  
+                    <div class="col-md-12" >
+                    {{ form_row(form.editConsultation1, {'attr': {'class':'btn-info btn-lg'}}) }}
+                    </div>  
+               </div>  
+            </div> 
         </div>
-    </div>
-    
+    </div>   
+
     <div class="row">
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'interview' } ) }}
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'clinicExamination' } ) }}
@@ -48,7 +45,13 @@
     
     <div class="row">
         <div class="col-md-12" >
-            {{ form_row(form.saveConsultation2, {'attr': {'class':'btn-success btn-lg'}}) }}
+            
+            {{ form_label(form.saveConsultation2) }}
+            {{ form_widget(form.saveConsultation2, {'attr': {'class':'btn-success btn-lg pull-right'}}) }}
+
+            {{ form_label(form.editConsultation2) }}
+            {{ form_widget(form.editConsultation2, {'attr': {'class':'btn-info btn-lg'}}) }}
+                    
         </div>
     </div> 
     

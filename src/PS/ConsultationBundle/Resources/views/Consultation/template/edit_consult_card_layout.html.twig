@@ -9,24 +9,20 @@
 
 <div class="col-md-6" >
     <div class="panel panel-info">
-        <table class="table table-bordered table_body_padding edit_consult_table">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ form_label(form_card_textarea) }}</h3>
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ form_label(form_card_textarea) }}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                {{ form_widget(form_card_textarea, {'attr': {'rows': 5}}) }}
             </div>
-            <tbody>
-                <tr>
-                    <td>{{ form_widget(form_card_textarea, {'attr': {'rows': 5}}) }}</td>
-                </tr>
-                <tr>
-                    <td>
-                    {{ form_label(form_card_save_button) }}
-                    {{ form_widget(form_card_save_button, {'attr': {'class':'btn-success'}}) }}
+            <div class="form-group">
+                {{ form_label(form_card_save_button) }}
+                {{ form_widget(form_card_save_button, {'attr': {'class':'btn-success'}}) }}
 
-                    {{ form_label(form_card_edit_button) }}
-                    {{ form_widget(form_card_edit_button, {'attr': {'class':'btn-info'}}) }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                {{ form_label(form_card_edit_button) }}
+                {{ form_widget(form_card_edit_button, {'attr': {'class':'btn-info'}}) }}
+            </div>
+        </div>
     </div>
 </div>
