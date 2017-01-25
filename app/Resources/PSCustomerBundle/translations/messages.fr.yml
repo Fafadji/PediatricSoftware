@@ -77,6 +77,7 @@ father.comment.abbr: 'Comment. Pè.'
 father.age: 'Âge Père'
 father.age.abbr: 'Âge Pè.'
 edit: Editer
+view: Voir
 delete: Supprimer
 create.new.patient: 'Créer un nouveau Patient'
 no.mother: 'Ne pas renseigner de Mère pour ce Patient'

@@ -10,4 +10,26 @@ namespace PS\ConsultationBundle\Repository;
  */
 class ConsultationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getConultationWithFullPatient() 
+    {
+        
+        $qb = $this
+            ->_em->createQuery('SELECT c , cp, cpm FROM consultation c LEFTJOIN Patient cp ON c.patient_id = cp.id');
+        /*        
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->leftJoin('c.patient', 'p')
+                ->createQueryBuilder('p')
+                ->leftJoin('p.mother', 'pm')
+           
+            
+            ->addSelect('p')
+            ->addSelect('pm')
+         
+        ; */
+        
+        return $qb->getResult();
+       // return $qb->getQuery()->getResult();
+        
+    }
 }

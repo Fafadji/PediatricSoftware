@@ -74,7 +74,8 @@ class PatientController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $listPatients = $em->getRepository('PSCustomerBundle:Patient')->findAll();
+        // $listPatients = $em->getRepository('PSCustomerBundle:Patient')->findAll();
+        $listPatients = $em->getRepository('PSCustomerBundle:Patient')->getPatientWithParentsAndAddress() ;
         return $this->render('PSCustomerBundle:Patient:index.html.twig', 
                 ['listPatients' => $listPatients]);
     }

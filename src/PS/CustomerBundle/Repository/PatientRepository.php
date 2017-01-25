@@ -10,4 +10,20 @@ namespace PS\CustomerBundle\Repository;
  */
 class PatientRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getPatientWithParentsAndAddress() 
+    {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->leftJoin('p.mother', 'm')
+            ->leftJoin('p.father', 'f')
+            ->leftJoin('p.address', 'addr')
+            
+            ->addSelect('m')
+            ->addSelect('f')
+            ->addSelect('addr')
+        ;
+        
+        return $qb->getQuery()->getResult();
+        
+    }
 }

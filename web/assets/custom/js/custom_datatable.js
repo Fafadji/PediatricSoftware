@@ -27,7 +27,7 @@ $(document).ready(function() {
                 'url': full_url
             },*/
             order: [[ 0, "asc" ]],
-            columnDefs: [ { "orderable": false, "targets": [1, 2, 3] } ],
+            columnDefs: [ { "orderable": false, "targets": [1, 2, 3, 4] } ],
             colReorder: {
                 fixedColumnsLeft: 4
             },
@@ -134,4 +134,85 @@ $(document).ready(function() {
 
 } );
 
-// End DataTable for list mothers
+// End DataTable for list parent
+
+
+
+// begin DataTable for listConsultations
+$(document).ready(function() {
+    currentLocaleFull = navigator.languages[0];
+    currentLocale = "fr";
+    if ( currentLocaleFull.indexOf("en") !== -1) {
+        currentLocale = "en";
+    }
+    full_url = '/'+currentLocale + '/datatable_lang' ;
+   
+    var defaultNotVisibleColumns, defaultNotVisibleColumnsObject;
+    defaultNotVisibleColumns= [];
+    defaultNotVisibleColumnsObject = $('#listConsultations thead .defaultNotVisColList')
+    $( defaultNotVisibleColumnsObject ).each(function( index ) {
+        defaultNotVisibleColumns.push(this.cellIndex);
+    });
+    
+    
+    var defaultVisibleColumns, defaultVisibleColumnsObject;
+    defaultVisibleColumns= [];
+    defaultVisibleColumnsObject = $('#listConsultations thead .defaultVisColList')
+    $( defaultVisibleColumnsObject ).each(function( index ) {
+        defaultVisibleColumns.push(this.cellIndex);
+    });
+        
+    tableConsultation = $('#listConsultations').DataTable({
+           /* language: {
+                'url': full_url
+            },*/
+            order: [[ 0, "asc" ]],
+            columnDefs: [ { "orderable": false, "targets": [1, 2] } ],
+            colReorder: {
+                fixedColumnsLeft: 3
+            },
+            "columnDefs": [
+                {
+                    "targets": defaultNotVisibleColumns,
+                    "visible": false
+                }
+            ],
+            dom: 'lBfrtip',
+            stateSave: true,
+            stateDuration: 0,
+            buttons: [
+                {
+                    extend: 'colvis',
+                    collectionLayout: 'fixed four-column',
+                    columns: ':not(thead .viewIcon, thead .deleteIcon, thead .IDConsultation)',
+                    text : 'Sélection Col.'
+                },
+                {
+                    text: 'Conf. par défaut',
+                    action: function ( e, dt, node, config ) {                   
+                        tableConsultation.state.clear();
+                        window.location.reload();
+                    }
+                },
+                {
+                    extend: 'columnVisibility',
+                    text: 'Toutes les col.',
+                    visibility: true
+                },
+                {
+                    extend: 'colvisGroup',
+                    text: 'Col. par défaut',
+                    show: '.defaultVisColList',
+                    hide: '.defaultNotVisColList'
+                    
+                }
+            ],
+            fixedHeader: {
+                header: true,
+                footer: true
+            }
+        });
+
+} );
+
+// End DataTable for listConsultations

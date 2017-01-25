@@ -16,7 +16,7 @@ class ConsultationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('date', DateTimeType::class, ['date_format' => "dd MM yyyy"]);
+        $builder->add('date', DateTimeType::class, ['date_format' => "dd MM yyyy"] );
         $this->buildFormButtonByParam($builder, 'date');
         
         $this->buildTextareaFormByParam($builder, 'interview');

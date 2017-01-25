@@ -1,13 +1,6 @@
 ps_consultation_homepage:
     path:     /
     defaults: { _controller: PSConsultationBundle:Consultation:index }
-    
-
-ps_consultation_edit:
-    path:     /edit/{id}
-    defaults: { _controller: PSConsultationBundle:Consultation:edit }
-    requirements:
-        id: \d+
 
 ps_consultation_add_or_edit:
     path:     /add_or_edit/{patient_id}/{consultation_id}
@@ -17,10 +10,3 @@ ps_consultation_add_or_edit:
     requirements:
         patient_id: \d+
         consultation_id: \d+
-
-    
-ps_consultation_view:
-    path:     /view/{id}
-    defaults: { _controller: PSConsultationBundle:Consultation:view }
-    requirements:
-        id: \d+
