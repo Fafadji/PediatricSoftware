@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use PS\CustomerBundle\Form\PatientForConsultationType;
+
 class ConsultationType extends AbstractType
 {
     /**
@@ -30,7 +32,9 @@ class ConsultationType extends AbstractType
             ->add('editConsultation1', SubmitType::class, array('label' => 'edit.consultation'))
             ->add('editConsultation2', SubmitType::class, array('label' => 'edit.consultation')) 
             ->add('saveConsultation1', SubmitType::class, array('label' => 'save.consultation'))   
-            ->add('saveConsultation2', SubmitType::class, array('label' => 'save.consultation'))    
+            ->add('saveConsultation2', SubmitType::class, array('label' => 'save.consultation'))  
+                
+             ->add('patient', PatientForConsultationType::class, array('label' => false)) 
         ; 
     }
     

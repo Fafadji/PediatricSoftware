@@ -29,7 +29,12 @@
             </div> 
         </div>
     </div>   
-
+                    
+    <div class="row ">
+        <div class="col-md-12" >
+            {{ form_row(form.patient) }}
+        </div>
+    </div> 
     <div class="row">
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'interview' } ) }}
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'clinicExamination' } ) }}

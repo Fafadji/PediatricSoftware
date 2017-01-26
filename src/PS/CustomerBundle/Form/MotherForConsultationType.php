@@ -14,7 +14,7 @@ class MotherType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        PersonFormUtils::buildPersonTypeForm($builder);
+        PersonFormUtils::buildPersonForConsultationTypeForm($builder);
     }
     
     

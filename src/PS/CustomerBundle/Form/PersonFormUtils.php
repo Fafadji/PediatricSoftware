@@ -12,22 +12,22 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class PersonFormUtils
 {
 
-    public static function addPrimaryInfo(FormBuilderInterface $builder)
+    public static function addPrimaryInfo(FormBuilderInterface $builder, $disabled = false)
     {
         $builder
-            ->add('name',           TextType::class, array('label' => 'name'))
-            ->add('surname',        TextType::class,  array('required' => false, 'label' => 'surname'))
+            ->add('name',           TextType::class, array('label' => 'name', 'disabled' => $disabled))
+            ->add('surname',        TextType::class,  array('required' => false, 'label' => 'surname', 'disabled' => $disabled))
             ->add('birthday',       BirthdayType::class,  
                 array(
                     'label' => 'birthday',
                     'required' => false,
                     'format' => 'dd MM yyyy',
-                    )) ;
+                    'disabled' => $disabled)) ;
     }
 
-    public static function addComment(FormBuilderInterface $builder)
+    public static function addComment(FormBuilderInterface $builder, $disabled = false)
     {
-        $builder->add('comment', TextType::class, array('required' => false, 'label' => 'comment'));
+        $builder->add('comment', TextType::class, array('required' => false, 'label' => 'comment', 'disabled' => $disabled));
     }
     
     public static function buildPersonTypeForm(FormBuilderInterface $builder)
