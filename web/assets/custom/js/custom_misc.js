@@ -2,7 +2,8 @@
 
 $(function () {
     
-    $('ps_consultationbundle_consultation_date').datePicker();
+    //$('#ps_consultationbundle_consultation_date').datePicker();
+    //$('#accordion_consultation_parents').accordion();
     
 });
 

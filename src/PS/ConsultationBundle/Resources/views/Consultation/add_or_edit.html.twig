@@ -87,11 +87,14 @@
                                 
                                 
     <section class="row">
-        {% set person_misc= {info : 'mother.info', sex:  'female' } %}
-        {{ include(templ_f_view_person, { 'person': patient.mother, 'person_misc' : person_misc }) }}
-        
-        {% set person_misc= {info : 'father.info', sex:  'male'} %}
-        {{ include(templ_f_view_person, { 'person': patient.father, 'person_misc' : person_misc }) }}
+        <div id="accordion_consultation_parents">
+            <h3><a href="#">{{ 'parent.info' | trans  }}</a></h3>
+            {% set person_misc= {info : 'mother.info', sex:  'female' } %}
+            {{ include(templ_f_view_person, { 'person': patient.mother, 'person_misc' : person_misc }) }}
+
+            {% set person_misc= {info : 'father.info', sex:  'male'} %}
+            {{ include(templ_f_view_person, { 'person': patient.father, 'person_misc' : person_misc }) }}
+        </div>
     </section>
     
     <section class="row">
