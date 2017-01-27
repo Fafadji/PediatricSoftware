@@ -14,7 +14,7 @@
     <section class="row">
         
         {% set person_misc= {info : 'patient.info'} %}
-        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient, 'person_misc' : person_misc }) }}
+        {{ include(templ_f_view_person, { 'person': patient, 'person_misc' : person_misc }) }}
 
         <article  class="col-md-6">
             <div class="panel panel-info">
@@ -40,9 +40,9 @@
 
     <section class="row">
         {% set person_misc= {info : 'mother.info', sex:  'female' } %}
-        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient.mother, 'person_misc' : person_misc }) }}
+        {{ include(templ_f_view_person, { 'person': patient.mother, 'person_misc' : person_misc }) }}
         
         {% set person_misc= {info : 'father.info', sex:  'male'} %}
-        {{ include('PSCustomerBundle:Patient:view_template.html.twig', { 'person': patient.father, 'person_misc' : person_misc }) }}
+        {{ include(templ_f_view_person, { 'person': patient.father, 'person_misc' : person_misc }) }}
     </section>
 {% endblock %}

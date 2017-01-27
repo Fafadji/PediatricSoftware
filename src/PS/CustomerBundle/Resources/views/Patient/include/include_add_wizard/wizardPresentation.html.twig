@@ -1,0 +1,25 @@
+{% set count_step = 1 %}
+
+<div class="wizard-inner">
+    <div class="connecting-line"></div>
+    
+    <ul class="nav nav-tabs" role="tablist">
+
+        {# Patient #}
+        {{ include( templ_f_wizard_presentation_step, {'step_class' : 'active', 'step_title' : 'patient.info' } ) }}
+        {% set count_step = count_step + 1 %}
+
+        {# Mother #}
+        {{ include( templ_f_wizard_presentation_step, {'step_title' : 'mother.info' } ) }}
+        {% set count_step = count_step + 1 %}
+        
+        {# Father #}
+        {{ include( templ_f_wizard_presentation_step, {'step_title' : 'father.info' } ) }}
+        {% set count_step = count_step + 1 %}
+
+        {# Address #}
+        {{ include( templ_f_wizard_presentation_step, {'step_title' : 'address', 'step_number' : 'complete', 'glyphicon_type': 'ok' } ) }}
+
+    </ul>
+   
+</div>

@@ -1,0 +1,22 @@
+
+{% if step_class is not defined %}
+    {% set step_class = 'disabled' %}
+{% endif %}
+
+{% if step_number is not defined %}
+    {% set step_number = 'step' ~ count_step %}
+{% endif %}
+
+{% if glyphicon_type is not defined %}
+    {% set glyphicon_type = 'pencil' %}
+{% endif %}
+
+
+
+<li role="presentation" class="{{ step_class}}" >
+    <a href="{{ '#' ~ step_number }}" data-toggle="tab" aria-controls="{{ step_number }}" role="tab" title="{{ step_title | trans }}">
+        <span class="round-tab">
+            <i class="{{ 'glyphicon glyphicon-' ~ glyphicon_type }}"></i>
+        </span>
+    </a>
+</li>

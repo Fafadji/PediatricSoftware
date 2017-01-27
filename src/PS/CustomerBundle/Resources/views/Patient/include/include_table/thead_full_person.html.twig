@@ -1,0 +1,6 @@
+<th class="IDPatient" title="{{ 'patient.id' |trans }}" > {{ 'patient.id.abbr'|trans }} </th>
+<th class="consultationIcon defaultVisColList"  title="" ></th>
+{{ include( templ_f_thead_icons ) }}
+{{ include( templ_f_thead_person, {'person_type' : person_type_list.patient, 'showID' :false} ) }}
+{{ include( templ_f_thead_person, {'person_type' : person_type_list.mother, 'showID' :true} ) }}
+{{ include( templ_f_thead_person, {'person_type' : person_type_list.father, 'showID' :true} ) }}

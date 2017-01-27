@@ -2,9 +2,8 @@
 
 {% block content %}
 
-{% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
-{% set add_template_dir_path = 'PSCustomerBundle:Patient:add_include' %}
-{% set add_parent_template_dir_path = add_template_dir_path ~ '/addParentForm.htlm.twig' %}
+
+{% set count_step = 1 %}
     
    
 {% for message in app.session.flashbag.get('error') %}
@@ -17,61 +16,66 @@
     
     
 <div class="wizard">
-    {{ include( add_template_dir_path ~ '/wizardPresentation.html.twig' ) }}
+    {{ include( incl_f_wizard_presentation ) }}
      
     {{ form_start(form) }}
     {# General errors of the form #}
     {{ form_errors(form) }}
     <div class="tab-content">
-        <div class="tab-pane active" role="tabpanel" id="step1">
-            <div class="step1">
-                {{ include( add_template_dir_path ~ '/addPatientForm.html.twig' ) }}
+        
+        {# Patient #}
+        <div class="tab-pane active" role="tabpanel" id="{{ 'step' ~ count_step }}">
+            <div class="{{ 'step' ~ count_step }}">
+                {{ include( incl_f_add_patient_form ) }}
             </div>
-            <ul class="list-inline pull-right">
-                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
-            </ul>
-        </div>
-
-        <div class="tab-pane" role="tabpanel" id="step2">
-            <div class="step2">
-                {{ include( add_parent_template_dir_path, {'person_type' : person_type_list.mother} ) }}
-            </div>
-    
-            <ul class="list-inline pull-right">
-                <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
-                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
-            </ul>
-        </div>
             
-        <div class="tab-pane" role="tabpanel" id="step3">
-            <div class="step3">
-                {{ include( add_parent_template_dir_path, {'person_type' : person_type_list.father} ) }}
+            {{ include( templ_f_next_previous_button, {'next':'next'} ) }}
+        </div>
+        {% set count_step = count_step + 1 %}
+
+        {# Mother #}
+        <div class="tab-pane" role="tabpanel" id="{{ 'step' ~ count_step }}">
+            <div class="{{ 'step' ~ count_step }}">
+                {{ include( templ_f_create_or_select_form, {'person_type' : person_type_list.mother} ) }}
             </div>
     
-            <ul class="list-inline pull-right">
-                <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
-                <li><button type="button" class="btn btn-primary btn-lg next-step">{{ 'next'|trans }}</button></li>
-            </ul>
-        </div>            
-
-                
-        <div class="tab-pane" role="tabpanel" id="complete">
-            <div class="step4">
-                {{ include( add_template_dir_path ~ '/addSummaryForm.html.twig' ) }}
-            </div>
-                <div class="form-group">
-                    <ul class="list-inline pull-right">
-                        <li><button type="button" class="btn btn-default btn-lg prev-step">{{ 'previous'|trans }}</button></li>
-                        <li>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}<li>
-                    </ul>
-                    
-                    {{ form_rest(form) }}
-                </div>
-            </div>
+            {{ include( templ_f_next_previous_button, {'previous':'previous','next':'next'} ) }}
         </div>
-    </div>
+        {% set count_step = count_step + 1 %}
+           
+        {# Father #}
+        <div class="tab-pane" role="tabpanel" id="{{ 'step' ~ count_step }}">
+            <div class="{{ 'step' ~ count_step }}">
+                {{ include( templ_f_create_or_select_form, {'person_type' : person_type_list.father} ) }}
+            </div>
+    
+            {{ include( templ_f_next_previous_button, {'previous':'previous','next':'next'} ) }}
+        </div>
+        {% set count_step = count_step + 1 %}
+
+        
+        {# Address #}
+        <div class="tab-pane" role="tabpanel" id="complete">
+            <div class="complete">
+                {{ include( incl_f_add_address_form ) }}
+            </div>
+            <div class="form-group">
+
+                <ul class="list-inline pull-right">
+                    <li>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}<li>
+                </ul>
+                {{ include( templ_f_next_previous_button, {'previous':'previous'} ) }}
+
+                {{ form_rest(form) }}
+            </div>
+         </div>
                 
+    </div>
+            
     {# Fermeture de la balise <form> du formulaire HTML #}
     {{ form_end(form) }}
+</div>
+                
+
 {% endblock %}
 

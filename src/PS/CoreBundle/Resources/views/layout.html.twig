@@ -15,9 +15,11 @@
                 'assets/DataTables/extensions/Responsive/css/responsive.dataTables.min.css'
                 'assets/DataTables/extensions/Buttons/css/buttons.dataTables.min.css'
                 'assets/DataTables/extensions/FixedHeader/css/fixedHeader.dataTables.min.css'
-                'assets/custom/css/custom.css'
                 'assets/custom/css/call-to-action.css'
                 'assets/custom/css/wizard.css'
+                'assets/jquery-ui/jquery-ui.css'
+
+                'assets/custom/css/custom.css'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
@@ -25,11 +27,68 @@
     </head>
 
     <body>
-      
+   
+        {# variables #}
+        {% set person_type_list = {patient:'patient', mother:'mother', father:'father'} %}
+
+        {# directories and files definition #}
+            {# templ_d = template_directory #}
+            {# templ_f = template_file #}
+            
+            {# incl_d = include_directory #}
+            {# incl_f = include_directory #}
+
+        {## Begin PSCustomerBundle variables ##}
+            {# inlude_add_wizard  #}
+            {% set incl_d_add_wizard = 'PSCustomerBundle:Patient:include/include_add_wizard' %}
+            {% set incl_f_add_patient_form = incl_d_add_wizard ~ '/addPatientForm.html.twig' %}
+            {% set incl_f_add_address_form = incl_d_add_wizard ~ '/addAddressForm.html.twig' %}
+            {% set incl_f_wizard_presentation = incl_d_add_wizard ~ '/wizardPresentation.html.twig' %}
+
+            {# template_add_wizard  #}
+            {% set templ_d_add_wizard = 'PSCustomerBundle:Patient:template/template_add_wizard' %}
+            {% set templ_f_create_or_select_form = templ_d_add_wizard ~ '/createOrSelectForm.html.twig' %}
+            {% set templ_f_create_or_select_parent_form = templ_d_add_wizard ~ '/createOrSelectParentForm.html.twig' %}
+            {% set templ_f_next_previous_button = templ_d_add_wizard ~ '/nextPreviousButton.html.twig' %}
+            {% set templ_f_wizard_presentation_step = templ_d_add_wizard ~ '/wizardPresentationStep.html.twig' %}
+
+            {# template_misc  #}
+            {% set templ_d_misc = 'PSCustomerBundle:Patient:template/template_misc' %}
+            {% set templ_f_view_person = templ_d_misc ~ '/view_person.html.twig' %}
+
+            {# inlude_table  #}
+            {% set incl_d_table_customer = 'PSCustomerBundle:Patient:include/include_table' %}
+            {% set incl_f_thead_full_person = incl_d_table_customer ~ '/thead_full_person.html.twig' %}
+
+            {# template_table  #}
+            {% set templ_d_table_customer = 'PSCustomerBundle:Patient:template/template_table' %}
+            {% set templ_f_tbody_address = templ_d_table_customer ~ '/tbody_address.html.twig' %}
+            {% set templ_f_tbody_icons_person = templ_d_table_customer ~ '/tbody_icons_person.html.twig' %}
+            {% set templ_f_tbody_person = templ_d_table_customer ~ '/tbody_person.html.twig' %}
+            {% set templ_f_thead_address = templ_d_table_customer ~ '/thead_address.html.twig' %}
+            {% set templ_f_thead_icons = templ_d_table_customer ~ '/thead_icons.html.twig' %}
+            {% set templ_f_thead_person = templ_d_table_customer ~ '/thead_person.html.twig' %}
+        {## End PSCustomerBundle variables ##}
+        
+        {## Begin PSConsultationBundle variables ##}
+            {# inlude  #}
+            {% set incl_d_consult = 'PSConsultationBundle:Consultation:include' %}
+            {% set incl_f_thead_full_consult = incl_d_consult ~ '/thead_full_consult.html.twig' %}
+            
+            {# template  #}
+            {% set templ_d_consult = 'PSConsultationBundle:Consultation:template' %}
+            {% set templ_f_edit_consult_card_layout = templ_d_consult  ~ '/edit_consult_card_layout.html.twig' %}
+            
+        {## End PSConsultationBundle variables ##}
+        
+        {# menu #}
+        {% set incl_f_menu = 'PSCoreBundle::menu.html.twig' %}
+
+        
         <div class="container">
             <header class="row">
                 <div class="col-md-12">
-                    {% include 'PSCoreBundle::menu.html.twig' %}
+                    {% include incl_f_menu %}
                 </div>
             </header>
 
@@ -59,10 +118,17 @@
                 'assets/DataTables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js'
                 'assets/DataTables/buttons.colvis/buttons.colVis.min.js'
                 'assets/DataTables/Plugins-master/sorting/custom-data-source/dom-checkbox.js'
+                'assets/notify/notify.js'
+                'assets/jquery-ajaxQueue/dist/jquery.ajaxQueue.js'
+                'assets/jquery-ui/jquery-ui.js'
 
-                'assets/custom/js/custom_custom.js'
+                'assets/custom/js/custom_misc.js'
                 'assets/custom/js/custom_datatable.js'
                 'assets/custom/js/custom_add_wizard.js'
+                'assets/custom/js/custom_consultation.js'
+                'assets/custom/js/custom_add_patient_animation.js'
+
+
             %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}

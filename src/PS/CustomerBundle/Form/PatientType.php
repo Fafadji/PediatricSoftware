@@ -8,12 +8,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormError;
+
+use PS\CoreBundle\Form\PSFormUtils;
 
 
 
@@ -24,7 +24,7 @@ class PatientType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        PersonFormUtils::addPrimaryInfo($builder);
+        PSFormUtils::addPrimaryInfo($builder);
         $builder 
             ->add('sex',ChoiceType::class,
                 array(
@@ -34,49 +34,17 @@ class PatientType extends AbstractType
                         'female' => 'female'),
                     'multiple'=>false,'expanded'=>true
                     ))
-            ->add('codeSiblings',        TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
-            ->add('comment',        TextType::class,  array('required' => false, 'label' => 'comment'))
-            
-            /** Begin Mother's Fields */
-            ->add('mother', EntityType::class, array(
-                    'class'        => 'PSCustomerBundle:Mother',
-                    'choice_label' => 'name', 'multiple' => false, 'expanded' => true,
-                    'required' => false, 'label' => false,
-                    
-                  ))
-            ->add('mother_action_selector', ChoiceType::class, array(
-                    'label'    => 'action.selection',
-                    'choices' => array(
-                        'select.existing.mother' => 'select',
-                        'create.new.mother' => 'create',
-                        'no.mother' => 'none'),
-                    'multiple'=>false,'expanded'=>false, 'mapped'   => false
-                ))
-            ->add('mother_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped' => false,))
-            /** End Mother's Fields */    
-
-            /** Begin Father's Fields */
-            ->add('father', EntityType::class, array(
-                    'class'        => 'PSCustomerBundle:Father',
-                    'choice_label' => 'name', 'multiple' => false, 'expanded' => true,
-                    'required' => false, 'label' => false, 
-                    
-                  ))
-            ->add('father_action_selector', ChoiceType::class, array(
-                    'label'    => 'action.selection',
-                    'choices' => array(
-                        'select.existing.father' => 'select',
-                        'create.new.father' => 'create',
-                        'no.father' => 'none'),
-                    'multiple'=>false,'expanded'=>false, 'mapped'   => false
-                ))
-            ->add('father_new',        FatherType::class,  array('required' => false, 'label' => false, 'mapped'   => false,))
-            /** End Father's Fields */
-
-            ->add('save',           SubmitType::class, array('label' => 'save'))
-          ;
-
+            ->add('codeSiblings', TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
+        ;
+        PSFormUtils::addComment($builder);
+        PSFormUtils::builParentTypeForm($builder,"mother");         
+        PSFormUtils::builParentTypeForm($builder,"father");
         
+        $builder
+            ->add('address', AddressType::class,  array('required' => false, 'label' => false))
+            ->add('save', SubmitType::class, array('label' => 'save'))
+        ;
+     
         
         // VALIDATING NON MAPPED FIELD Symfony 2.1.2 way (and forward)
         // http://stackoverflow.com/questions/12911686/symfony-validate-form-with-mapped-false-form-fields
@@ -85,6 +53,7 @@ class PatientType extends AbstractType
             $form = $event->getForm();
             $motherNewField = $form->get('mother_new')->getData();
             $fatherNewField = $form->get('father_new')->getData();
+
             if (isset($motherNewField) and !$motherNewField->isPersonValid()) {
               $form['mother_new']->addError(new FormError("Lors de la création d'une nouvelle Mère, son Nom* doit obligatoirement être renseigné"));
             }

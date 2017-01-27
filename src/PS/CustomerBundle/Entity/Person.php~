@@ -5,17 +5,23 @@ namespace PS\CustomerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+use \DateTime;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Person
  *
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
 abstract class Person
 {
     /**
      * @var int
      *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
@@ -53,7 +59,8 @@ abstract class Person
      */
     protected $birthday;
     
-    protected $type;
+    
+    private $type;
 
     /**
      * @var string
@@ -67,25 +74,93 @@ abstract class Person
      *
      * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
-    private $comment;
+    protected $comment;
 
+    
+  /*
+   * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
+   */    
+    private $address;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="livesWith", type="string", length=255)
+     * @Assert\Regex(
+     *     pattern="/^[mo|fa]ther$/",
+     *     match=true,
+     *     message="livesWith should be mother or father"
+     * )
+     */
+    private $livesWith;
+    
+    
     const SEX_MALE='male';
     const SEX_FEMALE='female';
     
     
     public static $TYPES= array (
-        'TYPE_FATHER' => 'FATHER',
-        'TYPE_MOTHER' => 'MOTHER',
-        'TYPE_TUTOR' => 'TUTOR',
-        'TYPE_CHILD' => 'CHILD',
+        'TYPE_FATHER' => 'father',
+        'TYPE_MOTHER' => 'mother',
+        'TYPE_TUTOR' => 'tutor',
+        'TYPE_PATIENT' => 'patient',
                                 );
 
+
     
-  protected function __construct($type) // Constructeur demandant 2 paramètres
-  {
-    $this->setType($type);
-  }
+    protected function __construct($type)
+    {
+      $this->setType($type);
+    }
     
+    /**
+    * @ORM\PostLoad
+    */
+    public function reloadConstructInit() {
+        $this->__construct();
+    }
+
+    // if any of the properties is set, then the name should not be null
+   /**
+   * @Assert\Callback
+   */
+    public function personValidation(ExecutionContextInterface $context) {
+        if(!$this->isPersonValid()) {
+            $context
+                ->buildViolation('person.not.valid.name.empty') 
+                ->atPath('name')                                                   
+                ->addViolation() ;
+        }
+    }
+    
+    public function isPersonValid() {
+        $onePropertySet = false;
+        if(!empty( $this->getBirthday() ) or !empty( $this->getPersonalPhone() ) or !empty( $this->getSex() ) or !empty( $this->getSurname() )  ) {
+            $onePropertySet = true;
+        }
+
+        if($onePropertySet and empty( $this->getName() )) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public function getAge()
+    {
+        $age = null;
+        if(isset($this->birthday)) {
+            $today = new DateTime("now"); 
+            $interval = $this->birthday->diff($today); 
+            $age = $interval;
+            
+        }
+        return $age;
+    }
+            
 
     /**
      * Get id
@@ -109,11 +184,11 @@ abstract class Person
         
         if($type == Person::$TYPES['TYPE_FATHER'])
         {
-            setSex(Person::SEX_MALE);
+            $this->setSex(Person::SEX_MALE);
         } 
         elseif ($type == Person::$TYPES['TYPE_MOTHER']) 
         {
-            setSex(Person::SEX_FEMALE);
+            $this->setSex(Person::SEX_FEMALE);
         }
 
         return $this;
@@ -121,6 +196,7 @@ abstract class Person
     
     public function getType()
     {
+        if(!isset($this->type)) return "unknown";
         return $this->type;
     }
 
@@ -195,6 +271,21 @@ abstract class Person
     {
         return $this->sex;
     }
+    
+    public function isMale()
+    {
+        return ($this->getSex() == Person::SEX_MALE);
+    }
+    
+    public function isFemale()
+    {
+        return ($this->getSex() == Person::SEX_FEMALE);
+    }
+    
+    public function isPatient()
+    {
+        return ($this->getType() == Person::$TYPES['TYPE_PATIENT']);
+    }
 
     /**
      * Set birthday
@@ -244,4 +335,52 @@ abstract class Person
         return $this->personalPhone;
     }
     
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Person
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \PS\CustomerBundle\Entity\Address $address
+     *
+     * @return Person
+     */
+    public function setAddress(\PS\CustomerBundle\Entity\Address $address = null)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \PS\CustomerBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
 }

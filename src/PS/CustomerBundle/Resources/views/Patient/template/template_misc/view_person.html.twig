@@ -1,0 +1,113 @@
+<article  class="col-md-6">
+
+    
+{% set panel_type = 'panel-primary' %}
+{% if (person.male is defined and person.male) or (person_misc.sex is defined and person_misc.sex == "male")  %}
+    {% set panel_type = 'panel-success' %}
+{% elseif (person.female is defined and person.female) or (person_misc.sex is defined and person_misc.sex == "female") %} 
+    {% set panel_type = 'panel-warning' %}
+{% endif %}   
+
+{% if (person_misc.showAddress is not defined) %}
+   
+{% endif %}
+
+    <div class="panel {{ panel_type }}">         
+        <table class="table table-striped table-bordered table-view-patient">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                {% if person_misc.info is defined  %}
+                    {{ person_misc.info |trans }}
+                {% endif %} 
+                </h3>
+            </div>
+
+            <tbody>
+            {% if person is defined and person is not null %}
+                <tr>
+                    <th>{{ 'id' | trans }}</th>
+                    <td>{{ person.id }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'name' | trans }}</th>
+                    <td>{{ person.name }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'surname' | trans }}</th>
+                    <td>{{ person.surname }}</td>
+                </tr>
+            {# person.patient calls person->isPatient() #}
+            {% if person.patient  %}
+                <tr>
+                    <th>{{ 'sex' | trans }}</th>
+                    <td>{{ person.sex | trans }}</td>
+                </tr>
+            {% endif %} 
+                <tr>
+                    <th>{{ 'birthday' | trans }}</th>
+                    <td>
+                        {% if person.birthday is null %}
+                            {{ '' | trans }}
+                        {% else %}
+                            {{ person.birthday | date("d/m/Y") }}
+                        {% endif %} 
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{ 'age' | trans }}</th>
+                    <td>
+                        {% if person.age is null %}
+                            {{ '' | trans }}
+                        {% else %}
+                            {{ 'person.age.years'|transchoice(person.age.y) }}
+                            {{ 'person.age.months'|transchoice(person.age.m) }}
+
+                            {% if person.age.y == 0 %}
+                                {{ 'person.age.days.longdesc'|transchoice(person.age.d) | raw }}
+                            {% endif %} 
+                        {% endif %} 
+
+                    </td>
+                </tr>
+            {# person.patient calls person->isPatient() #}
+            {% if person.patient  %}
+                <tr>
+                    <th>{{ 'patient.code.siblings' | trans }}</th>
+                    <td>{{ person.codeSiblings }}</td>
+                </tr>
+            {% endif %} 
+            
+            {# person.patient calls person->isPatient() #}
+            {% if not person.patient  %}
+                <tr>
+                    <th>{{ 'personal.phone' | trans }}</th>
+                    <td>{{ person.personalPhone }}</td>
+                </tr>
+            {% endif %}
+            
+                <tr>
+                    <th>{{ 'comment' | trans }}</th>
+                    <td>{{ person.comment }}</td>
+                </tr>
+                
+                
+            {% if person.patient and person_misc.showAddress %}
+                <tr>
+                    <th>{{ 'home.full.address' | trans }}</th>
+                    <td>{{ person.address is null ? "" : person.address.homeFullAddress }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'home.phone' | trans }}</th>
+                    <td>{{ person.address is null ? "" : person.address.homePhone }}</td>
+                </tr>
+            {% endif %}
+        {% else %} 
+            <tr><th>{{ 'no.info' | trans }}</th></tr>
+        {% endif %}  
+            </tbody>
+
+        </table>
+            
+    </div>
+
+</article>
