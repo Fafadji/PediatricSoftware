@@ -3,7 +3,9 @@
 $(function () {
     
     //$('#ps_consultationbundle_consultation_date').datePicker();
-    //$('#accordion_consultation_parents').accordion();
+    $('#accordion_consultation_parents').accordion({
+      collapsible: true
+    });
     
 });
 
