@@ -1,6 +1,7 @@
-<th class="IDConsultation" title="{{ 'consultation.id' |trans }}" > {{ 'consultation.id.abbr'|trans }} </th>
-{{ include( templ_f_thead_icons ) }}
+<th class="IDConsultation defaultVisColList" title="{{ 'consultation.id' |trans }}" > {{ 'consultation.id.abbr'|trans }} </th>
+<th class="viewIcon defaultVisColList"  title="" ></th>
+<th class="deleteIcon defaultVisColList" title="" ></th>
 <th class="defaultVisColList" title="{{ "consultation.date"|trans }}" > {{ "consultation.date.abbr"|trans }} </th>
-{{ include( templ_f_thead_person, {'person_type' : person_type_list.patient, 'showID' :false} ) }}
+{{ include( templ_f_thead_person, {'person_type' : person_type_list.patient, 'showID' :true} ) }}
 {{ include( templ_f_thead_person, {'person_type' : person_type_list.mother, 'showID' :true} ) }}
 {{ include( templ_f_thead_person, {'person_type' : person_type_list.father, 'showID' :true} ) }}

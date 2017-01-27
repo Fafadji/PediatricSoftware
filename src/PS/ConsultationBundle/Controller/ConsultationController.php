@@ -10,19 +10,16 @@ use PS\ConsultationBundle\Form\ConsultationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-
-
 
 class ConsultationController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('PSConsultationBundle:Consultation:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $listConsultations = $em->getRepository('PSConsultationBundle:Consultation')->findAll();
+        //$listConsultations = $em->getRepository('PSConsultationBundle:Consultation')->getConultationWithFullPatient() ;
+        
+        return $this->render('PSConsultationBundle:Consultation:index.html.twig', ['listConsultations' => $listConsultations]);
     }
     
     public function newAction(Request $request, Patient $patient)

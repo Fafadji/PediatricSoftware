@@ -3,9 +3,13 @@
 {% block content %}
     {{ form_start(form) }}
     {{ form_errors(form) }}
+    
+    
+    
+    {% set patient = form.patient.vars.data %}
 
-    <div class="row ">
-        <div class="col-md-12" >
+    <section class="row ">
+        <article class="col-md-12" >
             <div class="col-md-12 well color_cyan" >
                 <div class="col-md-9" >
                            <h2 class="inline"> {{ form_label(form.date) }} </h2>
@@ -27,24 +31,87 @@
                     </div>  
                </div>  
             </div> 
-        </div>
-    </div>   
+        </article>
+    </section>   
+                    
+    <section class="row ">
+        
+        {% set person_misc= {info : 'patient.info', showAddress : false} %}
+        {{ include(templ_f_view_person, { 'person': patient, 'person_misc' : person_misc }) }}
+        
+                                
+                                
+        
+        <article  class="col-md-6">
+            <div class="panel panel-info">
+                <table class="table table-striped table-bordered table-view-patient">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ 'patient.general.medical.info'|trans }}</h3>
+                    </div>
+                    <tbody>
+                        <tr>
+                            <th>{{ form_label(form.patient.personalDiseasesHistory) }}</th>
+                            <td>
+                                <div class="form-group">
+                                    {{ form_widget(form.patient.personalDiseasesHistory, {'attr': {'rows': 3}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.patient.savePersonalDiseasesHistory) }}
+                                    {{ form_widget(form.patient.savePersonalDiseasesHistory, {'attr': {'class':'btn-success'}}) }}
 
-    <div class="row">
+                                    {{ form_label(form.patient.editPersonalDiseasesHistory) }}
+                                    {{ form_widget(form.patient.editPersonalDiseasesHistory, {'attr': {'class':'btn-info'}}) }}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ form_label(form.patient.familyDiseasesHistory) }}</th>
+                            <td>
+                                <div class="form-group">
+                                    {{ form_widget(form.patient.familyDiseasesHistory, {'attr': {'rows': 3}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.patient.saveFamilyDiseasesHistory) }}
+                                    {{ form_widget(form.patient.saveFamilyDiseasesHistory, {'attr': {'class':'btn-success'}}) }}
+
+                                    {{ form_label(form.patient.editFamilyDiseasesHistory) }}
+                                    {{ form_widget(form.patient.editFamilyDiseasesHistory, {'attr': {'class':'btn-info'}}) }}
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </section>
+                                
+                                
+    <section class="row">
+        <div id="accordion_consultation_parents">
+            <h3><a href="#">{{ 'parent.info' | trans  }}</a></h3>
+            {% set person_misc= {info : 'mother.info', sex:  'female' } %}
+            {{ include(templ_f_view_person, { 'person': patient.mother, 'person_misc' : person_misc }) }}
+
+            {% set person_misc= {info : 'father.info', sex:  'male'} %}
+            {{ include(templ_f_view_person, { 'person': patient.father, 'person_misc' : person_misc }) }}
+        </div>
+    </section>
+    
+    <section class="row">
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'interview' } ) }}
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'clinicExamination' } ) }}
-    </div>    
-    <div class="row">
+    </section>    
+    <section class="row">
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'conclusion' } ) }}
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'checkup' } ) }}
-    </div>    
-    <div class="row">
+    </section>    
+    <section class="row">
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'diagnosis' } ) }}
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'treatment' } ) }}
-    </div> 
+    </section> 
     
-    <div class="row">
-        <div class="col-md-12" >
+    <section class="row">
+        <article class="col-md-12" >
             
             {{ form_label(form.saveConsultation2) }}
             {{ form_widget(form.saveConsultation2, {'attr': {'class':'btn-success btn-lg pull-right'}}) }}
@@ -52,8 +119,8 @@
             {{ form_label(form.editConsultation2) }}
             {{ form_widget(form.editConsultation2, {'attr': {'class':'btn-info btn-lg'}}) }}
                     
-        </div>
-    </div> 
+        </article>
+    </section> 
     
     {{ form_rest(form) }}                       
     {{ form_end(form) }}

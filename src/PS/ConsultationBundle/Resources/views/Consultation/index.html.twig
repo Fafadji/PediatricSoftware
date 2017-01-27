@@ -22,7 +22,12 @@
                     <tr>
                         
                         <td>{{ consultation.id }}</td>    
-                        {{ include( templ_f_tbody_icons_consult, {'conulstation' : consultation} ) }}    
+                        
+                        <td><a href=" {{ path( "ps_consultation_add_or_edit", {'patient_id': consultation.patient.id, 'consultation_id': consultation.id} ) }} "> <i class="glyphicon glyphicon-search"></i></a></td>
+                        <td><i class="glyphicon glyphicon-trash"></i></td>
+                        
+                        <td>{{ consultation.date | date("d/m/Y") }}</td> 
+                       
                         {{ include( templ_f_tbody_person, {'person' : consultation.patient, 'person_type' : person_type_list.patient, 'showID' :true} ) }}  
                         {{ include( templ_f_tbody_person, {'person' : consultation.patient.mother, 'person_type' : person_type_list.mother, 'showID' :true} ) }} 
                         {{ include( templ_f_tbody_person, {'person' : consultation.patient.father, 'person_type' : person_type_list.father, 'showID' :true} ) }} 

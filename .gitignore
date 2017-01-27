@@ -16,3 +16,6 @@
 /web/bundles/
 /nbproject/*
 /nbproject/private/*
+/nbproject/private/private.xml
+/doc/.~*
+/doc/~*

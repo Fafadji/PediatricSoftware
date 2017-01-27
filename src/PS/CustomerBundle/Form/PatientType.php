@@ -13,6 +13,8 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormError;
 
+use PS\CoreBundle\Form\PSFormUtils;
+
 
 
 class PatientType extends AbstractType
@@ -22,7 +24,7 @@ class PatientType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        PersonFormUtils::addPrimaryInfo($builder);
+        PSFormUtils::addPrimaryInfo($builder);
         $builder 
             ->add('sex',ChoiceType::class,
                 array(
@@ -33,11 +35,10 @@ class PatientType extends AbstractType
                     'multiple'=>false,'expanded'=>true
                     ))
             ->add('codeSiblings', TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
-            ->add('comment', TextType::class,  array('required' => false, 'label' => 'comment'))
         ;
-        
-        PersonFormUtils::builParentTypeForm($builder,"mother");         
-        PersonFormUtils::builParentTypeForm($builder,"father");
+        PSFormUtils::addComment($builder);
+        PSFormUtils::builParentTypeForm($builder,"mother");         
+        PSFormUtils::builParentTypeForm($builder,"father");
         
         $builder
             ->add('address', AddressType::class,  array('required' => false, 'label' => false))
