@@ -8,28 +8,37 @@
     
     {% set patient = form.patient.vars.data %}
 
+    
+    
+    <section class="row ">
+        
+            
+            <nav class="navbar navbar-default custom-navbar-background">
+                <div class="container-fluid col-md-12">
+                    
+                    {{ form_label(form.saveConsultation1) }}
+                    {{ form_widget(form.saveConsultation1, {'attr': {'class':'btn-success btn-lg navbar-btn'}}) }}
+                    
+                    {{ form_label(form.editConsultation1) }}
+                    {{ form_widget(form.editConsultation1, {'attr': {'class':'btn-info btn-lg navbar-btn navbar-right custom-button-navbar-right'}}) }}
+                    
+                </div>
+            </nav>   
+        
+    </section>  
+    
+    
     <section class="row ">
         <article class="col-md-12" >
-            <div class="col-md-12 well color_cyan" >
-                <div class="col-md-9" >
-                           <h2 class="inline"> {{ form_label(form.date) }} </h2>
-                            {{ form_widget(form.date, {'attr': {'class':'inline'}}) }}
+            <div class="col-md-12 color_cyan date_consultation " >
+                <h2 class="inline"> {{ form_label(form.date) }} </h2>
+                 {{ form_widget(form.date, {'attr': {'class':'inline'}}) }}
 
-                            {{ form_label(form.editDate) }}
-                            {{ form_widget(form.editDate, {'attr': {'class':'btn-info'}}) }}
+                 {{ form_label(form.editDate) }}
+                 {{ form_widget(form.editDate, {'attr': {'class':'btn-info'}}) }}
 
-                            {{ form_label(form.saveDate) }}
-                            {{ form_widget(form.saveDate, {'attr': {'class':'btn-success'}}) }}
-
-                </div>       
-                <div class="col-md-3" >
-                    <div class="col-md-12" >
-                    {{ form_row(form.saveConsultation1, {'attr': {'class':'btn-success btn-lg'}}) }}
-                    </div>  
-                    <div class="col-md-12" >
-                    {{ form_row(form.editConsultation1, {'attr': {'class':'btn-info btn-lg'}}) }}
-                    </div>  
-               </div>  
+                 {{ form_label(form.saveDate) }}
+                 {{ form_widget(form.saveDate, {'attr': {'class':'btn-success'}}) }}
             </div> 
         </article>
     </section>   

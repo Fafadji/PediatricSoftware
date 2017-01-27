@@ -1,4 +1,5 @@
 // Begin Wizard
+// http://bootsnipp.com/snippets/featured/form-wizard-and-validation
 
 $(document).ready(function () {
     //Initialize tooltips

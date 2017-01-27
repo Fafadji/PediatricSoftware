@@ -11,6 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use PS\CustomerBundle\Form\MotherType;
+use PS\CustomerBundle\Form\FatherType;
+
 class PSFormUtils
 {
 
@@ -65,8 +68,14 @@ class PSFormUtils
                     'required' => false, 'label' => false,
                     
                   ))
-            ->add($personType.'_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped' => false,))
         ;
+        if ($personType == 'mother') {
+            $builder->add($personType.'_new', MotherType::class  ,  array('required' => false, 'label' => false, 'mapped' => false,));
+        } else if ($personType == 'father') {
+            $builder->add($personType.'_new', FatherType::class  ,  array('required' => false, 'label' => false, 'mapped' => false,));
+        }
+            
+        
     }
     
     public function buildEditSaveButtonByParam(FormBuilderInterface $builder, $param)

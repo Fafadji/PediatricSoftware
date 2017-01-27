@@ -73,7 +73,7 @@
     
     function disableFields(clicked_button) {
         if( /saveConsultation/i.test(clicked_button.attr('id')) ) {
-            $("form textarea").attr('readonly', true);
+            $("form textarea, form input").attr('readonly', true);
             $("form button[id *= 'save']").attr('disabled', true);
         } else {
             var field_id_next_to_button = getFieldIdNextToButton(clicked_button);

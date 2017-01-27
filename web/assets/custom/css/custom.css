@@ -86,5 +86,23 @@ footer {
     margin-bottom: 20px;
 }
 
+#ps_consultationbundle_consultation_date {
+    width: 150px;
+}
+
+.custom-navbar-background {
+    background-color: white;
+    border-color: white;
+}
+
+.custom-button-navbar-right {
+    margin-right: 0px;
+}
+
+.date_consultation{
+    margin-bottom: 10px; 
+    border-radius: 5px;
+}
+
 /*** End Custom-Fafa CSS ***/
 

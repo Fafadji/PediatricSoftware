@@ -5,7 +5,7 @@ namespace PS\ConsultationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use PS\CustomerBundle\Form\PatientForConsultationType;
@@ -18,7 +18,7 @@ class ConsultationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('date', DateTimeType::class, ['date_format' => "dd MM yyyy"] );
+        $builder->add('date', DateType::class, ['format' => "dd/MM/yyyy", 'widget' => 'single_text'] );
         PSFormUtils::buildEditSaveButtonByParam($builder, 'date');
         
         PSFormUtils::buildTextareaFormByParam($builder, 'interview');

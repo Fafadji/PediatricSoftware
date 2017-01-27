@@ -9,7 +9,7 @@
 {% endif %}   
 
 {% if (person_misc.showAddress is not defined) %}
-   
+   {% set person_misc = person_misc|merge({'showAddress': true}) %}
 {% endif %}
 
     <div class="panel {{ panel_type }}">         
