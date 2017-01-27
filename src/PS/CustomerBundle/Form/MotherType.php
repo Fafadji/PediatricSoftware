@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use PS\CoreBundle\Form\PSFormUtils;
+
 class MotherType extends AbstractType
 {
 
@@ -14,7 +16,7 @@ class MotherType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        PersonFormUtils::buildPersonTypeForm($builder);
+        PSFormUtils::buildPersonTypeForm($builder);
     }
     
     

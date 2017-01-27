@@ -6,14 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormError;
+use PS\CoreBundle\Form\PSFormUtils;
 
 
 
@@ -24,15 +18,16 @@ class PatientForConsultationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        PersonFormUtils::addPrimaryInfo($builder, true);
-        PersonFormUtils::addComment($builder, true);
-        $builder
+        //PSFormUtils::addPrimaryInfo($builder, true);
+        
+       /* $builder
             ->add('sex', TextType::class,  array('required' => false, 'label' => 'patient.sex', 'disabled' =>true))
             ->add('codeSiblings', TextType::class,  array('required' => false, 'label' => 'patient.code.siblings', 'disabled' =>true))
-            ->add('personalDiseasesHistory', TextareaType::class,  array('required' => false, 'label' => 'patient.personalDiseasesHistory'))
-            ->add('familyDiseasesHistory', TextareaType::class,  array('required' => false, 'label' => 'patient.familyDiseasesHistory'))
-        ;
+        ;*/
         
+        //PSFormUtils::addComment($builder, true);
+        PSFormUtils::buildTextareaFormByParam($builder, 'personalDiseasesHistory', 'patient.personalDiseasesHistory');
+        PSFormUtils::buildTextareaFormByParam($builder, 'familyDiseasesHistory', 'patient.familyDiseasesHistory');
     }
     
     /**

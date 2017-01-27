@@ -6,8 +6,11 @@
     {% set panel_type = 'panel-success' %}
 {% elseif (person.female is defined and person.female) or (person_misc.sex is defined and person_misc.sex == "female") %} 
     {% set panel_type = 'panel-warning' %}
-{% endif %}  
+{% endif %}   
 
+{% if (person_misc.showAddress is not defined) %}
+   
+{% endif %}
 
     <div class="panel {{ panel_type }}">         
         <table class="table table-striped table-bordered table-view-patient">
@@ -87,8 +90,8 @@
                     <td>{{ person.comment }}</td>
                 </tr>
                 
-            
-            {% if person.patient  %}
+                
+            {% if person.patient and person_misc.showAddress %}
                 <tr>
                     <th>{{ 'home.full.address' | trans }}</th>
                     <td>{{ person.address is null ? "" : person.address.homeFullAddress }}</td>
