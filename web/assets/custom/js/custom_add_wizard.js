@@ -20,10 +20,10 @@ $(document).ready(function () {
         //added to check validation
         var activeTab =  $(this).closest(".tab-pane"),
             curInputs = activeTab.find("input[type='text'],input[type='url'],input[type='radio']"),
-            errorClass="alert alert-danger",
             isValid = true;
 
-            
+        /*
+        var errorClass="alert alert-danger",
         $(".form-group").removeClass(errorClass);
         for(var i=0; i<curInputs.length; i++){
             if (!curInputs[i].validity.valid){
@@ -31,7 +31,16 @@ $(document).ready(function () {
                 $(curInputs[i]).closest(".form-group").addClass(errorClass);
             }
         }
+        */
 
+        for(var i=0; i<curInputs.length; i++){
+            $(curInputs[i]).validate();
+            if (!$(curInputs[i]).valid()){
+                isValid = false;
+            }
+        }
+        
+        
         if (isValid) {
             // original
             var $active = $('.wizard .nav-tabs li.active');
