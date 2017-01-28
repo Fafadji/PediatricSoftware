@@ -57,6 +57,9 @@
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             enableFields(clicked_button);
+            $.notify("Erreur dans la sauvegarde de la consultation. ", "error");
+            $.notify("Consultation NON sauvegardé ", "error");
+
             if (typeof jqXHR.responseJSON !== 'undefined') {
                 if (jqXHR.responseJSON.hasOwnProperty('form')) {
                     $('#form_body').html(jqXHR.responseJSON.form);

@@ -22,19 +22,22 @@ class PSFormUtils
         PSFormUtils::addMinimalInfo($builder, $disabled);
         
         $builder
-            ->add('birthday',       BirthdayType::class,  
+            ->add('birthday', BirthdayType::class,  
                 array(
                     'label' => 'birthday',
+                    'attr' => ['class' => 'js-datepicker dateFR'],
+                    'html5' => false,
                     'required' => false,
-                    'format' => 'dd MM yyyy',
+                    'format' => "dd/MM/yyyy",
+                    'widget' => 'single_text',
                     'disabled' => $disabled)) ;
     }
     
     public static function addMinimalInfo(FormBuilderInterface $builder, $disabled = false)
     {
         $builder
-            ->add('name',           TextType::class, array('label' => 'name', 'disabled' => $disabled))
-            ->add('surname',        TextType::class,  array('required' => false, 'label' => 'surname', 'disabled' => $disabled))
+            ->add('name', TextType::class, array('label' => 'name', 'disabled' => $disabled, 'attr' => ['minlength' => 2]))
+            ->add('surname', TextType::class,  array('required' => false, 'label' => 'surname', 'disabled' => $disabled , 'attr' => ['minlength' => 2]))
         ;
     }
 
@@ -46,7 +49,7 @@ class PSFormUtils
     public static function buildPersonTypeForm(FormBuilderInterface $builder)
     {
         PSFormUtils::addPrimaryInfo($builder);
-        $builder->add('personalPhone', TextType::class, array('required' => false, 'label' => 'personal.phone'));
+        $builder->add('personalPhone', TextType::class, array('required' => false, 'label' => 'personal.phone', 'attr' => ['class' => 'phoneSN'],));
         PSFormUtils::addComment($builder);
     }
     

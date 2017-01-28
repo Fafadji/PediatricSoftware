@@ -86,7 +86,7 @@ footer {
     margin-bottom: 20px;
 }
 
-#ps_consultationbundle_consultation_date {
+.js-datepicker{
     width: 150px;
 }
 
@@ -102,6 +102,12 @@ footer {
 .date_consultation{
     margin-bottom: 10px; 
     border-radius: 5px;
+}
+
+form .error { 
+    color:red;
+    /*background-color: #F2DEDE;*/
+    
 }
 
 /*** End Custom-Fafa CSS ***/

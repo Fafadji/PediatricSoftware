@@ -18,7 +18,13 @@ class ConsultationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('date', DateType::class, ['format' => "dd/MM/yyyy", 'widget' => 'single_text'] );
+        $builder->add('date', DateType::class, 
+            array(
+                'format' => "dd/MM/yyyy", 
+                'widget' => 'single_text',
+                'attr' => ['class' => 'js-datepicker inline dateFR'],
+                'html5' => false,
+            ));        
         PSFormUtils::buildEditSaveButtonByParam($builder, 'date');
         
         PSFormUtils::buildTextareaFormByParam($builder, 'interview');
