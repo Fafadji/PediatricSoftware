@@ -30,3 +30,6 @@ php bin/console fos:user:create
 
 ## view all routes
 php bin/console debug:router
+
+## dump assetic assets for prod
+php bin/console assetic:dump --env=prod --no-debug
