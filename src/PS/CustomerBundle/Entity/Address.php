@@ -4,12 +4,14 @@ namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Address
  *
  * @ORM\Table(name="ps_address")
  * @ORM\Entity(repositoryClass="PS\CustomerBundle\Repository\AddressRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Address
 {
@@ -26,23 +28,20 @@ class Address
      * @var string
      *
      * @ORM\Column(name="homePhone", type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *     pattern="/^(33|77|76) \d{3} \d{2} \d{2}$/",
+     *     match=true,
+     *     message="Entrer un numéro au format 33|77|76 xxx xx xx"
+     * )
      */
     private $homePhone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="homeFullAddress", type="text")
+     * @ORM\Column(name="homeFullAddress", type="text", nullable=true)
      */
     private $homeFullAddress;
-
-    /**
-     * @var string
-     *
-     * @Gedmo\Slug(fields={"homeFullAddress"})
-     * @ORM\Column(name="homeSlugAdress", type="string", length=255, unique=true)
-     */
-    private $homeSlugAdress;
 
 
     /**
@@ -101,30 +100,6 @@ class Address
     public function getHomeFullAddress()
     {
         return $this->homeFullAddress;
-    }
-
-    /**
-     * Set homeSlugAdress
-     *
-     * @param string $homeSlugAdress
-     *
-     * @return Address
-     */
-    public function setHomeSlugAdress($homeSlugAdress)
-    {
-        $this->homeSlugAdress = $homeSlugAdress;
-
-        return $this;
-    }
-
-    /**
-     * Get homeSlugAdress
-     *
-     * @return string
-     */
-    public function getHomeSlugAdress()
-    {
-        return $this->homeSlugAdress;
     }
 }
 

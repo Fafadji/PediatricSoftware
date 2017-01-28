@@ -1,4 +1,8 @@
  $(function () {
+     
+    disableFields($('#ps_consultationbundle_consultation_patient_savePersonalDiseasesHistory'));
+    disableFields($('#ps_consultationbundle_consultation_patient_saveFamilyDiseasesHistory'));
+    
     
     // set attribute "clicked" on a button when clicked. 
     // So that we can find later the button that have been clicked
