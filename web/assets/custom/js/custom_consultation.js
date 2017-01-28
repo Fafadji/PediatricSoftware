@@ -1,7 +1,11 @@
  $(function () {
+    
+    var patient_savePDH = $('#ps_consultationbundle_consultation_patient_savePersonalDiseasesHistory'),
+        patient_saveFDH = $('#ps_consultationbundle_consultation_patient_saveFamilyDiseasesHistory');
+    
      
-    disableFields($('#ps_consultationbundle_consultation_patient_savePersonalDiseasesHistory'));
-    disableFields($('#ps_consultationbundle_consultation_patient_saveFamilyDiseasesHistory'));
+    disableFields(patient_savePDH);
+    disableFields(patient_saveFDH);
     
     
     // set attribute "clicked" on a button when clicked. 
@@ -79,29 +83,33 @@
     }
     
     function disableFields(clicked_button) {
-        if( /saveConsultation/i.test(clicked_button.attr('id')) ) {
-            $("form textarea, form input").attr('readonly', true);
-            $("form button[id *= 'save']").attr('disabled', true);
-        } else {
-            var field_id_next_to_button = getFieldIdNextToButton(clicked_button);
-            $('#' + field_id_next_to_button  ).attr('readonly', true);
-            clicked_button.attr('disabled', true);
+        if(clicked_button.length) {
+            if( /saveConsultation/i.test(clicked_button.attr('id')) ) {
+                $("form textarea, form input").attr('readonly', true);
+                $("form button[id *= 'save']").attr('disabled', true);
+            } else {
+                var field_id_next_to_button = getFieldIdNextToButton(clicked_button);
+                $('#' + field_id_next_to_button  ).attr('readonly', true);
+                clicked_button.attr('disabled', true);
+            }
         }
     }
 
     function enableFields(clicked_button){
-        var clicked_button_id = clicked_button.attr('id');
+        if(clicked_button.length) {
+            var clicked_button_id = clicked_button.attr('id');
 
-        if( /editConsultation/i.test(clicked_button_id) ) {
-            $("form textarea").attr('readonly', false);
-            $("form button").attr('disabled', false);
-        } else {
-            var field_id_next_to_button = getFieldIdNextToButton(clicked_button);
-            var save_button_id = clicked_button_id.replace(/edit/g,'save')
+            if( /editConsultation/i.test(clicked_button_id) ) {
+                $("form textarea").attr('readonly', false);
+                $("form button").attr('disabled', false);
+            } else {
+                var field_id_next_to_button = getFieldIdNextToButton(clicked_button);
+                var save_button_id = clicked_button_id.replace(/edit/g,'save')
 
-            $('#'+field_id_next_to_button ).attr('readonly', false);
-            $('#'+save_button_id ).attr('disabled', false);
-            $("form button[id *= 'saveConsultation']").attr('disabled', false);
+                $('#'+field_id_next_to_button ).attr('readonly', false);
+                $('#'+save_button_id ).attr('disabled', false);
+                $("form button[id *= 'saveConsultation']").attr('disabled', false);
+            }
         }
     }
     
