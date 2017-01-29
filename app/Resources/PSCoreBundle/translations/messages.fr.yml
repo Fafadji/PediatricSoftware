@@ -9,10 +9,14 @@ login: Connexion
 footer.signature: 'Logiciel de Pédiatrie © 2017 par Fafadji GNOFAME : fafadji.gnofame@gmail.com'
 pediatric.software: 'Logiciel de Pédiatrie'
 patient.manage: 'Gérer les patients'
-connected.as: 'Connecté en tant que: %username%'
+connected.as: '%username%|Role : %role%'
 patient.mother.add: 'Ajouter une nouvelle mère'
 patient.father.add: 'Ajouter un nouveau père'
 save: Sauvegarder
 cancel: Annuler
 male: Masculin
 female: Féminin
+role: ' | Rôle : '
+ROLE_SECRETARY: 'Secrétaire'
+ROLE_DOCTOR: 'Docteur'
+ROLE_ADMIN: 'Administrateur'

@@ -4,20 +4,24 @@ ps_consultation:
     requirements:
         _locale: en|fr 
 
-
 ps_core:
     resource: "@PSCoreBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
     requirements:
         _locale: en|fr 
-
-    
+  
 ps_customer:
     resource: "@PSCustomerBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/customer
     requirements:
         _locale: en|fr 
-      
-        
+             
 ps_user:
     resource: "@PSUserBundle/Resources/config/routing.yml"
+    
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: ps_patient_homepage
+        permanent: true

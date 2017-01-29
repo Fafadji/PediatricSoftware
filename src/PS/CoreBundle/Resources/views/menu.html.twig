@@ -30,6 +30,7 @@
             </button>
             <span class="navbar-brand" > {{ 'pediatric.title'|trans }} </span>
         </div>
+        
         <div id="navbar" class="navbar-collapse collapse">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <ul class="nav navbar-nav">
@@ -43,13 +44,15 @@
             {% endif %}
             <ul class="nav navbar-nav navbar-right">               
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li class="active"><a href="#"> {{ 'connected.as'|trans({'%username%': app.user.username}) }} <span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="#"> {{ app.user.username }} {{ 'role' | trans}} {{ app.user.roles[0] | trans }} <span class="sr-only">(current)</span></a></li>
+                    <li> <a href="{{ path('fos_user_change_password') }}">  <i class="glyphicon glyphicon-wrench"></i> </a></li>
                     <li> <a href="{{ path('fos_user_security_logout') }}">  {{ 'logout'|trans }} </a></li>
                 {% else %}
                     <li> <a href="{{ path('fos_user_security_login') }}"> {{ 'login'|trans }}</a></li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
+        
     </div><!--/.container-fluid -->
 </nav>
    
