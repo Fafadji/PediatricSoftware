@@ -11,6 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use PS\CustomerBundle\Form\MotherType;
+use PS\CustomerBundle\Form\FatherType;
+
 class PSFormUtils
 {
 
@@ -19,19 +22,22 @@ class PSFormUtils
         PSFormUtils::addMinimalInfo($builder, $disabled);
         
         $builder
-            ->add('birthday',       BirthdayType::class,  
+            ->add('birthday', BirthdayType::class,  
                 array(
                     'label' => 'birthday',
+                    'attr' => ['class' => 'js-datepicker dateFR'],
+                    'html5' => false,
                     'required' => false,
-                    'format' => 'dd MM yyyy',
+                    'format' => "dd/MM/yyyy",
+                    'widget' => 'single_text',
                     'disabled' => $disabled)) ;
     }
     
     public static function addMinimalInfo(FormBuilderInterface $builder, $disabled = false)
     {
         $builder
-            ->add('name',           TextType::class, array('label' => 'name', 'disabled' => $disabled))
-            ->add('surname',        TextType::class,  array('required' => false, 'label' => 'surname', 'disabled' => $disabled))
+            ->add('name', TextType::class, array('label' => 'name', 'disabled' => $disabled, 'attr' => ['minlength' => 2]))
+            ->add('surname', TextType::class,  array('required' => false, 'label' => 'surname', 'disabled' => $disabled , 'attr' => ['minlength' => 2]))
         ;
     }
 
@@ -43,7 +49,7 @@ class PSFormUtils
     public static function buildPersonTypeForm(FormBuilderInterface $builder)
     {
         PSFormUtils::addPrimaryInfo($builder);
-        $builder->add('personalPhone', TextType::class, array('required' => false, 'label' => 'personal.phone'));
+        $builder->add('personalPhone', TextType::class, array('required' => false, 'label' => 'personal.phone', 'attr' => ['class' => 'phoneSN'],));
         PSFormUtils::addComment($builder);
     }
     
@@ -65,8 +71,14 @@ class PSFormUtils
                     'required' => false, 'label' => false,
                     
                   ))
-            ->add($personType.'_new',        MotherType::class,  array('required' => false, 'label' => false, 'mapped' => false,))
         ;
+        if ($personType == 'mother') {
+            $builder->add($personType.'_new', MotherType::class  ,  array('required' => false, 'label' => false, 'mapped' => false,));
+        } else if ($personType == 'father') {
+            $builder->add($personType.'_new', FatherType::class  ,  array('required' => false, 'label' => false, 'mapped' => false,));
+        }
+            
+        
     }
     
     public function buildEditSaveButtonByParam(FormBuilderInterface $builder, $param)

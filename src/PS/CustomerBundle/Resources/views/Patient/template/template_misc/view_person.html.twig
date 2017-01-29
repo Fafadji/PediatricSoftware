@@ -9,7 +9,7 @@
 {% endif %}   
 
 {% if (person_misc.showAddress is not defined) %}
-   
+   {% set person_misc = person_misc|merge({'showAddress': true}) %}
 {% endif %}
 
     <div class="panel {{ panel_type }}">         
@@ -56,8 +56,10 @@
                 <tr>
                     <th>{{ 'age' | trans }}</th>
                     <td>
-                        {% if person.age is null %}
+                        {% if (person.birthday is null) %}
                             {{ '' | trans }}
+                        {% elseif (person.age is null) and (person.birthday is not null) %}
+                            {{ 'person.notBorn'|trans }}
                         {% else %}
                             {{ 'person.age.years'|transchoice(person.age.y) }}
                             {{ 'person.age.months'|transchoice(person.age.m) }}

@@ -21,8 +21,12 @@
            
                     <tr>
                         
-                        <td>{{ patient.id }}</td>    
+                        <td>{{ patient.id }}</td>   
+                        
+                      {% if is_granted('ROLE_DOCTOR') %}
                         <td><a href=" {{ path( "ps_consultation_add_or_edit", {'patient_id': patient.id} ) }} "> <i class="glyphicon glyphicon-briefcase" title="{{ 'consultation.new' | trans }}"></i></a></td>
+                      {% endif %}  
+                      
                         {{ include( templ_f_tbody_icons_person, {'person' : patient, 'person_type' : person_type_list.patient} ) }}    
                         {{ include( templ_f_tbody_person, {'person' : patient, 'person_type' : person_type_list.patient, 'showID' :false} ) }}  
                         {{ include( templ_f_tbody_person, {'person' : patient.mother, 'person_type' : person_type_list.mother, 'showID' :true} ) }} 

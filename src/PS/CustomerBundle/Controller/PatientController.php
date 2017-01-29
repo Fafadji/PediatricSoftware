@@ -51,7 +51,7 @@ class PatientController extends Controller
                 $em->persist($patient);
                 $em->flush();
 
-                $request->getSession()->getFlashBag()->add('notice', 'Patient Registered');
+                //$request->getSession()->getFlashBag()->add('notice', 'Patient Registered');
 
                 return $this->redirectToRoute('ps_patient_view', array('id' => $patient->getId()));
             } else {
