@@ -1,18 +1,4 @@
-<!-- Static navbar -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand" > {{ 'pediatric.title'|trans }} </span>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        {# <li class="active"><a href="#"> {{ 'consultation.new'|trans }} </a></li> 
+{# <li class="active"><a href="#"> {{ 'consultation.new'|trans }} </a></li> 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ 'consultation.manage'|trans }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -20,8 +6,8 @@
             <li><a href="#"> {{ 'consultation.list'|trans }} </a></li>
           </ul>
         </li>
-        #}
-        <li><a href="{{ path('ps_consultation_homepage') }}"> {{ 'consultation.list'|trans }} </a></li>
+        
+        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ 'patient.manage'|trans }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -29,17 +15,41 @@
             <li><a href="{{ path('ps_patient_homepage') }}"> {{ 'patient.list'|trans }} </a></li>
           </ul>
         </li>             
-      </ul>
+       #}
 
-      <ul class="nav navbar-nav navbar-right">               
-          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-              <li class="active"><a href="#"> {{ 'connected.as'|trans({'%username%': app.user.username}) }} <span class="sr-only">(current)</span></a></li>
-              <li> <a href="{{ path('fos_user_security_logout') }}">  {{ 'logout'|trans }} </a></li>
-          {% else %}
-              <li> <a href="{{ path('fos_user_security_login') }}"> {{ 'login'|trans }}</a></li>
-          {% endif %}
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container-fluid -->
+
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" > {{ 'pediatric.title'|trans }} </span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <ul class="nav navbar-nav">
+                <li><a href="{{ path('ps_patient_homepage') }}"> {{ 'patient.list'|trans }} </a></li>
+                <li><a href="{{ path('ps_patient_add') }}"> {{ 'patient.add'|trans }} </a></li>
+                
+              {% if is_granted('ROLE_DOCTOR') %}
+                <li><a href="{{ path('ps_consultation_homepage') }}"> {{ 'consultation.list'|trans }} </a></li>
+              {% endif %}
+            </ul>
+            {% endif %}
+            <ul class="nav navbar-nav navbar-right">               
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="active"><a href="#"> {{ 'connected.as'|trans({'%username%': app.user.username}) }} <span class="sr-only">(current)</span></a></li>
+                    <li> <a href="{{ path('fos_user_security_logout') }}">  {{ 'logout'|trans }} </a></li>
+                {% else %}
+                    <li> <a href="{{ path('fos_user_security_login') }}"> {{ 'login'|trans }}</a></li>
+                {% endif %}
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
 </nav>
    

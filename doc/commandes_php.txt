@@ -33,3 +33,6 @@ php bin/console debug:router
 
 ## dump assetic assets for prod
 php bin/console assetic:dump --env=prod --no-debug
+
+## role to user
+php bin/console fos:user:promote doctor ROLE_DOCTOR

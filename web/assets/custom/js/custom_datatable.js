@@ -7,6 +7,7 @@ $(document).ready(function() {
     }
     full_url = '/'+currentLocale + '/datatable_lang' ;
    
+   /*
     var defaultNotVisibleColumns, defaultNotVisibleColumnsObject;
     defaultNotVisibleColumns= [];
     defaultNotVisibleColumnsObject = $('#listPatients thead .defaultNotVisColList')
@@ -21,21 +22,21 @@ $(document).ready(function() {
     $( defaultVisibleColumnsObject ).each(function( index ) {
         defaultVisibleColumns.push(this.cellIndex);
     });
+    */
+   
+    var fixedColLeft = $( 'thead .viewIcon, thead .editIcon, thead .deleteIcon, thead .IDPatient, thead .consultationIcon').length;
         
     tablePatient = $('#listPatients').DataTable({
            /* language: {
                 'url': full_url
             },*/
             order: [[ 0, "asc" ]],
-            columnDefs: [ { "orderable": false, "targets": [1, 2, 3, 4] } ],
             colReorder: {
-                fixedColumnsLeft: 4
+                fixedColumnsLeft: fixedColLeft
             },
-            "columnDefs": [
-                {
-                    "targets": defaultNotVisibleColumns,
-                    "visible": false
-                }
+            columnDefs: [
+                { "visible": false, "targets": 'defaultNotVisColList'},
+                { "orderable": false, "targets": 'icon' }
             ],
             dom: 'lBfrtip',
             stateSave: true,
@@ -44,7 +45,7 @@ $(document).ready(function() {
                 {
                     extend: 'colvis',
                     collectionLayout: 'fixed four-column',
-                    columns: ':not(thead .viewIcon, thead .editIcon, thead .deleteIcon, thead .IDPatient)',
+                    columns: ':not(thead .viewIcon, thead .editIcon, thead .deleteIcon, thead .IDPatient, thead .consultationIcon)',
                     text : 'Sélection Col.'
                 },
                 {
@@ -88,25 +89,14 @@ $(document).ready(function() {
     }
     full_url = '/'+currentLocale + '/datatable_lang' ;    
     
-    
-    var defaultNotVisCol, defaultNotVisColObj;
-    defaultNotVisCol= [];
-    defaultNotVisColObj = $('#listMothers thead .defaultNotVisColList')
-    $( defaultNotVisColObj ).each(function( index ) {
-        defaultNotVisCol.push(this.cellIndex);
-    });
-    
     $('.list_objects').DataTable({
            /* language: {
                 'url': full_url
             },*/
             order: [[ 0, "asc" ]],
             "columnDefs": [
-                {
-                    "targets": defaultNotVisCol,
-                    "visible": false
-                },
-                { "orderDataType": "dom-checkbox", "targets": 0 }
+                { "visible": false, "targets": 'defaultNotVisColList'},
+                { "orderDataType": "dom-checkbox", "targets": 'radioColumn' }
             ],
             dom: 'lBfrtip',
             stateSave: true,
@@ -146,36 +136,18 @@ $(document).ready(function() {
         currentLocale = "en";
     }
     full_url = '/'+currentLocale + '/datatable_lang' ;
-   
-    var defaultNotVisibleColumns, defaultNotVisibleColumnsObject;
-    defaultNotVisibleColumns= [];
-    defaultNotVisibleColumnsObject = $('#listConsultations thead .defaultNotVisColList')
-    $( defaultNotVisibleColumnsObject ).each(function( index ) {
-        defaultNotVisibleColumns.push(this.cellIndex);
-    });
-    
-    
-    var defaultVisibleColumns, defaultVisibleColumnsObject;
-    defaultVisibleColumns= [];
-    defaultVisibleColumnsObject = $('#listConsultations thead .defaultVisColList')
-    $( defaultVisibleColumnsObject ).each(function( index ) {
-        defaultVisibleColumns.push(this.cellIndex);
-    });
         
     tableConsultation = $('#listConsultations').DataTable({
            /* language: {
                 'url': full_url
             },*/
             order: [[ 0, "asc" ]],
-            columnDefs: [ { "orderable": false, "targets": [1, 2] } ],
             colReorder: {
                 fixedColumnsLeft: 3
             },
             "columnDefs": [
-                {
-                    "targets": defaultNotVisibleColumns,
-                    "visible": false
-                }
+                { "visible": false, "targets": 'defaultNotVisColList'},
+                { "orderable": false, "targets": 'icon' }
             ],
             dom: 'lBfrtip',
             stateSave: true,

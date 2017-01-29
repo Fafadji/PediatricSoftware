@@ -147,16 +147,14 @@ abstract class Person
         }
         return true;
     }
-    
+
     
     public function getAge()
     {
         $age = null;
-        if(isset($this->birthday)) {
-            $today = new DateTime("now"); 
-            $interval = $this->birthday->diff($today); 
-            $age = $interval;
-            
+        $today = new DateTime("now"); 
+        if(isset($this->birthday) and ($today > $this->birthday) ) {
+            $age = $this->birthday->diff($today); 
         }
         return $age;
     }
