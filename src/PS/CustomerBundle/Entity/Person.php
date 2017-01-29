@@ -25,10 +25,16 @@ abstract class Person
      */
     private $id;
 
+    
+    
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Entrer au moins {{ limit }} charactères",
+     * )
      */
     private $name;
 
@@ -36,6 +42,10 @@ abstract class Person
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Entrer au moins {{ limit }} charactères",
+     * )
      */
     private $surname;
 
@@ -66,6 +76,12 @@ abstract class Person
      * @var string
      *
      * @ORM\Column(name="personal_phone", type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *     pattern="/^(33|77|76) \d{3} \d{2} \d{2}$/",
+     *     match=true,
+     *     message="Entrer un numéro au format 33|77|76 xxx xx xx"
+     * )
+     * 
      */
     private $personalPhone;
     
@@ -93,6 +109,11 @@ abstract class Person
     protected function __construct($type)
     {
       $this->setType($type);
+    }
+    
+    public function __toString()
+    {
+        return  'Name : ' . $this->getName() .' | Surname : '. $this->getSurname(); 
     }
     
     /**
@@ -131,16 +152,14 @@ abstract class Person
         }
         return true;
     }
-    
+
     
     public function getAge()
     {
         $age = null;
-        if(isset($this->birthday)) {
-            $today = new DateTime("now"); 
-            $interval = $this->birthday->diff($today); 
-            $age = $interval;
-            
+        $today = new DateTime("now"); 
+        if(isset($this->birthday) and ($today > $this->birthday) ) {
+            $age = $this->birthday->diff($today); 
         }
         return $age;
     }

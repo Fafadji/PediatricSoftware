@@ -1,10 +1,12 @@
 // Begin Custom
 
 $(function () {
-    
-    //$('#ps_consultationbundle_consultation_date').datePicker();
+    $.datepicker.setDefaults({ beforeShow: function (i) { if ($(i).attr('readonly')) { return false; } } }); 
+    $('.js-datepicker').datepicker(
+            $.datepicker.regional[ "fr" ]
+    );
     $('#accordion_consultation_parents').accordion({
-      collapsible: true
+        collapsible: true
     });
     
 });

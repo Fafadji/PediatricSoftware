@@ -5,7 +5,8 @@ security:
     PS\UserBundle\Entity\User: sha512
 
   role_hierarchy:
-    # Un admin hérite des droits d'auteur et de modérateur
+    ROLE_DOCTOR:  [ROLE_SECRETARY]
+    # Un admin hérite des droits de secretaire et de docteur
     ROLE_ADMIN:       [ROLE_SECRETARY, ROLE_DOCTOR]
     # On garde ce rôle superadmin, il nous resservira par la suite
     ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
@@ -15,16 +16,10 @@ security:
       id: fos_user.user_provider.username
 
   firewalls:
-    dev_1:
+    dev:
       pattern: ^/(_(profiler|wdt|console)|css|images|js)/
       security: false
-    dev_2:
-      pattern: ^/(login|register/)$
-      security: false
-    main_login:
-        # Cette expression régulière permet de prendre /login (mais pas /login_check !)
-        pattern:   ^/(login)$
-        anonymous: true # On autorise alors les anonymes sur ce pare-feu
+
     main:
       pattern:      ^/
       anonymous:    true
@@ -40,3 +35,6 @@ security:
 
   access_control:
     - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/fr/consultation, roles: ROLE_DOCTOR}
+    - { path: ^/fr, roles: ROLE_SECRETARY}
+    
