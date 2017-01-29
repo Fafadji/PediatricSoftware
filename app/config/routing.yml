@@ -18,6 +18,11 @@ ps_customer:
              
 ps_user:
     resource: "@PSUserBundle/Resources/config/routing.yml"
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
     
 root:
     path: /

@@ -44,8 +44,18 @@
             {% endif %}
             <ul class="nav navbar-nav navbar-right">               
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li class="active"><a href="#"> {{ app.user.username }} {{ 'role' | trans}} {{ app.user.roles[0] | trans }} <span class="sr-only">(current)</span></a></li>
-                    <li> <a href="{{ path('fos_user_change_password') }}">  <i class="glyphicon glyphicon-wrench"></i> </a></li>
+                    {% set roles = '' %}
+                    {% for role in app.user.roles %}
+                        {% set roles = roles ~  role ~  '|' %}
+                    {% endfor %} 
+                    
+                    <li class="active"><a href="#" title="{{ roles }}">  <i class="glyphicon glyphicon-user"></i> {{ app.user.username }} <span class="sr-only">(current)</span></a></li>
+                    <li> <a href="{{ path('fos_user_change_password') }}">  <i class="glyphicon glyphicon-cog"></i> </a></li>
+                    
+                  {% if is_granted('ROLE_ADMIN') %}
+                    <li> <a href="{{ path('admin') }}">  <i class="glyphicon glyphicon-wrench"></i> </a></li>
+                  {% endif %}
+                    
                     <li> <a href="{{ path('fos_user_security_logout') }}">  {{ 'logout'|trans }} </a></li>
                 {% else %}
                     <li> <a href="{{ path('fos_user_security_login') }}"> {{ 'login'|trans }}</a></li>

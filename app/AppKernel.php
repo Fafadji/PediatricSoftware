@@ -17,11 +17,15 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new FOS\UserBundle\FOSUserBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            
+            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            
+            
             new PS\UserBundle\PSUserBundle(),
             new PS\CustomerBundle\PSCustomerBundle(),
             new PS\CoreBundle\PSCoreBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new PS\ConsultationBundle\PSConsultationBundle(),
         ];
 

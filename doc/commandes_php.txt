@@ -36,3 +36,9 @@ php bin/console assetic:dump --env=prod --no-debug
 
 ## role to user
 php bin/console fos:user:promote doctor ROLE_DOCTOR
+
+
+As with all bundles you install, it’s a good practice to clear the cache and install the assets:
+
+$ php bin/console cache:clear
+$ php bin/console assets:install

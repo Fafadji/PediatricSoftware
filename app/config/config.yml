@@ -96,3 +96,35 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+#easy_admin
+easy_admin:
+    site_name: 'Pédiatrie'
+    entities:
+        User:
+            class : PS\UserBundle\Entity\User
+            list:
+                fields: 
+                    - { property: 'id' }
+                    - { property: 'username', label: 'user.username' }
+                    - { property: 'email', label: 'user.email' }
+                    - { property: 'enabled', label: 'user.actif'}
+                    - { property: 'lastLogin', label: 'user.lastlogin'}
+                    - { property: 'roles', label: 'user.roles'}
+            form: 
+                form_options: { validation_groups: ['Registration'] }
+                fields: 
+                    - { property: 'username', label: 'user.username' }
+                    - { property: 'email', type: 'email', label: 'user.email' }
+                    - { property: 'plainPassword', type: 'password', label: 'user.password' }
+                    - { property: 'enabled', label: 'user.actif'}
+                    - property: 'roles'
+                      label: 'user.roles'
+                      type: 'choice'
+                      type_options:
+                        expanded: true
+                        multiple: true
+                        choices: { 'Administrator': 'ROLE_ADMIN', 'Docteur': 'ROLE_DOCTOR', 'Secrétaire': 'ROLE_SECRETARY', 'Utilisateur': 'ROLE_USER' }
+            edit:
+                form_options: { validation_groups: ['Profile'] }
+                fields: 
+                    - { property: 'plainPassword', type: 'password', label: 'user.password', type_options: { required: false } }
