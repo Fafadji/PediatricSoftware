@@ -111,6 +111,11 @@ abstract class Person
       $this->setType($type);
     }
     
+    public function __toString()
+    {
+        return  'Name : ' . $this->getName() .' | Surname : '. $this->getSurname(); 
+    }
+    
     /**
     * @ORM\PostLoad
     */

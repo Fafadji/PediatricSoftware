@@ -99,7 +99,35 @@ stof_doctrine_extensions:
 #easy_admin
 easy_admin:
     site_name: 'Pédiatrie'
+    list:
+        actions: ['delete', 'edit', 'new', 'search', 'show']
+    design:
+        menu:
+            - { label: 'Retour au site', route: 'root' }
+            - { entity: 'User', default: true, label: 'users', icon: 'user-md' }
+            - label: 'customers'
+              icon: 'users'
+              children:
+                - Mother
+                - Father
+                - Patient
+                - Address
+            - label: 'consultations'
+              icon: 'stethoscope'
+              children:
+                - { entity: 'Consultation', label: 'consultations' }
     entities:
+        Mother:
+            class : PS\CustomerBundle\Entity\Mother
+        Father:
+            class : PS\CustomerBundle\Entity\Father
+        Patient:
+            class : PS\CustomerBundle\Entity\Patient
+        Address:
+            class : PS\CustomerBundle\Entity\Address
+        Consultation:
+            class : PS\ConsultationBundle\Entity\Consultation
+            
         User:
             class : PS\UserBundle\Entity\User
             list:
@@ -123,7 +151,7 @@ easy_admin:
                       type_options:
                         expanded: true
                         multiple: true
-                        choices: { 'Administrator': 'ROLE_ADMIN', 'Docteur': 'ROLE_DOCTOR', 'Secrétaire': 'ROLE_SECRETARY', 'Utilisateur': 'ROLE_USER' }
+                        choices: { 'Administrateur': 'ROLE_ADMIN', 'Docteur': 'ROLE_DOCTOR', 'Secrétaire': 'ROLE_SECRETARY' }
             edit:
                 form_options: { validation_groups: ['Profile'] }
                 fields: 

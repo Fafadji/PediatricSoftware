@@ -44,6 +44,12 @@ class Address
     private $homeFullAddress;
 
 
+    public function __toString()
+    {
+        return 'Address : ' . $this->getHomeFullAddress() . ' | Phone : ' . $this->getHomePhone();
+    }
+    
+    
     /**
      * Get id
      *
