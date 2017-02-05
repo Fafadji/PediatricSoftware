@@ -17,3 +17,11 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    #psql
+    psql_database_driver: pdo_pgsql
+    psql_database_host: ec2-54-228-255-234.eu-west-1.compute.amazonaws.com
+    psql_database_name: dfgehjgrc3eftb
+    psql_database_user: dmqraertgvyqpi
+    psql_database_password: 4437e8767b29a2b3a7d70165911fc419d7e1c40940a8ac52929d2403705e922b
+    psql_database_port: 5432

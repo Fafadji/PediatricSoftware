@@ -57,6 +57,9 @@
         ],
         "post-update-cmd": [
             "@symfony-scripts"
+        ],
+        "compile": [
+            "php bin/console assetic:dump --env=prod --no-debug"
         ]
     },
     "extra": {
