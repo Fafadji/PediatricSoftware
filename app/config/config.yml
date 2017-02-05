@@ -101,6 +101,15 @@ fos_user:
 assetic:
   debug:          '%kernel.debug%'
   use_controller: '%kernel.debug%'
+  bundles:
+      - PSUserBundle
+      - PSCustomerBundle
+      - PSCoreBundle
+      - PSConsultationBundle
+      - EasyAdminBundle
+      - AsseticBundle
+      - FOSUserBundle
+      - FrameworkBundle
   filters:
     cssrewrite: ~
     jsqueeze:   ~
