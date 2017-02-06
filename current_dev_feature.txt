@@ -1,0 +1,30 @@
+touchR1 feature
+
+Corrigé : 
+
+> Carnet de vaccination
+> mettre en grisé la vue consultation en mode view
+> prévenir quand la consultation n'est pas sauvegardé
+
+ examen clinique
+Constante
+Poids (kg) (P)
+Taille (cm) (
+Température (Temp °c))
+TA (2 chiffres divisé par un / ex : 2/8) (tension artérielle)
+IMC (Indice de Masse Corporelle : 1 chiffre - calcul) : Poids / Taille en mettre au carré.
+
+2R1F1
+2 enfant
+1er enfant
+F1 : 1ere fille
+
+
+
+DONE : 
+Corrigé : 
+> Téléphone
+> Antécédants Personnels
+> Antécédants Familliaux
+> Mettre addresse avant Téléphone
+> Enlever la suppression

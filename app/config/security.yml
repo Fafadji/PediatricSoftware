@@ -35,6 +35,7 @@ security:
 
   access_control:
     - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/register, roles: ROLE_ADMIN }
     - { path: ^/fr/consultation, roles: ROLE_DOCTOR}
     - { path: ^/fr, roles: ROLE_SECRETARY}
     

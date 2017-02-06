@@ -23,8 +23,8 @@ person.age.days.longdesc: '{0} Le patient est né aujourd''hui. Il a %count% jou
 person.age.days: '{0,1}  %count% jour | [2,Inf[ %count% jours'
 patient.general.medical.info: 'Informations Médicales Générales du Patient'
 Unknown: Inconnu
-patient.personalDiseasesHistory: 'Maladies personnelles'
-patient.familyDiseasesHistory: 'Maladies de famille'
+patient.personalDiseasesHistory: 'Antécédents personnels'
+patient.familyDiseasesHistory: 'Antécédents familiaux'
 no.info: 'Il n''y a aucune information pour cette personne dans l''application'
 no.info.address: 'Il n''y a aucune adresse renseigné pour cette personne dans l''application'
 '': ''
@@ -87,7 +87,7 @@ address.id: 'ID Adresse'
 address.id.abbr: 'ID Adr.'
 address: 'Adresse'
 home.phone: 'Aure Téléphone'
-personal.phone: "Télépone personel"
+personal.phone: "Téléphone personnel"
 create.new.address: 'Créer une nouvelle Adresse'
 create.new.mother_address: 'Créer une nouvelle Adresse'
 create.new.father_address: 'Créer une nouvelle Adresse'

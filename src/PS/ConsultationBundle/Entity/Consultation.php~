@@ -81,6 +81,41 @@ class Consultation
      * @ORM\Column(name="treatment", type="text", nullable=true)
      */
     private $treatment;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="weight", type="integer", nullable=true)
+     */
+    private $weight;
+    
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="height", type="integer", nullable=true)
+     */
+    private $height;
+    
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="temperature", type="integer", nullable=true)
+     */
+    private $temperature;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="bloodPressure", type="text", nullable=true)
+     */
+    private $bloodPressure;
+    
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="BMI", type="integer", nullable=true)
+     */
+    private $BMI;
 
     
     public function __construct(Patient $patient)
@@ -270,4 +305,28 @@ class Consultation
     }
 
 
+
+    /**
+     * Set patient
+     *
+     * @param \PS\CustomerBundle\Entity\Patient $patient
+     *
+     * @return Consultation
+     */
+    public function setPatient(\PS\CustomerBundle\Entity\Patient $patient)
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+    /**
+     * Get patient
+     *
+     * @return \PS\CustomerBundle\Entity\Patient
+     */
+    public function getPatient()
+    {
+        return $this->patient;
+    }
 }

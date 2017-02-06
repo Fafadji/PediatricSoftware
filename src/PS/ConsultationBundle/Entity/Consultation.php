@@ -81,6 +81,34 @@ class Consultation
      * @ORM\Column(name="treatment", type="text", nullable=true)
      */
     private $treatment;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="weight", type="float", nullable=true)
+     */
+    private $weight;
+    
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="height", type="float", nullable=true)
+     */
+    private $height;
+    
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="temperature", type="float", nullable=true)
+     */
+    private $temperature;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="bloodPressure", type="text", nullable=true)
+     */
+    private $bloodPressure;
 
     
     public function __construct(Patient $patient)
@@ -293,5 +321,116 @@ class Consultation
     public function getPatient()
     {
         return $this->patient;
+    }
+
+    /**
+     * Set weight
+     *
+     * @param integer $weight
+     *
+     * @return Consultation
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return integer
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * Set height
+     *
+     * @param integer $height
+     *
+     * @return Consultation
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Get height
+     *
+     * @return integer
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Set temperature
+     *
+     * @param integer $temperature
+     *
+     * @return Consultation
+     */
+    public function setTemperature($temperature)
+    {
+        $this->temperature = $temperature;
+
+        return $this;
+    }
+
+    /**
+     * Get temperature
+     *
+     * @return integer
+     */
+    public function getTemperature()
+    {
+        return $this->temperature;
+    }
+
+    /**
+     * Set bloodPressure
+     *
+     * @param string $bloodPressure
+     *
+     * @return Consultation
+     */
+    public function setBloodPressure($bloodPressure)
+    {
+        $this->bloodPressure = $bloodPressure;
+
+        return $this;
+    }
+
+    /**
+     * Get bloodPressure
+     *
+     * @return string
+     */
+    public function getBloodPressure()
+    {
+        return $this->bloodPressure;
+    }
+
+    /**
+     * Get bMI
+     *
+     * @return integer
+     */
+    public function getBMI()
+    {
+        $BMI = 0;
+        if( $this->weight > 0 and $this->height >0 ) 
+        {
+            $BMI = ($this->weight) / ( ($this->height/100)  **2);
+        }
+        return $BMI;
     }
 }
