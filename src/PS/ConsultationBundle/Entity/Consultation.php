@@ -32,6 +32,13 @@ class Consultation
      */
     private $patient;
     
+    /**
+     * @ORM\OneToOne(targetEntity="PS\ConsultationBundle\Entity\ClinicExamConst", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
+     */
+    private $clinicExamConst;
+    
     
     /**
      * @var \DateTime
@@ -82,33 +89,6 @@ class Consultation
      */
     private $treatment;
     
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="weight", type="float", nullable=true)
-     */
-    private $weight;
-    
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="height", type="float", nullable=true)
-     */
-    private $height;
-    
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="temperature", type="float", nullable=true)
-     */
-    private $temperature;
-    
-     /**
-     * @var string
-     *
-     * @ORM\Column(name="bloodPressure", type="text", nullable=true)
-     */
-    private $bloodPressure;
 
     
     public function __construct(Patient $patient)
@@ -323,114 +303,28 @@ class Consultation
         return $this->patient;
     }
 
+
     /**
-     * Set weight
+     * Set clinicExamConst
      *
-     * @param integer $weight
+     * @param \PS\ConsultationBundle\Entity\ClinicExamConst $clinicExamConst
      *
      * @return Consultation
      */
-    public function setWeight($weight)
+    public function setClinicExamConst(\PS\ConsultationBundle\Entity\ClinicExamConst $clinicExamConst)
     {
-        $this->weight = $weight;
+        $this->clinicExamConst = $clinicExamConst;
 
         return $this;
     }
 
     /**
-     * Get weight
+     * Get clinicExamConst
      *
-     * @return integer
+     * @return \PS\ConsultationBundle\Entity\ClinicExamConst
      */
-    public function getWeight()
+    public function getClinicExamConst()
     {
-        return $this->weight;
-    }
-
-    /**
-     * Set height
-     *
-     * @param integer $height
-     *
-     * @return Consultation
-     */
-    public function setHeight($height)
-    {
-        $this->height = $height;
-
-        return $this;
-    }
-
-    /**
-     * Get height
-     *
-     * @return integer
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    /**
-     * Set temperature
-     *
-     * @param integer $temperature
-     *
-     * @return Consultation
-     */
-    public function setTemperature($temperature)
-    {
-        $this->temperature = $temperature;
-
-        return $this;
-    }
-
-    /**
-     * Get temperature
-     *
-     * @return integer
-     */
-    public function getTemperature()
-    {
-        return $this->temperature;
-    }
-
-    /**
-     * Set bloodPressure
-     *
-     * @param string $bloodPressure
-     *
-     * @return Consultation
-     */
-    public function setBloodPressure($bloodPressure)
-    {
-        $this->bloodPressure = $bloodPressure;
-
-        return $this;
-    }
-
-    /**
-     * Get bloodPressure
-     *
-     * @return string
-     */
-    public function getBloodPressure()
-    {
-        return $this->bloodPressure;
-    }
-
-    /**
-     * Get bMI
-     *
-     * @return integer
-     */
-    public function getBMI()
-    {
-        $BMI = 0;
-        if( $this->weight > 0 and $this->height >0 ) 
-        {
-            $BMI = ($this->weight) / ( ($this->height/100)  **2);
-        }
-        return $BMI;
+        return $this->clinicExamConst;
     }
 }

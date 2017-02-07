@@ -14,6 +14,10 @@
         </div>
         <div class="panel-body">
             <div class="form-group">
+                {% block consult_card_extra %}
+                    
+                {% endblock %}
+                
                 {{ form_widget(form_card_textarea, {'attr': {'rows': 5}}) }}
             </div>
             <div class="form-group">

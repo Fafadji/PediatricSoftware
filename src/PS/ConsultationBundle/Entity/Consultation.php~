@@ -32,6 +32,13 @@ class Consultation
      */
     private $patient;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="PS\ConsultationBundle\Entity\ClinicExamConst", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
+     */
+    private $clinicExamConst;
+    
     
     /**
      * @var \DateTime
@@ -82,40 +89,6 @@ class Consultation
      */
     private $treatment;
     
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="weight", type="integer", nullable=true)
-     */
-    private $weight;
-    
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="height", type="integer", nullable=true)
-     */
-    private $height;
-    
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="temperature", type="integer", nullable=true)
-     */
-    private $temperature;
-    
-     /**
-     * @var string
-     *
-     * @ORM\Column(name="bloodPressure", type="text", nullable=true)
-     */
-    private $bloodPressure;
-    
-     /**
-     * @var int
-     *
-     * @ORM\Column(name="BMI", type="integer", nullable=true)
-     */
-    private $BMI;
 
     
     public function __construct(Patient $patient)
@@ -329,4 +302,5 @@ class Consultation
     {
         return $this->patient;
     }
+
 }

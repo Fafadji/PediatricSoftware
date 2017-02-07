@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use PS\CustomerBundle\Form\PatientForConsultationType;
 use PS\CoreBundle\Form\PSFormUtils;
+use PS\ConsultationBundle\Form\ClinicExamConstType;
 
 class ConsultationType extends AbstractType
 {
@@ -40,7 +41,8 @@ class ConsultationType extends AbstractType
             ->add('saveConsultation1', SubmitType::class, array('label' => 'save.consultation'))   
             ->add('saveConsultation2', SubmitType::class, array('label' => 'save.consultation'))  
                 
-             ->add('patient', PatientForConsultationType::class, array('label' => false)) 
+            ->add('patient', PatientForConsultationType::class, array('label' => false))
+            ->add('clinicExamConst', ClinicExamConstType::class, array('label' => false)) 
         ; 
     }
     
