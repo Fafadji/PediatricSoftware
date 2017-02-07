@@ -17,10 +17,10 @@ class ClinicExamConstType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('weight', NumberType::class,  array('label' => 'weight.abbr', 'required' => false))
-            ->add('height', NumberType::class,  array('label' => 'height.abbr', 'required' => false))
-            ->add('temperature', NumberType::class,  array('label' => 'temperature.abbr', 'required' => false))
-            ->add('bloodPressure', TextType::class,  array('label' => 'blood.pressure.abbr', 'required' => false))       
+            ->add('weight', NumberType::class,  array('label' => 'weight.abbr', 'required' => false, 'attr' => ['class' => 'number number_format']))
+            ->add('height', NumberType::class,  array('label' => 'height.abbr', 'required' => false, 'attr' => ['class' => 'number number_format']))
+            ->add('temperature', NumberType::class,  array('label' => 'temperature.abbr', 'required' => false, 'attr' => ['class' => 'number number_format']))
+            ->add('bloodPressure', TextType::class,  array('label' => 'blood.pressure.abbr', 'required' => false, 'attr' => ['class' => 'number_format']))       
         ;
     }
     

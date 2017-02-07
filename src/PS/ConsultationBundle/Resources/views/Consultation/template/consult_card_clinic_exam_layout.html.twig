@@ -1,6 +1,48 @@
 {% extends "PSConsultationBundle:Consultation:template/edit_consult_card_layout.html.twig" %}
 
 {% block consult_card_extra %}
-    {{ form_row(form.clinicExamConst) }}
+    
+    <fieldset>
+        <legend> test </legend>
+        
+                
+        <div class="col-md-3" > 
+            <table class="table_clinic_exam_const">
+            <tr>
+                <td> {{ form_label(form.clinicExamConst.weight) }} </td>
+                <td> {{ form_widget(form.clinicExamConst.weight) }} </td>
+            <tr>
+            </table>
+        </div>
 
+        <div class="col-md-3" > 
+            <table class="table_clinic_exam_const">
+            <tr>
+                <td> {{ form_label(form.clinicExamConst.height) }} </td>
+                <td> {{ form_widget(form.clinicExamConst.height) }} </td>
+            <tr>
+            </table>
+        </div>
+        
+        <div class="col-md-3" > 
+            <table class="table_clinic_exam_const">
+            <tr>
+                <td> {{ form_label(form.clinicExamConst.temperature) }} </td>
+                <td> {{ form_widget(form.clinicExamConst.temperature) }} </td>
+            <tr>
+            </table>
+        </div>
+            
+        <div class="col-md-3" > 
+            <table class="table_clinic_exam_const">
+            <tr>
+                <td> {{ form_label(form.clinicExamConst.bloodPressure) }} </td>
+                <td> {{ form_widget(form.clinicExamConst.bloodPressure) }} </td>
+            <tr>
+            </table>
+        </div>
+        
+            
+
+    </fieldset>
 {% endblock %}
