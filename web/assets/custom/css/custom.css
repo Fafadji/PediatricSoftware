@@ -112,12 +112,13 @@ form .error {
     
 }
 
-.number_format{
-    width: 60px;
-}
 
 .table_clinic_exam_const{
     white-space: nowrap;
+}
+
+.no-padding {
+    padding: 0px;
 }
 
 
