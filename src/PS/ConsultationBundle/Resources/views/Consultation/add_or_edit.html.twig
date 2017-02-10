@@ -58,6 +58,7 @@
                         <h3 class="panel-title">{{ 'patient.general.medical.info'|trans }}</h3>
                     </div>
                     <tbody>
+                        
                         <tr>
                             <th>{{ form_label(form.patient.personalDiseasesHistory) }}</th>
                             <td>
@@ -73,6 +74,7 @@
                                 </div>
                             </td>
                         </tr>
+                        
                         <tr>
                             <th>{{ form_label(form.patient.familyDiseasesHistory) }}</th>
                             <td>
@@ -88,6 +90,23 @@
                                 </div>
                             </td>
                         </tr>
+                        
+                        <tr>
+                            <th>{{ form_label(form.patient.vaccines) }}</th>
+                            <td>
+                                <div class="form-group">
+                                    {{ form_widget(form.patient.vaccines, {'attr': {'rows': 3}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.patient.saveVaccines) }}
+                                    {{ form_widget(form.patient.saveVaccines, {'attr': {'class':'btn-success'}}) }}
+
+                                    {{ form_label(form.patient.editVaccines) }}
+                                    {{ form_widget(form.patient.editVaccines, {'attr': {'class':'btn-info'}}) }}
+                                </div>
+                            </td>
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -111,15 +130,24 @@
     </section>
     
     <section class="row">
-        {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'interview' } ) }}
-        {{ include( templ_f_consult_card_clinic_exam_layout, {'form_card_param' : 'clinicExamination' } ) }}
-    </section>    
+        <div class="col-md-6">
+                {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'interview' } ) }}
+                {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'conclusion' } ) }}
+        </div>
+        <div class="col-md-6" >
+            {{ include( templ_f_consult_card_clinic_exam_layout, {'form_card_param' : 'clinicExamination' } ) }}
+        </div>
+    </section> 
+        
     <section class="row">
-        {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'conclusion' } ) }}
+        <div class="col-md-6">
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'checkup' } ) }}
+        </div>
+        <div class="col-md-6">
+        {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'diagnosis' } ) }}
+        </div>
     </section>    
     <section class="row">
-        {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'diagnosis' } ) }}
         {{ include( templ_f_edit_consult_card_layout, {'form_card_param' : 'treatment' } ) }}
     </section> 
     

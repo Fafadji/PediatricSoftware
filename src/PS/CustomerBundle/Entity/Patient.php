@@ -52,6 +52,14 @@ class Patient extends Person
     private $familyDiseasesHistory;
     
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vaccines", type="text", nullable=true)
+     */
+    private $vaccines;
+    
+    
       /**
    * @ORM\OneToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
@@ -208,4 +216,28 @@ class Patient extends Person
         return $this->address;
     }
     
+
+    /**
+     * Set vaccines
+     *
+     * @param string $vaccines
+     *
+     * @return Patient
+     */
+    public function setVaccines($vaccines)
+    {
+        $this->vaccines = $vaccines;
+
+        return $this;
+    }
+
+    /**
+     * Get vaccines
+     *
+     * @return string
+     */
+    public function getVaccines()
+    {
+        return $this->vaccines;
+    }
 }

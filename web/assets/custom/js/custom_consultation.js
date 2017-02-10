@@ -1,11 +1,13 @@
  $(function () {
     
     var patient_savePDH = $('#ps_consultationbundle_consultation_patient_savePersonalDiseasesHistory'),
-        patient_saveFDH = $('#ps_consultationbundle_consultation_patient_saveFamilyDiseasesHistory');
+        patient_saveFDH = $('#ps_consultationbundle_consultation_patient_saveFamilyDiseasesHistory'),
+        patient_saveVaccines = $('#ps_consultationbundle_consultation_patient_saveVaccines');
     
      
     disableFields(patient_savePDH);
     disableFields(patient_saveFDH);
+    disableFields(patient_saveVaccines);
     
     
     // set attribute "clicked" on a button when clicked. 
@@ -88,9 +90,8 @@
                 $("form textarea, form input").attr('readonly', true);
                 $("form button[id *= 'save']").attr('disabled', true);
             } else {
-                var field_id_next_to_button = getFieldIdNextToButton(clicked_button);
-                $('#' + field_id_next_to_button  ).attr('readonly', true);
-                clicked_button.attr('disabled', true);
+               clicked_button.attr('disabled', true);
+               clicked_button.parent().parent().find('textarea, input').attr('readonly', true);
             }
         }
     }
@@ -100,39 +101,16 @@
             var clicked_button_id = clicked_button.attr('id');
 
             if( /editConsultation/i.test(clicked_button_id) ) {
-                $("form textarea").attr('readonly', false);
+                $("form textarea, form input").attr('readonly', false);
                 $("form button").attr('disabled', false);
             } else {
-                var field_id_next_to_button = getFieldIdNextToButton(clicked_button);
-                var save_button_id = clicked_button_id.replace(/edit/g,'save')
-
-                $('#'+field_id_next_to_button ).attr('readonly', false);
-                $('#'+save_button_id ).attr('disabled', false);
-                $("form button[id *= 'saveConsultation']").attr('disabled', false);
+                clicked_button.parent().find('button[name*=save]').attr('disabled', false);
+                clicked_button.parent().parent().find('textarea, input').attr('readonly', false);
             }
         }
     }
     
     function getClickedButton(){
         return $("button[type=submit][clicked=true]");
-    }
-
-    function getFieldIdNextToButton(button) {
-        var button_id = button.attr('id');
-        button_type='unknown';
-        if( /save/i.test(button_id) ) {
-            button_type='save';
-        } else if( /edit/i.test(button_id) ) {
-            button_type='edit';
-        }
-        
-        var button_type_index = button_id.indexOf(button_type);
-        
-        var field_prefix = button_id.substring(0, button_type_index);
-        var field = button_id.substring(button_type_index + button_type.length);
-        field = field.substr(0,1).toLowerCase()+field.substr(1);
-        var field_id = field_prefix + field;
-
-        return field_id;
     }
  });

@@ -23,8 +23,8 @@ person.age.days.longdesc: '{0} The patient is born Today. He has %count% day. <b
 person.age.days: '{0,1}  %count% day | [2,Inf[ %count% days'
 patient.general.medical.info: 'Patient General Medical Information'
 Unknown: Unknown
-patient.personalDiseasesHistory: 'Antécédents personnels'
-patient.familyDiseasesHistory: 'Antécédents familiaux'
+patient.personalDiseasesHistory: 'Personal Diseases History'
+patient.familyDiseasesHistory: 'Family Diseases History'
 no.info: 'There is no information for this person in the application'
 no.info.address: 'There is no address provided in the application for this person'
 '': ''

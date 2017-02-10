@@ -3,35 +3,31 @@
 namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Patient
  *
  * @ORM\Table(name="ps_patient")
  * @ORM\Entity(repositoryClass="PS\CustomerBundle\Repository\PatientRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Patient extends Person
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Mother", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
-    protected $mother;
+    private $mother;
     
   /**
    * @ORM\ManyToOne(targetEntity="PS\CustomerBundle\Entity\Father", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
-    protected $father;
+    private $father;
     
     
     /**
@@ -39,7 +35,7 @@ class Patient extends Person
      *
      * @ORM\Column(name="code_siblings", type="string", length=255, nullable=true)
      */
-    protected $codeSiblings;
+    private $codeSiblings;
     
     /**
      * @var string
@@ -54,21 +50,27 @@ class Patient extends Person
      * @ORM\Column(name="family_diseases_history", type="text", nullable=true)
      */
     private $familyDiseasesHistory;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vaccines", type="text", nullable=true)
+     */
+    private $vaccines;
+    
+    
+      /**
+   * @ORM\OneToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
+   */    
+    private $address;
 
 
     public function __construct() // Constructeur demandant 2 paramètres
     {
-        parent::__construct(Person::$TYPES['TYPE_CHILD']);
-    }
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
+        parent::__construct(Person::$TYPES['TYPE_PATIENT']);
     }
 
     /**
@@ -92,7 +94,7 @@ class Patient extends Person
      */
     public function getMother()
     {
-        return $this->mother;
+        return $this->mother ;
     }
 
     /**
@@ -142,4 +144,76 @@ class Patient extends Person
     {
         return $this->codeSiblings;
     }
+
+    /**
+     * Set personalDiseasesHistory
+     *
+     * @param string $personalDiseasesHistory
+     *
+     * @return Patient
+     */
+    public function setPersonalDiseasesHistory($personalDiseasesHistory)
+    {
+        $this->personalDiseasesHistory = $personalDiseasesHistory;
+
+        return $this;
+    }
+
+    /**
+     * Get personalDiseasesHistory
+     *
+     * @return string
+     */
+    public function getPersonalDiseasesHistory()
+    {
+        return $this->personalDiseasesHistory;
+    }
+
+    /**
+     * Set familyDiseasesHistory
+     *
+     * @param string $familyDiseasesHistory
+     *
+     * @return Patient
+     */
+    public function setFamilyDiseasesHistory($familyDiseasesHistory)
+    {
+        $this->familyDiseasesHistory = $familyDiseasesHistory;
+
+        return $this;
+    }
+
+    /**
+     * Get familyDiseasesHistory
+     *
+     * @return string
+     */
+    public function getFamilyDiseasesHistory()
+    {
+        return $this->familyDiseasesHistory;
+    }
+    
+    /**
+     * Set address
+     *
+     * @param \PS\CustomerBundle\Entity\Address $address
+     *
+     * @return Person
+     */
+    public function setAddress(\PS\CustomerBundle\Entity\Address $address = null)
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \PS\CustomerBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+    
 }
