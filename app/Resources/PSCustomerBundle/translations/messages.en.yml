@@ -1,0 +1,96 @@
+no.patient: 'There is no patient registered in the application yet'
+patient.title: Patient
+next: Next
+previous: Previous
+patient.info: Patient
+mother.info: Mother
+father.info: Father
+create.new.mother: 'Create a new Mother'
+create.new.father: 'Create a new Father'
+select.existing.mother: 'Select an existing mother'
+select.existing.father: 'Select an existing father'
+summary: Summary
+id: id
+name: Name
+surname: Surname
+sex: Sex
+birthday: 'Birthday'
+comment: Comment
+age: Age
+person.age.years: '{0} |{1} %count% year old |[2,Inf[ %count% years old'
+person.age.months: '{0} | {1} %count% month | [2,Inf[ %count% months'
+person.age.days.longdesc: '{0} The patient is born Today. He has %count% day. <br>Welcome on Earth to the patient! |{1} %count% day |[2,Inf[ %count% days'
+person.age.days: '{0,1}  %count% day | [2,Inf[ %count% days'
+patient.general.medical.info: 'Patient General Medical Information'
+Unknown: Unknown
+patient.personalDiseasesHistory: 'Antécédents personnels'
+patient.familyDiseasesHistory: 'Antécédents familiaux'
+no.info: 'There is no information for this person in the application'
+no.info.address: 'There is no address provided in the application for this person'
+'': ''
+patient.id: 'ID Patient'
+patient.id.abbr: 'ID Pa.'
+patient.name: 'Name Patient'
+patient.name.abbr: 'Name Pa.'
+patient.surname: 'Surname Patient'
+patient.surname.abbr: 'Surname Pa.'
+patient.sex: 'Sex Patient'
+patient.sex.abbr: 'Sex Pa.'
+patient.birthday: 'Birthday Patient'
+patient.birthday.abbr: 'Birth. Pa.'
+patient.code.siblings: 'Codification Patient'
+patient.code.siblings.abbr: 'Code Pa.'
+patient.comment: 'Comment Patient'
+patient.comment.abbr: 'Comment Pa.'
+patient.age: 'Age Patient'
+patient.age.abbr: 'Age Pa.'
+mother.id: 'ID Mother'
+mother.id.abbr: 'ID Mo.'
+mother.name: 'Name Mother'
+mother.name.abbr: 'Name Mo.'
+mother.surname: 'Surname Mother'
+mother.surname.abbr: 'Surname Mo.'
+mother.sex: 'Sex Mother'
+mother.sex.abbr: 'Sex Mo.'
+mother.birthday: 'Birthday Mother'
+mother.birthday.abbr: 'Birth. Mo.'
+mother.comment: 'Comment Mother'
+mother.comment.abbr: 'Comment. Mo.'
+mother.age: 'Age Mother'
+mother.age.abbr: 'Age Mo.'
+father.id: 'ID Father'
+father.id.abbr: 'ID Fa.'
+father.name: 'Name Father'
+father.name.abbr: 'Name Fa.'
+father.surname: 'Surname Father'
+father.surname.abbr: 'Surname Fa.'
+father.sex: 'Sex Father'
+father.sex.abbr: 'Sex Fa.'
+father.birthday: 'Birthday Father'
+father.birthday.abbr: 'Birth. Fa.'
+father.comment: 'Comment Father'
+father.comment.abbr: 'Comment. Fa.'
+father.age: 'Age Father'
+father.age.abbr: 'Age Fa.'
+edit: Edit
+view: View
+delete: Delete
+create.new.patient: 'Create a new Patient'
+no.mother: 'No mother registration for this Patient'
+no.father: 'No father registration for this Patient'
+action.selection: 'Select an action'
+address.id: 'ID Address'
+address.id.abbr: 'ID Addr.'
+address: 'Address'
+home.phone: 'Other Phone'
+personal.phone: "Personnal Phone"
+create.new.address: 'Create a new Address'
+no.address: 'No address registration'
+select.existing.address: 'Select an existing address'
+home.full.address: 'Full Address'
+patient.address.info: 'Address Patient'
+mother.phone.personal.abbr: 'Phone Mother'
+mother.phone.personal: 'Personal Phone Mother'
+father.phone.personal.abbr: 'Phone Father'
+father.phone.personal: 'Personal Phone Father'
+person.notBorn: 'Not born yet'

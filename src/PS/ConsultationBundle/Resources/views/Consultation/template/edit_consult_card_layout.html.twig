@@ -19,7 +19,15 @@
                     
                 {% endblock %}
                 
-                {{ form_widget(form_card_textarea, {'attr': {'rows': 5}}) }}
+                {% block consult_card_before_textarea %}
+                    
+                {% endblock %}
+                
+                    {{ form_widget(form_card_textarea, {'attr': {'rows': 5}}) }}
+                
+                {% block consult_card_after_textarea %}
+                    
+                {% endblock %}
             </div>
             <div class="form-group">
                 {{ form_label(form_card_save_button) }}
@@ -28,6 +36,8 @@
                 {{ form_label(form_card_edit_button) }}
                 {{ form_widget(form_card_edit_button, {'attr': {'class':'btn-info'}}) }}
             </div>
+            
+            
         </div>
     </div>
 </div>

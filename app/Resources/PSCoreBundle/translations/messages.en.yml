@@ -1,0 +1,33 @@
+pediatric.title: Pédiatric
+consultation.new: 'New consultation'
+consultation.manage: 'Manage consultations'
+consultation.list: 'Consultations List'
+patient.add: 'Add new patient'
+patient.list: 'Patients List'
+logout: Logout
+login: Login
+footer.signature: 'Pediatric Software © 2017 by Fafadji GNOFAME : fafadji.gnofame@gmail.com - MIT Licence'
+pediatric.software: 'Pediatric Softwaree'
+patient.manage: 'Manage patients'
+connected.as: '%username%|Role : %role%'
+patient.mother.add: 'Add a new mother'
+patient.father.add: 'Add a new father'
+save: Save
+cancel: Cancel
+male: Male
+female: Female
+role: ' | Role : '
+ROLE_SECRETARY: 'Secretary'
+ROLE_DOCTOR: 'Doctor'
+ROLE_ADMIN: 'Administrator'
+user.username: 'Username'
+user.email: 'e-mail'
+user.actif: 'Active'
+user.lastlogin: 'Last Connexion'
+user.roles: 'Roles'
+user.password: 'Password'
+users : 'Users'
+consultations: 'Consultations'
+customers: 'Customers'
+app.user.change.password: 'Change password'
+app.admin.page: 'Admin page'

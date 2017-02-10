@@ -3,10 +3,7 @@
 {% block consult_card_extra %}
     
     <fieldset >
-        <legend> {{ 'consultation.clinic.exam.const' | trans }} </legend>
-        
-                
-        
+        <legend> {{ 'constants' | trans }} </legend>
         
          <div class="col-md-9 " > 
              <div class="row form-group" >
@@ -50,9 +47,16 @@
        <div class="col-md-3 " > 
             <button class="btn btn-info">{{ 'body.mass.index.abbr' | trans  }} <span id="BMIValue"class="badge text-success"></span></button>
        </div> 
-        
-        
-            
 
     </fieldset>
+{% endblock %}
+
+
+{% block consult_card_before_textarea %}
+    <fieldset >
+        <legend> {{ 'exam' | trans }} </legend>
+{% endblock %}
+
+{% block consult_card_after_textarea %}
+    </fieldset >
 {% endblock %}
