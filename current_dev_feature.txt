@@ -1,7 +1,8 @@
 touchR1 feature
 
 Corrigé : 
-
+> check codeSiblingValidation in model
+> add PC (périmètre cranien) for constants
 
 > mettre en grisé la vue consultation en mode view
 > prévenir quand la consultation n'est pas sauvegardé
