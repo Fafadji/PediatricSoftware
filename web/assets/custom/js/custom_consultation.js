@@ -115,6 +115,7 @@
                 $("form button").attr('disabled', false);
             } else {
                 clicked_button.parent().find('button[name*=save]').attr('disabled', false);
+                $("form button[id *= 'saveConsultation']").attr('disabled', false);
                 clicked_button.parent().parent().find('textarea, input').attr('readonly', false).change();
             }
         }
