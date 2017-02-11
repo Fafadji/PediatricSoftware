@@ -34,7 +34,7 @@ class PatientType extends AbstractType
                         'female' => 'female'),
                     'multiple'=>false,'expanded'=>true
                     ))
-            ->add('codeSiblings', TextType::class,  array('required' => false, 'label' => 'patient.code.siblings'))
+            ->add('codeSiblings', TextType::class,  array('required' => false, 'label' => 'patient.code.siblings', 'attr' => ['class' => 'patientCodeSiblings']))
         ;
         PSFormUtils::addComment($builder);
         PSFormUtils::builParentTypeForm($builder,"mother");         

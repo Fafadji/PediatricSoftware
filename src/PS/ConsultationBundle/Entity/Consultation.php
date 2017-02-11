@@ -32,6 +32,13 @@ class Consultation
      */
     private $patient;
     
+    /**
+     * @ORM\OneToOne(targetEntity="PS\ConsultationBundle\Entity\ClinicExamConst", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
+     */
+    private $clinicExamConst;
+    
     
     /**
      * @var \DateTime
@@ -81,6 +88,7 @@ class Consultation
      * @ORM\Column(name="treatment", type="text", nullable=true)
      */
     private $treatment;
+    
 
     
     public function __construct(Patient $patient)
@@ -293,5 +301,30 @@ class Consultation
     public function getPatient()
     {
         return $this->patient;
+    }
+
+
+    /**
+     * Set clinicExamConst
+     *
+     * @param \PS\ConsultationBundle\Entity\ClinicExamConst $clinicExamConst
+     *
+     * @return Consultation
+     */
+    public function setClinicExamConst(\PS\ConsultationBundle\Entity\ClinicExamConst $clinicExamConst)
+    {
+        $this->clinicExamConst = $clinicExamConst;
+
+        return $this;
+    }
+
+    /**
+     * Get clinicExamConst
+     *
+     * @return \PS\ConsultationBundle\Entity\ClinicExamConst
+     */
+    public function getClinicExamConst()
+    {
+        return $this->clinicExamConst;
     }
 }

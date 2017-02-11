@@ -35,4 +35,38 @@
         },
         "Entrer un numéro au format 33|77|76 xxx xx xx"
     );
+    
+    
+    var sex_patient = $('input[name*=sex]:checked').val();
+    var codeSiblingsRegex = /^\dR\d(M|F)\d$/;
+    var codeSiblingsErrorMsg = "Entrer un code au format xRxMx ou bien xRxFx où x est un chiffre";
+    
+    $('input[name*=sex]').change(function() {
+        sex_patient = $('input[name*=sex]:checked').val();
+        if(sex_patient == "male") {
+            codeSiblingsRegex = /^\dR\dM\d$/;
+            codeSiblingsErrorMsg = "Entrer un code au format xRxMx où x est un chiffre";
+        } else if (sex_patient == "female") {
+            codeSiblingsRegex = /^\dR\dF\d$/;
+            codeSiblingsErrorMsg = "Entrer un code au format xRxFx où x est un chiffre";
+        }
+        $('.patientCodeSiblings').validate();
+        $('.patientCodeSiblings').valid();
+        
+    });
+    
+    
+    jQuery.validator.addMethod(
+        "patientCodeSiblings",
+        function(value, element) {
+            var check = false;
+            if( codeSiblingsRegex.test(value)){
+                check = true;
+            }
+            return this.optional(element) || check;
+        },
+       function() {
+            return codeSiblingsErrorMsg;
+        }
+    );
  });

@@ -1,0 +1,4 @@
+person.not.valid.name.empty: 'Name should be provided'
+code.siblings.incorrect.format: 'Code siblings should be formatted as xRxMx or xRxFx where x is a number'
+code.siblings.incorrect.format.male: 'Code siblings should be formatted as xRxMx where x is a number'
+code.siblings.incorrect.format.female: 'Code siblings should be formatted as xRxFx where x is a number'

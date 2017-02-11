@@ -50,10 +50,10 @@
                     {% endfor %} 
                     
                     <li class="active"><a href="#" title="{{ roles }}">  <i class="glyphicon glyphicon-user"></i> {{ app.user.username }} <span class="sr-only">(current)</span></a></li>
-                    <li> <a href="{{ path('fos_user_change_password') }}">  <i class="glyphicon glyphicon-cog"></i> </a></li>
+                    <li> <a href="{{ path('fos_user_change_password') }}">  <i class="glyphicon glyphicon-cog" title=" {{ 'app.user.change.password' | trans }}"></i> </a></li>
                     
                   {% if is_granted('ROLE_ADMIN') %}
-                    <li> <a href="{{ path('admin') }}">  <i class="glyphicon glyphicon-wrench"></i> </a></li>
+                    <li> <a href="{{ path('admin') }}">  <i class="glyphicon glyphicon-wrench" title=" {{ 'app.admin.page' | trans }}" ></i> </a></li>
                   {% endif %}
                     
                     <li> <a href="{{ path('fos_user_security_logout') }}">  {{ 'logout'|trans }} </a></li>

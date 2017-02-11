@@ -28,6 +28,7 @@ class PatientForConsultationType extends AbstractType
         //PSFormUtils::addComment($builder, true);
         PSFormUtils::buildTextareaFormByParam($builder, 'personalDiseasesHistory', 'patient.personalDiseasesHistory');
         PSFormUtils::buildTextareaFormByParam($builder, 'familyDiseasesHistory', 'patient.familyDiseasesHistory');
+        PSFormUtils::buildTextareaFormByParam($builder, 'vaccines', 'patient.vaccines');
     }
     
     /**
