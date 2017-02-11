@@ -1,5 +1,7 @@
 $(function () {
 
+    $("form[name=ps_customerbundle_patient]").areYouSure({'message':'Le patient n\'est pas sauvegardé!'} );
+
     $('.js-datepicker').change(function() {
       $( this ).valid();
     });

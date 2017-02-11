@@ -1,0 +1,72 @@
+{% extends "PSConsultationBundle:Consultation:template/edit_consult_card_layout.html.twig" %}
+
+{% block consult_card_extra %}
+    
+    <fieldset >
+        <legend> {{ 'constants' | trans }} </legend>
+        
+            <div class="col-md-9" > 
+                <div class="row form-group" >
+                    <div class="col-md-6" > 
+                        <div class="input-group" > 
+                            <span class="input-group-addon">{{ form_label(form.clinicExamConst.weight) }}</span>
+                            {{ form_widget(form.clinicExamConst.weight) }}
+                            <span class="input-group-addon">{{ 'weight.uom' | trans  }}</span> 
+                        </div>
+                    </div>
+                    <div class="col-md-6" > 
+                        <div class="input-group" > 
+                            <span class="input-group-addon">{{ form_label(form.clinicExamConst.height) }}</span>
+                            {{ form_widget(form.clinicExamConst.height) }}
+                            <span class="input-group-addon">{{ 'height.uom' | trans  }}</span> 
+                        </div>
+                    </div>
+                </div>
+                        
+                <div class="row form-group" >
+                    <div class="col-md-6" > 
+                        <div class="input-group" > 
+                            <span class="input-group-addon">{{ form_label(form.clinicExamConst.headCircumference) }}</span>
+                            {{ form_widget(form.clinicExamConst.headCircumference) }}
+                            <span class="input-group-addon">{{ 'head.circumference.uom' | trans  }}</span> 
+                        </div>
+                    </div>
+                    <div class="col-md-6" > 
+                        <div class="input-group" > 
+                            <span class="input-group-addon"><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i></span>
+                            {{ form_widget(form.clinicExamConst.temperature) }}
+                            <span class="input-group-addon">{{ 'temperature.uom' | trans  }}</span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        
+            <div class="col-md-3" > 
+                <div class="row form-group" > 
+                    <button class="btn btn-info">
+                        {{ 'body.mass.index.abbr' | trans  }} <span id="BMIValue"class="badge text-success"></span>
+                    </button>
+                </div> 
+                <div class="row form-group" > 
+                    <div class="input-group" > 
+                        <span class="input-group-addon">{{ form_label(form.clinicExamConst.bloodPressure) }}</span>
+                        {{ form_widget(form.clinicExamConst.bloodPressure) }}
+                    </div>    
+                </div>
+            </div>
+                
+            
+
+    </fieldset>
+{% endblock %}
+
+
+{% block consult_card_before_textarea %}
+    <br />
+    <fieldset >
+        <legend> {{ 'exam' | trans }} </legend>
+{% endblock %}
+
+{% block consult_card_after_textarea %}
+    </fieldset >
+{% endblock %}
