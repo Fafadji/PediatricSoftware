@@ -6,7 +6,7 @@ patient.add: 'Add new patient'
 patient.list: 'Patients List'
 logout: Logout
 login: Login
-footer.signature: 'Pediatric Software © 2017 by Fafadji GNOFAME : fafadji.gnofame@gmail.com - MIT Licence'
+footer.signature: 'Pediatric Software © 2017 by Fafadji GNOFAME : fafadji.gnofame@gmail.com - GNU GPLv3 Licence'
 pediatric.software: 'Pediatric Softwaree'
 patient.manage: 'Manage patients'
 connected.as: '%username%|Role : %role%'

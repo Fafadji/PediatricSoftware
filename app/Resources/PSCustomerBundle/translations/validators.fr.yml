@@ -1,0 +1,4 @@
+person.not.valid.name.empty: 'Le Nom soit être renseigné'
+code.siblings.incorrect.format: 'Entrer un code au format xRxMx ou bien xRxFx où x est un chiffre'
+code.siblings.incorrect.format.male: 'Entrer un code au format xRxMx où x est un chiffre'
+code.siblings.incorrect.format.female: 'Entrer un code au format xRxFx où x est un chiffre'

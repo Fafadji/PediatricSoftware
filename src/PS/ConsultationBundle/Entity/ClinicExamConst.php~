@@ -178,28 +178,5 @@ class ClinicExamConst
         }
         return $BMI;
     }
-
-    /**
-     * Set headCircumference
-     *
-     * @param float $headCircumference
-     *
-     * @return ClinicExamConst
-     */
-    public function setHeadCircumference($headCircumference)
-    {
-        $this->headCircumference = $headCircumference;
-
-        return $this;
-    }
-
-    /**
-     * Get headCircumference
-     *
-     * @return float
-     */
-    public function getHeadCircumference()
-    {
-        return $this->headCircumference;
-    }
 }
+

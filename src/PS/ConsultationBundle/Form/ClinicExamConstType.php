@@ -20,7 +20,8 @@ class ClinicExamConstType extends AbstractType
             ->add('weight', NumberType::class,  array('label' => 'weight.abbr', 'required' => false, 'attr' => ['class' => 'number bmi_param']))
             ->add('height', NumberType::class,  array('label' => 'height.abbr', 'required' => false, 'attr' => ['class' => 'number bmi_param']))
             ->add('temperature', NumberType::class,  array('label' => 'temperature.abbr', 'required' => false, 'attr' => ['class' => 'number']))
-            ->add('bloodPressure', TextType::class,  array('label' => 'blood.pressure.abbr', 'required' => false, 'attr' => ['class' => 'number_format']))       
+            ->add('bloodPressure', TextType::class,  array('label' => 'blood.pressure.abbr', 'required' => false))  
+            ->add('headCircumference', NumberType::class,  array('label' => 'head.circumference.abbr', 'required' => false, 'attr' => ['class' => 'number']))
         ;
     }
     

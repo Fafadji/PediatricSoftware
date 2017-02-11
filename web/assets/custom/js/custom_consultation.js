@@ -1,9 +1,19 @@
  $(function () {
     
+    $("form[name=ps_consultationbundle_consultation]").areYouSure({'message':'La consultation n\'est pas sauvegardée!'} );
+    
+    
+    
+    
     var patient_savePDH = $('#ps_consultationbundle_consultation_patient_savePersonalDiseasesHistory'),
         patient_saveFDH = $('#ps_consultationbundle_consultation_patient_saveFamilyDiseasesHistory'),
-        patient_saveVaccines = $('#ps_consultationbundle_consultation_patient_saveVaccines');
+        patient_saveConsultation=$('#ps_consultationbundle_consultation_saveConsultation1'),
+        patient_saveVaccines = $('#ps_consultationbundle_consultation_patient_saveVaccines')
+    ;
     
+     if( /consultation\/add_or_edit\/\d\/\d/i.test($(location).attr('href')) ) { 
+         disableFields(patient_saveConsultation);
+     }
      
     disableFields(patient_savePDH);
     disableFields(patient_saveFDH);
@@ -101,11 +111,11 @@
             var clicked_button_id = clicked_button.attr('id');
 
             if( /editConsultation/i.test(clicked_button_id) ) {
-                $("form textarea, form input").attr('readonly', false);
+                $("form textarea, form input").attr('readonly', false).change();
                 $("form button").attr('disabled', false);
             } else {
                 clicked_button.parent().find('button[name*=save]').attr('disabled', false);
-                clicked_button.parent().parent().find('textarea, input').attr('readonly', false);
+                clicked_button.parent().parent().find('textarea, input').attr('readonly', false).change();
             }
         }
     }

@@ -4,6 +4,7 @@ namespace PS\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Patient
@@ -60,7 +61,7 @@ class Patient extends Person
     private $vaccines;
     
     
-      /**
+   /**
    * @ORM\OneToOne(targetEntity="PS\CustomerBundle\Entity\Address", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    * @Assert\Valid()
@@ -72,6 +73,44 @@ class Patient extends Person
     {
         parent::__construct(Person::$TYPES['TYPE_PATIENT']);
     }
+    
+   
+    public function personValidation(ExecutionContextInterface $context) {
+        
+        if(!$this->isPersonValid()) {
+            
+        }
+    }
+    
+   /**
+   * @Assert\Callback
+   */
+    public function codeSiblingsValidation(ExecutionContextInterface $context) {
+        $valid = true;
+        $codeSiblingsErrorMsg = "code.siblings.incorrect.format";
+        
+        if( $this->getCodeSiblings() != null ) {
+            $valid = preg_match("/^\dR\d(M|F)\d$/", $this->getCodeSiblings());
+            if($this->getSex() != null) {
+                if($this->getSex() == Person::SEX_MALE) {
+                    $valid = preg_match("/^\dR\dM\d$/", $this->getCodeSiblings());
+                    $codeSiblingsErrorMsg = "code.siblings.incorrect.format.male";
+                } elseif ($this->getSex() == Person::SEX_FEMALE) {
+                    $valid = preg_match("/^\dR\dF\d$/", $this->getCodeSiblings());
+                    $codeSiblingsErrorMsg = "code.siblings.incorrect.format.female";
+                }
+            }
+        }
+        
+        if(!$valid) {
+            $context
+                ->buildViolation($codeSiblingsErrorMsg) 
+                ->atPath('codeSiblings')                                                   
+                ->addViolation() ;
+        }
+    }
+            
+            
 
     /**
      * Set mother

@@ -36,6 +36,7 @@
         "Entrer un numéro au format 33|77|76 xxx xx xx"
     );
     
+    
     var sex_patient = $('input[name*=sex]:checked').val();
     var codeSiblingsRegex = /^\dR\d(M|F)\d$/;
     var codeSiblingsErrorMsg = "Entrer un code au format xRxMx ou bien xRxFx où x est un chiffre";
