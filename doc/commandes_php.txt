@@ -42,3 +42,7 @@ As with all bundles you install, it’s a good practice to clear the cache and i
 
 $ php bin/console cache:clear
 $ php bin/console assets:install
+
+###  heroku
+heroku config:set SYMFONY_ENV=prod --app pediatric-soft-demo
+heroku run bash
