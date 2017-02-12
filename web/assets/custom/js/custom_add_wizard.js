@@ -21,18 +21,7 @@ $(document).ready(function () {
         var activeTab =  $(this).closest(".tab-pane"),
             curInputs = activeTab.find("input[type='text'],input[type='url'],input[type='radio']"),
             isValid = true;
-
-        /*
-        var errorClass="alert alert-danger",
-        $(".form-group").removeClass(errorClass);
-        for(var i=0; i<curInputs.length; i++){
-            if (!curInputs[i].validity.valid){
-                isValid = false;
-                $(curInputs[i]).closest(".form-group").addClass(errorClass);
-            }
-        }
-        */
-
+            
         for(var i=0; i<curInputs.length; i++){
             $(curInputs[i]).validate();
             if (!$(curInputs[i]).valid()){
