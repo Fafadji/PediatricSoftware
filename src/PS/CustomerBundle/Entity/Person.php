@@ -77,9 +77,9 @@ abstract class Person
      *
      * @ORM\Column(name="personal_phone", type="string", length=255, nullable=true)
      * @Assert\Regex(
-     *     pattern="/^(33|77|76) \d{3} \d{2} \d{2}$/",
+     *     pattern="/^(33|77|76|70) \d{3} \d{2} \d{2}$/",
      *     match=true,
-     *     message="Entrer un numéro au format 33|77|76 xxx xx xx"
+     *     message="Entrer un numéro au format 33|77|76|70 xxx xx xx"
      * )
      * 
      */

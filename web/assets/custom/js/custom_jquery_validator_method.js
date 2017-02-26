@@ -27,13 +27,13 @@
         "phoneSN",
         function(value, element) {
             var check = false;
-            var re = /^(33|77|76) \d{3} \d{2} \d{2}$/;
+            var re = /^(33|77|76|70) \d{3} \d{2} \d{2}$/;
             if( re.test(value)){
                 check = true;
             }
             return this.optional(element) || check;
         },
-        "Entrer un numéro au format 33|77|76 xxx xx xx"
+        "Entrer un numéro au format 33|77|76|70 xxx xx xx"
     );
     
     

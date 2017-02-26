@@ -2,9 +2,7 @@
     
     $("form[name=ps_consultationbundle_consultation]").areYouSure({'message':'La consultation n\'est pas sauvegardée!'} );
     
-    
-    
-    
+
     var patient_savePDH = $('#ps_consultationbundle_consultation_patient_savePersonalDiseasesHistory'),
         patient_saveFDH = $('#ps_consultationbundle_consultation_patient_saveFamilyDiseasesHistory'),
         patient_saveConsultation=$('#ps_consultationbundle_consultation_saveConsultation1'),
