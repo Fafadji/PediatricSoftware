@@ -20,7 +20,7 @@ age: Age
 person.age.years: '{0} |{1} %count% year old |[2,Inf[ %count% years old'
 person.age.months: '{0} | {1} %count% month | [2,Inf[ %count% months'
 person.age.days.longdesc: '{0,1} %count% day |[2,Inf[ %count% days'
-person.age.born.today: 'The patient is born Today. He has %count% day. <br>Welcome on Earth to the patient!'
+person.age.born.today: 'The patient is born Today: he has 0 day. <br />Welcome on Earth to the patient!'
 person.age.days: '{0,1}  %count% day | [2,Inf[ %count% days'
 patient.general.medical.info: 'Patient General Medical Information'
 Unknown: Unknown
