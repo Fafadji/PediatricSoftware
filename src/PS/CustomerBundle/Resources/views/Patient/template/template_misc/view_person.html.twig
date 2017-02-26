@@ -67,7 +67,7 @@
                                 {# if person is under 1 year old (years = 0), we also show it's numer of days old #}
                             {% if person.age.y == 0 %}
                                 {% if person.age.m == 0 and person.age.d == 0 %}
-                                    {{ 'person.age.born.today'| trans }}
+                                    {{ 'person.age.born.today'| trans | raw }}
                                 {% else %}
                                     {{ 'person.age.days.longdesc'|transchoice(person.age.d) | raw }}
                                 {% endif %} 
